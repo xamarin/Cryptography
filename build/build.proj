@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Clean;CreatePackage" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<PropertyGroup>
+		<Configuration Condition="'$(Configuration)' == ''">Release</Configuration>
+		<BuildRoot>$(MSBuildThisFileDirectory)</BuildRoot>
+		<NuGetExe>$(BuildRoot)nuget\nuget.exe</NuGetExe>
+		<MSBuildCommunityTasksPath>$(MSBuildThisFileDirectory)msbuild</MSBuildCommunityTasksPath>
+	</PropertyGroup>
+	<ItemGroup>
+		<TargetFramework Include=".NET Framework 2.0">
+			<Project>Renci.Security.Cryptography.NET20</Project>
+			<Moniker>net20</Moniker>
+		</TargetFramework>
+		<TargetFramework Include=".NET Framework 4.0">
+			<Project>Renci.Security.Cryptography.NET40</Project>
+			<Moniker>net40</Moniker>
+		</TargetFramework>
+		<TargetFramework Include="Windows Phone 7.1">
+			<Project>Renci.Security.Cryptography.WindowsPhone71</Project>
+			<Moniker>wp71</Moniker>
+		</TargetFramework>
+		<TargetFramework Include="Windows Phone 8.0">
+			<Project>Renci.Security.Cryptography.WindowsPhone80</Project>
+			<Moniker>wp8</Moniker>
+		</TargetFramework>
+		<TargetFramework Include="Silverlight 4">
+			<Project>Renci.Security.Cryptography.Silverlight4</Project>
+			<Moniker>sl4</Moniker>
+		</TargetFramework>
+		<TargetFramework Include="Silverlight 5">
+			<Project>Renci.Security.Cryptography.Silverlight5</Project>
+			<Moniker>sl5</Moniker>
+		</TargetFramework>
+	</ItemGroup>
+	<Target Name="Clean">
+		<RemoveDir Directories="$(MSBuildThisFileDirectory)target"/>
+	</Target>
+	
+	<Target Name="Build">
+		<ItemGroup>
+			<ProjectToBuild Include="$(MSBuildThisFileDirectory)..\src\Renci.Security.Cryptography.VS2012.sln">
+				<Properties>Configuration=Release</Properties>
+			</ProjectToBuild>
+		</ItemGroup>
+		<MSBuild Projects="@(ProjectToBuild)" Targets="Rebuild"/>
+	</Target>
+	
+	<Target Name="CreatePackage" DependsOnTargets="CopyBuildOutputToPackage">
+		<Exec Command="$(NuGetExe) pack $(MSBuildThisFileDirectory)nuget\Renci.Security.Cryptography.nuspec -OutputDirectory &quot;$(MSBuildThisFileDirectory)target&quot; -BasePath &quot;$(MSBuildThisFileDirectory)target\package&quot; -NonInteractive"/>
+	</Target>
+	<Target Name="CopyBuildOutputToPackage" DependsOnTargets="Build" Outputs="%(TargetFramework.Identity)">
+		<ItemGroup>
+			<BuildOutput Remove="@(BuildOutput)"/>
+			<BuildOutput Include="$(MSBuildThisFileDirectory)..\src\%(TargetFramework.Project)\bin\$(Configuration)\Renci.Security.Cryptography.dll"/>
+			<BuildOutput Include="$(MSBuildThisFileDirectory)..\src\%(TargetFramework.Project)\bin\$(Configuration)\Renci.Security.Cryptography.xml"/>
+		</ItemGroup>
+		<Copy SourceFiles="@(BuildOutput)" DestinationFolder="$(MSBuildThisFileDirectory)target\package\lib\%(TargetFramework.Moniker)"/>
+	</Target>
+</Project>

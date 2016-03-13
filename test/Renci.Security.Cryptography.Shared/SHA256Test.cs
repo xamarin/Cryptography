@@ -1,9 +1,8 @@
 ﻿using System.Text;
 using Renci.Common.Tests;
-using Renci.Security.Cryptography;
 using Xunit;
 
-namespace Renci.SshNet.Tests.Classes.Security.Cryptography.Hashes
+namespace Renci.Security.Cryptography.Tests
 {
     /// <summary>
     /// Test cases are from http://csrc.nist.gov/publications/fips/fips180-2/fips180-2.pdf Appendix B

@@ -1,9 +1,8 @@
 ﻿using System.Text;
 using Renci.Common.Tests;
-using Renci.Security.Cryptography;
 using Xunit;
 
-namespace Renci.SshNet.Tests.Classes.Security.Cryptography.Hashes
+namespace Renci.Security.Cryptography.Tests
 {
     /// <summary>
     /// Test cases are defined in RFC 1321, section A.5

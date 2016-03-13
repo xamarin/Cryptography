@@ -1,9 +1,8 @@
 ﻿using System.Text;
 using Renci.Common.Tests;
-using Renci.Security.Cryptography;
 using Xunit;
 
-namespace Renci.SshNet.Tests.Classes.Security.Cryptography
+namespace Renci.Security.Cryptography.Tests
 {
     /// <summary>
     /// Test cases are from http://homes.esat.kuleuven.be/~bosselae/ripemd160.html.

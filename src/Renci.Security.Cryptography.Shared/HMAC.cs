@@ -32,6 +32,7 @@ namespace Renci.Security.Cryptography
                 throw new ArgumentNullException("hashAlgorithm");
 
             _hash = hashAlgorithm;
+            HashSizeValue = _hash.HashSize;
         }
 
         /// <summary>
@@ -120,7 +121,7 @@ namespace Renci.Security.Cryptography
             // Write the outer array.
             _hash.TransformBlock(_outerPadding, 0, BlockSize, _outerPadding, 0);
 
-            // Write the inner hash and finalize the hash.            
+            // Write the inner hash and finalize the hash.
             _hash.TransformFinalBlock(hashValue, 0, hashValue.Length);
 
             var hash = _hash.Hash;
@@ -130,9 +131,8 @@ namespace Renci.Security.Cryptography
                 return hash;
             }
 
-            var count = Math.Min(hash.Length, hashSizeBytes);
-            var truncatedHash = new byte[count];
-            Buffer.BlockCopy(hash, 0, truncatedHash, 0, count);
+            var truncatedHash = new byte[hashSizeBytes];
+            Buffer.BlockCopy(hash, 0, truncatedHash, 0, hashSizeBytes);
             return truncatedHash;
         }
 

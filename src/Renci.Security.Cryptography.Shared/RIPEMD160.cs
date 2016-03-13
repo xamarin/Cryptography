@@ -7,13 +7,17 @@ namespace Renci.Security.Cryptography
     /// </summary>
     public sealed class RIPEMD160 : HashAlgorithm
     {
-        private const int DIGEST_SIZE = 20;
+        private const int DigestSize = 20;
 
         private readonly byte[] _buffer;
         private int _bufferOffset;
         private long _byteCount;
         private int _offset;
         private int H0, H1, H2, H3, H4; // IV's
+
+        /// <summary>
+        /// The word buffer.
+        /// </summary>
         private readonly int[] X = new int[16];
 
         /// <summary>
@@ -26,7 +30,7 @@ namespace Renci.Security.Cryptography
         {
             get
             {
-                return DIGEST_SIZE * 8;
+                return DigestSize * 8;
             }
         }
 
@@ -136,16 +140,16 @@ namespace Renci.Security.Cryptography
         /// </returns>
         protected override byte[] HashFinal()
         {
-            var output = new byte[DIGEST_SIZE];
-            long bitLength = (_byteCount << 3);
+            var output = new byte[DigestSize];
+            var bitLength = (_byteCount << 3);
 
             //
             // add the pad bytes.
             //
-            Update((byte)128);
+            Update(128);
 
             while (_bufferOffset != 0)
-                Update((byte)0);
+                Update(0);
             ProcessLength(bitLength);
             ProcessBlock();
 
@@ -180,7 +184,7 @@ namespace Renci.Security.Cryptography
         private void ProcessWord(byte[] input, int inOff)
         {
             X[_offset++] = (input[inOff] & 0xff) | ((input[inOff + 1] & 0xff) << 8)
-                | ((input[inOff + 2] & 0xff) << 16) | ((input[inOff + 3] & 0xff) << 24);
+                           | ((input[inOff + 2] & 0xff) << 16) | ((input[inOff + 3] & 0xff) << 24);
 
             if (_offset == 16)
             {
@@ -227,7 +231,7 @@ namespace Renci.Security.Cryptography
         {
             _byteCount = 0;
             _bufferOffset = 0;
-            for (int i = 0; i < _buffer.Length; i++)
+            for (var i = 0; i < _buffer.Length; i++)
             {
                 _buffer[i] = 0;
             }
@@ -240,7 +244,7 @@ namespace Renci.Security.Cryptography
 
             _offset = 0;
 
-            for (int i = 0; i != X.Length; i++)
+            for (var i = 0; i != X.Length; i++)
             {
                 X[i] = 0;
             }
@@ -313,17 +317,17 @@ namespace Renci.Security.Cryptography
 
         private void ProcessBlock()
         {
-            int a, aa;
-            int b, bb;
-            int c, cc;
-            int d, dd;
-            int e, ee;
+            int aa;
+            int bb;
+            int cc;
+            int dd;
+            int ee;
 
-            a = aa = H0;
-            b = bb = H1;
-            c = cc = H2;
-            d = dd = H3;
-            e = ee = H4;
+            var a = aa = H0;
+            var b = bb = H1;
+            var c = cc = H2;
+            var d = dd = H3;
+            var e = ee = H4;
 
             //
             // Rounds 1 - 16
@@ -531,7 +535,7 @@ namespace Renci.Security.Cryptography
             // reset the offset and clean out the word buffer.
             //
             _offset = 0;
-            for (int i = 0; i < X.Length; i++)
+            for (var i = 0; i < X.Length; i++)
             {
                 X[i] = 0;
             }

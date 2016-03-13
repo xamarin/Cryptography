@@ -7,41 +7,47 @@ namespace Renci.Security.Cryptography
     /// </summary>
     public class SHA384 : SHA2Base
     {
-        private const int DIGEST_SIZE = 48;
+        private const int DigestSize = 48;
 
         /// <summary>
         /// Gets the size, in bits, of the computed hash code.
         /// </summary>
-        /// <returns>The size, in bits, of the computed hash code.</returns>
+        /// <returns>
+        /// The size, in bits, of the computed hash code.
+        /// </returns>
         public override int HashSize
         {
             get
             {
-                return DIGEST_SIZE * 8;
+                return DigestSize * 8;
             }
         }
 
         /// <summary>
         /// When overridden in a derived class, gets the input block size.
         /// </summary>
-        /// <returns>The input block size.</returns>
+        /// <returns>
+        /// The input block size.
+        /// </returns>
         public override int InputBlockSize
         {
             get
             {
-                return DIGEST_SIZE * 2;
+                return DigestSize * 2;
             }
         }
 
         /// <summary>
         /// When overridden in a derived class, gets the output block size.
         /// </summary>
-        /// <returns>The output block size.</returns>
+        /// <returns>
+        /// The output block size.
+        /// </returns>
         public override int OutputBlockSize
         {
             get
             {
-                return DIGEST_SIZE * 2;
+                return DigestSize * 2;
             }
         }
 
@@ -53,7 +59,7 @@ namespace Renci.Security.Cryptography
         /// </returns>
         protected override byte[] HashFinal()
         {
-            var output = new byte[DIGEST_SIZE];
+            var output = new byte[DigestSize];
 
             Finish();
 
@@ -76,10 +82,11 @@ namespace Renci.Security.Cryptography
         {
             base.Initialize();
 
-            /* SHA-384 initial hash value
-                * The first 64 bits of the fractional parts of the square roots
-                * of the 9th through 16th prime numbers
-                */
+            /*
+             * SHA-384 initial hash value
+             * The first 64 bits of the fractional parts of the square roots
+             * of the 9th through 16th prime numbers
+             */
             H1 = 0xcbbb9d5dc1059ed8;
             H2 = 0x629a292a367cd507;
             H3 = 0x9159015a3070dd17;

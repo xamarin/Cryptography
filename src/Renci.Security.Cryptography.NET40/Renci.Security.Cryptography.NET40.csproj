@@ -35,7 +35,7 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>..\Renci.Security.Cryptography.snk</AssemblyOriginatorKeyFile>
@@ -73,6 +73,9 @@
     </Compile>
     <Compile Include="..\Renci.Security.Cryptography.Shared\MD5.cs">
       <Link>MD5.cs</Link>
+    </Compile>
+    <Compile Include="..\Renci.Security.Cryptography.Shared\Properties\CommonAssemblyInfo.cs">
+      <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="..\Renci.Security.Cryptography.Shared\RIPEMD160.cs">
       <Link>RIPEMD160.cs</Link>
