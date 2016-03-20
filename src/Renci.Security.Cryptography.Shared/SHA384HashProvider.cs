@@ -1,11 +1,6 @@
-﻿using System.Security.Cryptography;
-
-namespace Renci.Security.Cryptography
+﻿namespace Renci.Security.Cryptography
 {
-    /// <summary>
-    /// Computes the SHA384 hash for input data. 
-    /// </summary>
-    public class SHA384 : SHA2Base
+    internal class SHA384HashProvider : SHA2HashProviderBase
     {
         private const int DigestSize = 48;
 
@@ -57,7 +52,7 @@ namespace Renci.Security.Cryptography
         /// <returns>
         /// The computed hash code.
         /// </returns>
-        protected override byte[] HashFinal()
+        public override byte[] HashFinal()
         {
             var output = new byte[DigestSize];
 
@@ -76,7 +71,7 @@ namespace Renci.Security.Cryptography
         }
 
         /// <summary>
-        /// Initializes an implementation of the <see cref="HashAlgorithm"/> class.
+        /// Initializes an implementation of the <see cref="HashProviderBase"/> class.
         /// </summary>
         public override void Initialize()
         {

@@ -1,12 +1,8 @@
-﻿using System;
-using System.Security.Cryptography;
+﻿using System.Security.Cryptography;
 
 namespace Renci.Security.Cryptography
 {
-    /// <summary>
-    /// SHA256 algorithm implementation.
-    /// </summary>
-    public abstract class SHA2Base : HashAlgorithm
+    internal abstract class SHA2HashProviderBase : HashProviderBase
     {
         /// <summary>
         /// Initial hash value 1.
@@ -59,36 +55,11 @@ namespace Renci.Security.Cryptography
         private long _byteCount2;
 
         /// <summary>
-        /// Gets a value indicating whether the current transform can be reused.
+        /// Initializes a new instance of the <see cref="SHA2HashProviderBase" /> class.
         /// </summary>
-        /// <returns>Always true.</returns>
-        public override bool CanReuseTransform
-        {
-            get
-            {
-                return true;
-            }
-        }
-
-        /// <summary>
-        /// Gets a value indicating whether multiple blocks can be transformed.
-        /// </summary>
-        /// <returns>true if multiple blocks can be transformed; otherwise, false.</returns>
-        public override bool CanTransformMultipleBlocks
-        {
-            get
-            {
-                return true;
-            }
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="SHA2Base" /> class.
-        /// </summary>
-        protected SHA2Base()
+        protected SHA2HashProviderBase()
         {
             _buffer = new byte[8];
-
             Initialize();
         }
 
@@ -98,7 +69,7 @@ namespace Renci.Security.Cryptography
         /// <param name="array">The input to compute the hash code for.</param>
         /// <param name="ibStart">The offset into the byte array from which to begin using data.</param>
         /// <param name="cbSize">The number of bytes in the byte array to use as data.</param>
-        protected override void HashCore(byte[] array, int ibStart, int cbSize)
+        public override void HashCore(byte[] array, int ibStart, int cbSize)
         {
             // Fill the current word
             while ((_bufferOffset != 0) && (cbSize > 0))
@@ -130,7 +101,7 @@ namespace Renci.Security.Cryptography
         }
 
         /// <summary>
-        /// Initializes an implementation of the <see cref="HashAlgorithm"/> class.
+        /// Initializes an implementation of the <see cref="HashProviderBase"/> class.
         /// </summary>
         public override void Initialize()
         {

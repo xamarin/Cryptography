@@ -2,10 +2,7 @@
 
 namespace Renci.Security.Cryptography
 {
-    /// <summary>
-    /// Computes the SHA512 hash for input data. 
-    /// </summary>
-    public class SHA512 : SHA2Base
+    internal class SHA512HashProvider : SHA2HashProviderBase
     {
         private const int DigestSize = 64;
 
@@ -57,7 +54,7 @@ namespace Renci.Security.Cryptography
         /// <returns>
         /// The computed hash code.
         /// </returns>
-        protected override byte[] HashFinal()
+        public override byte[] HashFinal()
         {
             var output = new byte[DigestSize];
 
@@ -78,7 +75,7 @@ namespace Renci.Security.Cryptography
         }
 
         /// <summary>
-        /// Initializes an implementation of the <see cref="HashAlgorithm"/> class.
+        /// Initializes an implementation of the <see cref="HashProviderBase"/> class.
         /// </summary>
         public override void Initialize()
         {

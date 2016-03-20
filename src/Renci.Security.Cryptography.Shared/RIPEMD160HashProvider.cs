@@ -1,11 +1,6 @@
-﻿using System.Security.Cryptography;
-
-namespace Renci.Security.Cryptography
+﻿namespace Renci.Security.Cryptography
 {
-    /// <summary>
-    /// Cryptographic hash function based upon the Merkle–Damgård construction.
-    /// </summary>
-    public sealed class RIPEMD160 : HashAlgorithm
+    internal class RIPEMD160HashProvider : HashProviderBase
     {
         private const int DigestSize = 20;
 
@@ -19,6 +14,15 @@ namespace Renci.Security.Cryptography
         /// The word buffer.
         /// </summary>
         private readonly int[] X = new int[16];
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RIPEMD160HashProvider" /> class.
+        /// </summary>
+        public RIPEMD160HashProvider()
+        {
+            _buffer = new byte[4];
+            InternalInitialize();
+        }
 
         /// <summary>
         /// Gets the size, in bits, of the computed hash code.
@@ -63,40 +67,12 @@ namespace Renci.Security.Cryptography
         }
 
         /// <summary>
-        /// Gets a value indicating whether the current transform can be reused.
-        /// </summary>
-        /// <returns>
-        /// Always true.
-        /// </returns>
-        public override bool CanReuseTransform
-        {
-            get
-            {
-                return true;
-            }
-        }
-
-        /// <summary>
-        /// Gets a value indicating whether multiple blocks can be transformed.
-        /// </summary>
-        /// <returns>
-        /// true if multiple blocks can be transformed; otherwise, false.
-        /// </returns>
-        public override bool CanTransformMultipleBlocks
-        {
-            get
-            {
-                return true;
-            }
-        }
-
-        /// <summary>
         /// Routes data written to the object into the hash algorithm for computing the hash.
         /// </summary>
         /// <param name="array">The input to compute the hash code for.</param>
         /// <param name="ibStart">The offset into the byte array from which to begin using data.</param>
         /// <param name="cbSize">The number of bytes in the byte array to use as data.</param>
-        protected override void HashCore(byte[] array, int ibStart, int cbSize)
+        public override void HashCore(byte[] array, int ibStart, int cbSize)
         {
             //
             // fill the current word
@@ -138,7 +114,7 @@ namespace Renci.Security.Cryptography
         /// <returns>
         /// The computed hash code.
         /// </returns>
-        protected override byte[] HashFinal()
+        public override byte[] HashFinal()
         {
             var output = new byte[DigestSize];
             var bitLength = (_byteCount << 3);
@@ -165,19 +141,10 @@ namespace Renci.Security.Cryptography
         }
 
         /// <summary>
-        /// Initializes an implementation of the <see cref="HashAlgorithm"/> class.
+        /// Initializes an implementation of the <see cref="HashProviderBase"/> class.
         /// </summary>
         public override void Initialize()
         {
-            InternalInitialize();
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="RIPEMD160" /> class.
-        /// </summary>
-        public RIPEMD160()
-        {
-            _buffer = new byte[4];
             InternalInitialize();
         }
 

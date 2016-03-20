@@ -1,11 +1,6 @@
-﻿using System.Security.Cryptography;
-
-namespace Renci.Security.Cryptography
+﻿namespace Renci.Security.Cryptography
 {
-    /// <summary>
-    /// MD5 algorithm implementation
-    /// </summary>
-    public sealed class MD5 : HashAlgorithm
+    internal class MD5HashProvider : HashProviderBase
     {
         private readonly byte[] _buffer = new byte[4];
         private int _bufferOffset;
@@ -17,6 +12,14 @@ namespace Renci.Security.Cryptography
         /// </summary>
         private readonly int[] _x = new int[16];
         private int _offset;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MD5HashProvider"/> class.
+        /// </summary>
+        public MD5HashProvider()
+        {
+            InternalInitialize();
+        }
 
         /// <summary>
         /// Gets the size, in bits, of the computed hash code.
@@ -49,7 +52,9 @@ namespace Renci.Security.Cryptography
         /// <summary>
         /// Gets the output block size.
         /// </summary>
-        /// <returns>The output block size.</returns>
+        /// <returns>
+        /// The output block size.
+        /// </returns>
         public override int OutputBlockSize
         {
             get
@@ -59,48 +64,12 @@ namespace Renci.Security.Cryptography
         }
 
         /// <summary>
-        /// Gets a value indicating whether the current transform can be reused.
-        /// </summary>
-        /// <returns>
-        /// Always true.
-        /// </returns>
-        public override bool CanReuseTransform
-        {
-            get
-            {
-                return true;
-            }
-        }
-
-        /// <summary>
-        /// Gets a value indicating whether multiple blocks can be transformed.
-        /// </summary>
-        /// <returns>
-        /// true if multiple blocks can be transformed; otherwise, false.
-        /// </returns>
-        public override bool CanTransformMultipleBlocks
-        {
-            get
-            {
-                return true;
-            }
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="MD5"/> class.
-        /// </summary>
-        public MD5()
-        {
-            InternalInitialize();
-        }
-
-        /// <summary>
         /// Routes data written to the object into the hash algorithm for computing the hash.
         /// </summary>
         /// <param name="array">The input to compute the hash code for.</param>
         /// <param name="ibStart">The offset into the byte array from which to begin using data.</param>
         /// <param name="cbSize">The number of bytes in the byte array to use as data.</param>
-        protected override void HashCore(byte[] array, int ibStart, int cbSize)
+        public override void HashCore(byte[] array, int ibStart, int cbSize)
         {
             //  Fill the current word
             while ((_bufferOffset != 0) && (cbSize > 0))
@@ -136,7 +105,7 @@ namespace Renci.Security.Cryptography
         /// <returns>
         /// The computed hash code.
         /// </returns>
-        protected override byte[] HashFinal()
+        public override byte[] HashFinal()
         {
             var bitLength = (_byteCount << 3);
 
@@ -169,7 +138,7 @@ namespace Renci.Security.Cryptography
         }
 
         /// <summary>
-        /// Initializes an implementation of the <see cref="HashAlgorithm"/> class.
+        /// Initializes an implementation of the <see cref="HashProviderBase"/> class.
         /// </summary>
         public override void Initialize()
         {
@@ -213,7 +182,7 @@ namespace Renci.Security.Cryptography
         private void ProcessWord(byte[] input, int inOff)
         {
             _x[_offset++] = (input[inOff] & 0xff) | ((input[inOff + 1] & 0xff) << 8)
-                                    | ((input[inOff + 2] & 0xff) << 16) | ((input[inOff + 3] & 0xff) << 24);
+                            | ((input[inOff + 2] & 0xff) << 16) | ((input[inOff + 3] & 0xff) << 24);
 
             if (_offset == 16)
             {
@@ -223,10 +192,10 @@ namespace Renci.Security.Cryptography
 
         private void UnpackWord(int word, byte[] outBytes, int outOff)
         {
-            outBytes[outOff] = (byte)word;
-            outBytes[outOff + 1] = (byte)((uint)word >> 8);
-            outBytes[outOff + 2] = (byte)((uint)word >> 16);
-            outBytes[outOff + 3] = (byte)((uint)word >> 24);
+            outBytes[outOff] = (byte) word;
+            outBytes[outOff + 1] = (byte) ((uint) word >> 8);
+            outBytes[outOff + 2] = (byte) ((uint) word >> 16);
+            outBytes[outOff + 3] = (byte) ((uint) word >> 24);
         }
 
         //
@@ -266,7 +235,7 @@ namespace Renci.Security.Cryptography
         */
         private static int RotateLeft(int x, int n)
         {
-            return (x << n) | (int)((uint)x >> (32 - n));
+            return (x << n) | (int) ((uint) x >> (32 - n));
         }
 
         /*
@@ -302,42 +271,42 @@ namespace Renci.Security.Cryptography
             //
             // Round 1 - F cycle, 16 times.
             //
-            a = RotateLeft((a + F(b, c, d) + _x[0] + unchecked((int)0xd76aa478)), S11) + b;
-            d = RotateLeft((d + F(a, b, c) + _x[1] + unchecked((int)0xe8c7b756)), S12) + a;
+            a = RotateLeft((a + F(b, c, d) + _x[0] + unchecked((int) 0xd76aa478)), S11) + b;
+            d = RotateLeft((d + F(a, b, c) + _x[1] + unchecked((int) 0xe8c7b756)), S12) + a;
             c = RotateLeft((c + F(d, a, b) + _x[2] + unchecked(0x242070db)), S13) + d;
-            b = RotateLeft((b + F(c, d, a) + _x[3] + unchecked((int)0xc1bdceee)), S14) + c;
-            a = RotateLeft((a + F(b, c, d) + _x[4] + unchecked((int)0xf57c0faf)), S11) + b;
+            b = RotateLeft((b + F(c, d, a) + _x[3] + unchecked((int) 0xc1bdceee)), S14) + c;
+            a = RotateLeft((a + F(b, c, d) + _x[4] + unchecked((int) 0xf57c0faf)), S11) + b;
             d = RotateLeft((d + F(a, b, c) + _x[5] + unchecked(0x4787c62a)), S12) + a;
-            c = RotateLeft((c + F(d, a, b) + _x[6] + unchecked((int)0xa8304613)), S13) + d;
-            b = RotateLeft((b + F(c, d, a) + _x[7] + unchecked((int)0xfd469501)), S14) + c;
+            c = RotateLeft((c + F(d, a, b) + _x[6] + unchecked((int) 0xa8304613)), S13) + d;
+            b = RotateLeft((b + F(c, d, a) + _x[7] + unchecked((int) 0xfd469501)), S14) + c;
             a = RotateLeft((a + F(b, c, d) + _x[8] + unchecked(0x698098d8)), S11) + b;
-            d = RotateLeft((d + F(a, b, c) + _x[9] + unchecked((int)0x8b44f7af)), S12) + a;
-            c = RotateLeft((c + F(d, a, b) + _x[10] + unchecked((int)0xffff5bb1)), S13) + d;
-            b = RotateLeft((b + F(c, d, a) + _x[11] + unchecked((int)0x895cd7be)), S14) + c;
+            d = RotateLeft((d + F(a, b, c) + _x[9] + unchecked((int) 0x8b44f7af)), S12) + a;
+            c = RotateLeft((c + F(d, a, b) + _x[10] + unchecked((int) 0xffff5bb1)), S13) + d;
+            b = RotateLeft((b + F(c, d, a) + _x[11] + unchecked((int) 0x895cd7be)), S14) + c;
             a = RotateLeft((a + F(b, c, d) + _x[12] + unchecked(0x6b901122)), S11) + b;
-            d = RotateLeft((d + F(a, b, c) + _x[13] + unchecked((int)0xfd987193)), S12) + a;
-            c = RotateLeft((c + F(d, a, b) + _x[14] + unchecked((int)0xa679438e)), S13) + d;
+            d = RotateLeft((d + F(a, b, c) + _x[13] + unchecked((int) 0xfd987193)), S12) + a;
+            c = RotateLeft((c + F(d, a, b) + _x[14] + unchecked((int) 0xa679438e)), S13) + d;
             b = RotateLeft((b + F(c, d, a) + _x[15] + unchecked(0x49b40821)), S14) + c;
 
             //
             // Round 2 - G cycle, 16 times.
             //
-            a = RotateLeft((a + G(b, c, d) + _x[1] + unchecked((int)0xf61e2562)), S21) + b;
-            d = RotateLeft((d + G(a, b, c) + _x[6] + unchecked((int)0xc040b340)), S22) + a;
+            a = RotateLeft((a + G(b, c, d) + _x[1] + unchecked((int) 0xf61e2562)), S21) + b;
+            d = RotateLeft((d + G(a, b, c) + _x[6] + unchecked((int) 0xc040b340)), S22) + a;
             c = RotateLeft((c + G(d, a, b) + _x[11] + unchecked(0x265e5a51)), S23) + d;
-            b = RotateLeft((b + G(c, d, a) + _x[0] + unchecked((int)0xe9b6c7aa)), S24) + c;
-            a = RotateLeft((a + G(b, c, d) + _x[5] + unchecked((int)0xd62f105d)), S21) + b;
+            b = RotateLeft((b + G(c, d, a) + _x[0] + unchecked((int) 0xe9b6c7aa)), S24) + c;
+            a = RotateLeft((a + G(b, c, d) + _x[5] + unchecked((int) 0xd62f105d)), S21) + b;
             d = RotateLeft((d + G(a, b, c) + _x[10] + unchecked(0x02441453)), S22) + a;
-            c = RotateLeft((c + G(d, a, b) + _x[15] + unchecked((int)0xd8a1e681)), S23) + d;
-            b = RotateLeft((b + G(c, d, a) + _x[4] + unchecked((int)0xe7d3fbc8)), S24) + c;
+            c = RotateLeft((c + G(d, a, b) + _x[15] + unchecked((int) 0xd8a1e681)), S23) + d;
+            b = RotateLeft((b + G(c, d, a) + _x[4] + unchecked((int) 0xe7d3fbc8)), S24) + c;
             a = RotateLeft((a + G(b, c, d) + _x[9] + unchecked(0x21e1cde6)), S21) + b;
-            d = RotateLeft((d + G(a, b, c) + _x[14] + unchecked((int)0xc33707d6)), S22) + a;
-            c = RotateLeft((c + G(d, a, b) + _x[3] + unchecked((int)0xf4d50d87)), S23) + d;
+            d = RotateLeft((d + G(a, b, c) + _x[14] + unchecked((int) 0xc33707d6)), S22) + a;
+            c = RotateLeft((c + G(d, a, b) + _x[3] + unchecked((int) 0xf4d50d87)), S23) + d;
             b = RotateLeft((b + G(c, d, a) + _x[8] + unchecked(0x455a14ed)), S24) + c;
-            a = RotateLeft((a + G(b, c, d) + _x[13] + unchecked((int)0xa9e3e905)), S21) + b;
-            d = RotateLeft((d + G(a, b, c) + _x[2] + unchecked((int)0xfcefa3f8)), S22) + a;
+            a = RotateLeft((a + G(b, c, d) + _x[13] + unchecked((int) 0xa9e3e905)), S21) + b;
+            d = RotateLeft((d + G(a, b, c) + _x[2] + unchecked((int) 0xfcefa3f8)), S22) + a;
             c = RotateLeft((c + G(d, a, b) + _x[7] + unchecked(0x676f02d9)), S23) + d;
-            b = RotateLeft((b + G(c, d, a) + _x[12] + unchecked((int)0x8d2a4c8a)), S24) + c;
+            b = RotateLeft((b + G(c, d, a) + _x[12] + unchecked((int) 0x8d2a4c8a)), S24) + c;
 
             //
             // Round 3 - H cycle, 16 times.
