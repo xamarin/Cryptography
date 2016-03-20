@@ -10,7 +10,7 @@
         /// </summary>
         /// <param name="key">The key.</param>
         public HMACMD5(byte[] key)
-            : base(new MD5(), key)
+            : base(new MD5HashProvider(), key)
         {
         }
 
@@ -20,7 +20,7 @@
         /// <param name="key">The key.</param>
         /// <param name="hashSize">The size, in bits, of the computed hash code.</param>
         public HMACMD5(byte[] key, int hashSize)
-            : base(new MD5(), key, hashSize)
+            : base(new MD5HashProvider(), key, hashSize)
         {
         }
 

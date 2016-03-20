@@ -10,7 +10,7 @@
         /// </summary>
         /// <param name="key">The key.</param>
         public HMACSHA384(byte[] key)
-            : base(new SHA384(), key)
+            : base(new SHA384HashProvider(), key)
         {
         }
 
@@ -20,7 +20,7 @@
         /// <param name="key">The key.</param>
         /// <param name="hashSize">The size, in bits, of the computed hash code.</param>
         public HMACSHA384(byte[] key, int hashSize)
-            : base(new SHA384(), key, hashSize)
+            : base(new SHA384HashProvider(), key, hashSize)
         {
         }
 

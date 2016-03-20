@@ -10,7 +10,7 @@
         /// </summary>
         /// <param name="key">The key.</param>
         public HMACSHA512(byte[] key)
-            : base(new SHA512(), key)
+            : base(new SHA512HashProvider(), key)
         {
         }
 
@@ -20,7 +20,7 @@
         /// <param name="key">The key.</param>
         /// <param name="hashSize">The size, in bits, of the computed hash code.</param>
         public HMACSHA512(byte[] key, int hashSize)
-            : base(new SHA512(), key, hashSize)
+            : base(new SHA512HashProvider(), key, hashSize)
         {
         }
 

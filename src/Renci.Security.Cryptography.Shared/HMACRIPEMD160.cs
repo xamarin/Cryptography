@@ -10,7 +10,7 @@
         /// </summary>
         /// <param name="key">The key.</param>
         public HMACRIPEMD160(byte[] key)
-            : base(new RIPEMD160(), key)
+            : base(new RIPEMD160HashProvider(), key)
         {
         }
 
