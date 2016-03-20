@@ -23,11 +23,7 @@ namespace Renci.Security.Cryptography
         /// <returns>
         /// The size, in bits, of the computed hash code.
         /// </returns>
-        public
-#if !NETFX_CORE
-        override
-#endif
-        int HashSize
+        public override int HashSize
         {
             get
             {
