@@ -17,8 +17,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Renci.Security.Cryptography
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Renci.Security.Cryptography.Silverlight5", "Renci.Security.Cryptography.Silverlight5\Renci.Security.Cryptography.Silverlight5.csproj", "{AA7BB3E4-6146-432A-A472-5A5319050EE4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Renci.Security.Cryptography.Portable", "Renci.Security.Cryptography.Portable\Renci.Security.Cryptography.Portable.csproj", "{282D0A30-611F-4CCF-817A-9690C73248D2}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Renci.Security.Cryptography.UAP10", "Renci.Security.Cryptography.UAP10\Renci.Security.Cryptography.UAP10.csproj", "{427E4B4A-5245-45B5-B101-2556C9224C88}"
 EndProject
 Global
@@ -107,22 +105,6 @@ Global
 		{AA7BB3E4-6146-432A-A472-5A5319050EE4}.Release|ARM.ActiveCfg = Release|Any CPU
 		{AA7BB3E4-6146-432A-A472-5A5319050EE4}.Release|x64.ActiveCfg = Release|Any CPU
 		{AA7BB3E4-6146-432A-A472-5A5319050EE4}.Release|x86.ActiveCfg = Release|Any CPU
-		{282D0A30-611F-4CCF-817A-9690C73248D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{282D0A30-611F-4CCF-817A-9690C73248D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{282D0A30-611F-4CCF-817A-9690C73248D2}.Debug|ARM.ActiveCfg = Debug|Any CPU
-		{282D0A30-611F-4CCF-817A-9690C73248D2}.Debug|ARM.Build.0 = Debug|Any CPU
-		{282D0A30-611F-4CCF-817A-9690C73248D2}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{282D0A30-611F-4CCF-817A-9690C73248D2}.Debug|x64.Build.0 = Debug|Any CPU
-		{282D0A30-611F-4CCF-817A-9690C73248D2}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{282D0A30-611F-4CCF-817A-9690C73248D2}.Debug|x86.Build.0 = Debug|Any CPU
-		{282D0A30-611F-4CCF-817A-9690C73248D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{282D0A30-611F-4CCF-817A-9690C73248D2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{282D0A30-611F-4CCF-817A-9690C73248D2}.Release|ARM.ActiveCfg = Release|Any CPU
-		{282D0A30-611F-4CCF-817A-9690C73248D2}.Release|ARM.Build.0 = Release|Any CPU
-		{282D0A30-611F-4CCF-817A-9690C73248D2}.Release|x64.ActiveCfg = Release|Any CPU
-		{282D0A30-611F-4CCF-817A-9690C73248D2}.Release|x64.Build.0 = Release|Any CPU
-		{282D0A30-611F-4CCF-817A-9690C73248D2}.Release|x86.ActiveCfg = Release|Any CPU
-		{282D0A30-611F-4CCF-817A-9690C73248D2}.Release|x86.Build.0 = Release|Any CPU
 		{427E4B4A-5245-45B5-B101-2556C9224C88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{427E4B4A-5245-45B5-B101-2556C9224C88}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{427E4B4A-5245-45B5-B101-2556C9224C88}.Debug|ARM.ActiveCfg = Debug|ARM
