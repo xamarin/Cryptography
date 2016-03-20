@@ -16,3 +16,6 @@ src/.vs/
 
 # Automated build output
 build/target
+
+# Expanded/resolved project.json files
+project.lock.json
