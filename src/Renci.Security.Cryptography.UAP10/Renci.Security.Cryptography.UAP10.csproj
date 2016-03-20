@@ -1,0 +1,198 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{427E4B4A-5245-45B5-B101-2556C9224C88}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Renci.Security.Cryptography</RootNamespace>
+    <AssemblyName>Renci.Security.Cryptography</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
+    <TargetPlatformVersion>10.0.10240.0</TargetPlatformVersion>
+    <TargetPlatformMinVersion>10.0.10240.0</TargetPlatformMinVersion>
+    <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\Renci.Security.Cryptography.xml</DocumentationFile>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <DocumentationFile>bin\Release\Renci.Security.Cryptography.xml</DocumentationFile>
+    <GenerateLibraryLayout>false</GenerateLibraryLayout>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
+    <PlatformTarget>ARM</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\ARM\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
+    <PlatformTarget>ARM</PlatformTarget>
+    <OutputPath>bin\ARM\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <PlatformTarget>x64</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <PlatformTarget>x64</PlatformTarget>
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
+    <None Include="project.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\Renci.Security.Cryptography.Shared\HashProviderBase.cs">
+      <Link>HashProviderBase.cs</Link>
+    </Compile>
+    <Compile Include="..\Renci.Security.Cryptography.Shared\HMAC.cs">
+      <Link>HMAC.cs</Link>
+    </Compile>
+    <Compile Include="..\Renci.Security.Cryptography.Shared\HMACMD5.cs">
+      <Link>HMACMD5.cs</Link>
+    </Compile>
+    <Compile Include="..\Renci.Security.Cryptography.Shared\HMACRIPEMD160.cs">
+      <Link>HMACRIPEMD160.cs</Link>
+    </Compile>
+    <Compile Include="..\Renci.Security.Cryptography.Shared\HMACSHA1.cs">
+      <Link>HMACSHA1.cs</Link>
+    </Compile>
+    <Compile Include="..\Renci.Security.Cryptography.Shared\HMACSHA256.cs">
+      <Link>HMACSHA256.cs</Link>
+    </Compile>
+    <Compile Include="..\Renci.Security.Cryptography.Shared\HMACSHA384.cs">
+      <Link>HMACSHA384.cs</Link>
+    </Compile>
+    <Compile Include="..\Renci.Security.Cryptography.Shared\HMACSHA512.cs">
+      <Link>HMACSHA512.cs</Link>
+    </Compile>
+    <Compile Include="..\Renci.Security.Cryptography.Shared\IHashProvider.cs">
+      <Link>IHashProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\Renci.Security.Cryptography.Shared\MD5.cs">
+      <Link>MD5.cs</Link>
+    </Compile>
+    <Compile Include="..\Renci.Security.Cryptography.Shared\MD5HashProvider.cs">
+      <Link>MD5HashProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\Renci.Security.Cryptography.Shared\Properties\CommonAssemblyInfo.cs">
+      <Link>Properties\CommonAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\Renci.Security.Cryptography.Shared\RIPEMD160.cs">
+      <Link>RIPEMD160.cs</Link>
+    </Compile>
+    <Compile Include="..\Renci.Security.Cryptography.Shared\RIPEMD160HashProvider.cs">
+      <Link>RIPEMD160HashProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\Renci.Security.Cryptography.Shared\SHA1.cs">
+      <Link>SHA1.cs</Link>
+    </Compile>
+    <Compile Include="..\Renci.Security.Cryptography.Shared\SHA1HashProvider.cs">
+      <Link>SHA1HashProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\Renci.Security.Cryptography.Shared\SHA256.cs">
+      <Link>SHA256.cs</Link>
+    </Compile>
+    <Compile Include="..\Renci.Security.Cryptography.Shared\SHA256HashProvider.cs">
+      <Link>SHA256HashProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\Renci.Security.Cryptography.Shared\SHA2HashProviderBase.cs">
+      <Link>SHA2HashProviderBase.cs</Link>
+    </Compile>
+    <Compile Include="..\Renci.Security.Cryptography.Shared\SHA384.cs">
+      <Link>SHA384.cs</Link>
+    </Compile>
+    <Compile Include="..\Renci.Security.Cryptography.Shared\SHA384HashProvider.cs">
+      <Link>SHA384HashProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\Renci.Security.Cryptography.Shared\SHA512.cs">
+      <Link>SHA512.cs</Link>
+    </Compile>
+    <Compile Include="..\Renci.Security.Cryptography.Shared\SHA512HashProvider.cs">
+      <Link>SHA512HashProvider.cs</Link>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Properties\Renci.Security.Cryptography.UAP10.rd.xml" />
+  </ItemGroup>
+  <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
+    <VisualStudioVersion>14.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
