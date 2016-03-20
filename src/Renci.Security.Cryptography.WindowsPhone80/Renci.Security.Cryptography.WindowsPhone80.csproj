@@ -87,6 +87,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="..\Renci.Security.Cryptography.Shared\HashProviderBase.cs">
+      <Link>HashProviderBase.cs</Link>
+    </Compile>
     <Compile Include="..\Renci.Security.Cryptography.Shared\HMAC.cs">
       <Link>HMAC.cs</Link>
     </Compile>
@@ -108,8 +111,14 @@
     <Compile Include="..\Renci.Security.Cryptography.Shared\HMACSHA512.cs">
       <Link>HMACSHA512.cs</Link>
     </Compile>
+    <Compile Include="..\Renci.Security.Cryptography.Shared\IHashProvider.cs">
+      <Link>IHashProvider.cs</Link>
+    </Compile>
     <Compile Include="..\Renci.Security.Cryptography.Shared\MD5.cs">
       <Link>MD5.cs</Link>
+    </Compile>
+    <Compile Include="..\Renci.Security.Cryptography.Shared\MD5HashProvider.cs">
+      <Link>MD5HashProvider.cs</Link>
     </Compile>
     <Compile Include="..\Renci.Security.Cryptography.Shared\Properties\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
@@ -117,20 +126,35 @@
     <Compile Include="..\Renci.Security.Cryptography.Shared\RIPEMD160.cs">
       <Link>RIPEMD160.cs</Link>
     </Compile>
+    <Compile Include="..\Renci.Security.Cryptography.Shared\RIPEMD160HashProvider.cs">
+      <Link>RIPEMD160HashProvider.cs</Link>
+    </Compile>
     <Compile Include="..\Renci.Security.Cryptography.Shared\SHA1.cs">
       <Link>SHA1.cs</Link>
+    </Compile>
+    <Compile Include="..\Renci.Security.Cryptography.Shared\SHA1HashProvider.cs">
+      <Link>SHA1HashProvider.cs</Link>
     </Compile>
     <Compile Include="..\Renci.Security.Cryptography.Shared\SHA256.cs">
       <Link>SHA256.cs</Link>
     </Compile>
-    <Compile Include="..\Renci.Security.Cryptography.Shared\SHA2Base.cs">
-      <Link>SHA2Base.cs</Link>
+    <Compile Include="..\Renci.Security.Cryptography.Shared\SHA256HashProvider.cs">
+      <Link>SHA256HashProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\Renci.Security.Cryptography.Shared\SHA2HashProviderBase.cs">
+      <Link>SHA2HashProviderBase.cs</Link>
     </Compile>
     <Compile Include="..\Renci.Security.Cryptography.Shared\SHA384.cs">
       <Link>SHA384.cs</Link>
     </Compile>
+    <Compile Include="..\Renci.Security.Cryptography.Shared\SHA384HashProvider.cs">
+      <Link>SHA384HashProvider.cs</Link>
+    </Compile>
     <Compile Include="..\Renci.Security.Cryptography.Shared\SHA512.cs">
       <Link>SHA512.cs</Link>
+    </Compile>
+    <Compile Include="..\Renci.Security.Cryptography.Shared\SHA512HashProvider.cs">
+      <Link>SHA512HashProvider.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
