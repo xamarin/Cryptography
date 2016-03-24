@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Clean;CreatePackage" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="4.0" DefaultTargets="Clean;Build;CreatePackage" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 	<PropertyGroup>
 		<Configuration Condition="'$(Configuration)' == ''">Release</Configuration>
 		<BuildRoot>$(MSBuildThisFileDirectory)</BuildRoot>
-		<NuGetExe>$(BuildRoot)nuget\nuget.exe</NuGetExe>
+		<NuGetExe>$(BuildRoot)target\nuget\nuget.exe</NuGetExe>
 		<MSBuildCommunityTasksPath>$(MSBuildThisFileDirectory)msbuild</MSBuildCommunityTasksPath>
 	</PropertyGroup>
 	<ItemGroup>
@@ -41,7 +41,7 @@
 		</TargetFramework>
 		<TargetFramework Include="Universal Windows Platform 10">
 			<Project>Renci.Security.Cryptography.UAP10</Project>
-			<Moniker>uap10.0</Moniker>
+			<Moniker>uap10</Moniker>
 		</TargetFramework>
 	</ItemGroup>
 	<Target Name="Clean">
@@ -51,18 +51,19 @@
 	<Target Name="DownloadNuGet">
 		<MakeDir Directories="$(MSBuildThisFileDirectory)target\nuget"/>
 		<DownloadFile
-			Address="https://dist.nuget.org/win-x86-commandline/latest/nuget.exe"
+			Address="https://dist.nuget.org/win-x86-commandline/v3.4.0-rc/nuget.exe"
 			FileName="$(MSBuildThisFileDirectory)target\nuget\nuget.exe"/>
 	</Target>
 	
 	<Target Name="RestoreNuGetPackages" DependsOnTargets="DownloadNuGet" Outputs="%(VisualStudioVersion.Identity)">
+		<Message Text="Restoring nuget packages for '%(VisualStudioVersion.SolutionFile)'..." Importance="High"/>
 		<Exec Command="$(MSBuildThisFileDirectory)target\nuget\nuget.exe restore &quot;%(VisualStudioVersion.SolutionFile)&quot;"/>
 	</Target>
 
 	<Target Name="Build" DependsOnTargets="RestoreNuGetPackages" Outputs="%(VisualStudioVersion.Identity)">
 		<ItemGroup>
 			<ProjectToBuild Remove="@(ProjectToBuild)"/>
-			<ProjectToBuild Include="$(MSBuildThisFileDirectory)..\src\Renci.Security.Cryptography.VS%(VisualStudioVersion.SolutionFile).sln">
+			<ProjectToBuild Include="%(VisualStudioVersion.SolutionFile)">
 				<Properties>Configuration=Release</Properties>
 			</ProjectToBuild>
 		</ItemGroup>
