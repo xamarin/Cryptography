@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Clean;CreatePackage" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="4.0" DefaultTargets="Clean;Build;CreatePackage" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 	<PropertyGroup>
 		<Configuration Condition="'$(Configuration)' == ''">Release</Configuration>
 		<BuildRoot>$(MSBuildThisFileDirectory)</BuildRoot>
-		<NuGetExe>$(BuildRoot)nuget\nuget.exe</NuGetExe>
+		<NuGetExe>$(BuildRoot)target\nuget\nuget.exe</NuGetExe>
 		<MSBuildCommunityTasksPath>$(MSBuildThisFileDirectory)msbuild</MSBuildCommunityTasksPath>
-		
-		<VisualStudioVersions Include="2012"/>
-		<VisualStudioVersions Include="2015"/>
 	</PropertyGroup>
+	<ItemGroup>
+		<VisualStudioVersion Include="2012">
+			<SolutionFile>$(MSBuildThisFileDirectory)..\src\Renci.Security.Cryptography.VS2012.sln</SolutionFile>
+		</VisualStudioVersion>
+		<VisualStudioVersion Include="2015">
+			<SolutionFile>$(MSBuildThisFileDirectory)..\src\Renci.Security.Cryptography.VS2015.sln</SolutionFile>
+		</VisualStudioVersion>
+	</ItemGroup>
 	<ItemGroup>
 		<TargetFramework Include=".NET Framework 2.0">
 			<Project>Renci.Security.Cryptography.NET20</Project>
@@ -36,24 +41,35 @@
 		</TargetFramework>
 		<TargetFramework Include="Universal Windows Platform 10">
 			<Project>Renci.Security.Cryptography.UAP10</Project>
-			<Moniker>uap10.0</Moniker>
+			<Moniker>uap10</Moniker>
 		</TargetFramework>
 	</ItemGroup>
 	<Target Name="Clean">
 		<RemoveDir Directories="$(MSBuildThisFileDirectory)target"/>
 	</Target>
+
+	<Target Name="DownloadNuGet">
+		<MakeDir Directories="$(MSBuildThisFileDirectory)target\nuget"/>
+		<DownloadFile
+			Address="https://dist.nuget.org/win-x86-commandline/v3.4.0-rc/nuget.exe"
+			FileName="$(MSBuildThisFileDirectory)target\nuget\nuget.exe"/>
+	</Target>
 	
-	<Target Name="Build" Outputs="%(VisualStudioVersions.Identity)">
+	<Target Name="RestoreNuGetPackages" DependsOnTargets="DownloadNuGet" Outputs="%(VisualStudioVersion.Identity)">
+		<Message Text="Restoring nuget packages for '%(VisualStudioVersion.SolutionFile)'..." Importance="High"/>
+		<Exec Command="$(MSBuildThisFileDirectory)target\nuget\nuget.exe restore &quot;%(VisualStudioVersion.SolutionFile)&quot;"/>
+	</Target>
+
+	<Target Name="Build" DependsOnTargets="RestoreNuGetPackages" Outputs="%(VisualStudioVersion.Identity)">
 		<ItemGroup>
 			<ProjectToBuild Remove="@(ProjectToBuild)"/>
-			<ProjectToBuild Include="$(MSBuildThisFileDirectory)..\src\Renci.Security.Cryptography.VS%(VisualStudioVersions.Identity).sln">
+			<ProjectToBuild Include="%(VisualStudioVersion.SolutionFile)">
 				<Properties>Configuration=Release</Properties>
 			</ProjectToBuild>
 		</ItemGroup>
 		<MSBuild Projects="@(ProjectToBuild)" Targets="Rebuild"/>
 	</Target>
-	
-	
+
 	<Target Name="CreatePackage" DependsOnTargets="CopyBuildOutputToPackage">
 		<Exec Command="$(NuGetExe) pack $(MSBuildThisFileDirectory)nuget\Renci.Security.Cryptography.nuspec -OutputDirectory &quot;$(MSBuildThisFileDirectory)target&quot; -BasePath &quot;$(MSBuildThisFileDirectory)target\package&quot; -NonInteractive"/>
 	</Target>
@@ -65,4 +81,19 @@
 		</ItemGroup>
 		<Copy SourceFiles="@(BuildOutput)" DestinationFolder="$(MSBuildThisFileDirectory)target\package\lib\%(TargetFramework.Moniker)"/>
 	</Target>
+	
+	<UsingTask TaskName="DownloadFile" TaskFactory="CodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll">
+		<ParameterGroup>
+			<Address ParameterType="System.String" Required="true"/>
+			<FileName ParameterType="System.String" Required="true" />
+		</ParameterGroup>
+		<Task>
+			<Reference Include="System" />
+			<Code Type="Fragment" Language="cs">
+				<![CDATA[
+					new System.Net.WebClient().DownloadFile(Address, FileName);
+				]]>
+			</Code>
+		</Task>
+	</UsingTask>
 </Project>

@@ -11,6 +11,7 @@ namespace Renci.Security.Cryptography
         private IHashProvider _hashProvider;
         private byte[] _innerPadding;
         private byte[] _outerPadding;
+        private readonly int _hashSize;
 
         /// <summary>
         /// Gets the size of the block.
@@ -26,7 +27,9 @@ namespace Renci.Security.Cryptography
         /// <value>
         /// The size, in bits, of the computed hash code.
         /// </value>
-        public override int HashSize { get; }
+        public override int HashSize {
+            get { return _hashSize; }
+        }
 
         /// <summary>
         /// Initializes a <see cref="HMAC"/> with the specified hash algorithm.
@@ -39,7 +42,7 @@ namespace Renci.Security.Cryptography
                 throw new ArgumentNullException("hashProvider");
 
             _hashProvider = hashProvider;
-            HashSize = _hashProvider.HashSize;
+            _hashSize = _hashProvider.HashSize;
         }
 
         /// <summary>
@@ -53,7 +56,7 @@ namespace Renci.Security.Cryptography
         internal HMAC(IHashProvider hashProvider, byte[] key, int hashSize)
             : this(hashProvider, key)
         {
-            HashSize = hashSize;
+            _hashSize = hashSize;
         }
 
         /// <summary>
@@ -66,14 +69,6 @@ namespace Renci.Security.Cryptography
             : this(hashProvider)
         {
             InternalInitialize(key);
-        }
-
-        /// <summary>
-        /// Gets the name of the hash algorithm to use for hashing.
-        /// </summary>
-        public string HashName
-        {
-            get { return "TODO"; }
         }
 
         /// <summary>
