@@ -5,6 +5,9 @@
 		<BuildRoot>$(MSBuildThisFileDirectory)</BuildRoot>
 		<NuGetExe>$(BuildRoot)nuget\nuget.exe</NuGetExe>
 		<MSBuildCommunityTasksPath>$(MSBuildThisFileDirectory)msbuild</MSBuildCommunityTasksPath>
+		
+		<VisualStudioVersions Include="2012"/>
+		<VisualStudioVersions Include="2015"/>
 	</PropertyGroup>
 	<ItemGroup>
 		<TargetFramework Include=".NET Framework 2.0">
@@ -31,24 +34,30 @@
 			<Project>Renci.Security.Cryptography.Silverlight5</Project>
 			<Moniker>sl5</Moniker>
 		</TargetFramework>
+		<TargetFramework Include="Universal Windows Platform 10">
+			<Project>Renci.Security.Cryptography.UAP10</Project>
+			<Moniker>uap10.0</Moniker>
+		</TargetFramework>
 	</ItemGroup>
 	<Target Name="Clean">
 		<RemoveDir Directories="$(MSBuildThisFileDirectory)target"/>
 	</Target>
 	
-	<Target Name="Build">
+	<Target Name="Build" Outputs="%(VisualStudioVersions.Identity)">
 		<ItemGroup>
-			<ProjectToBuild Include="$(MSBuildThisFileDirectory)..\src\Renci.Security.Cryptography.VS2012.sln">
+			<ProjectToBuild Remove="@(ProjectToBuild)"/>
+			<ProjectToBuild Include="$(MSBuildThisFileDirectory)..\src\Renci.Security.Cryptography.VS%(VisualStudioVersions.Identity).sln">
 				<Properties>Configuration=Release</Properties>
 			</ProjectToBuild>
 		</ItemGroup>
 		<MSBuild Projects="@(ProjectToBuild)" Targets="Rebuild"/>
 	</Target>
 	
+	
 	<Target Name="CreatePackage" DependsOnTargets="CopyBuildOutputToPackage">
 		<Exec Command="$(NuGetExe) pack $(MSBuildThisFileDirectory)nuget\Renci.Security.Cryptography.nuspec -OutputDirectory &quot;$(MSBuildThisFileDirectory)target&quot; -BasePath &quot;$(MSBuildThisFileDirectory)target\package&quot; -NonInteractive"/>
 	</Target>
-	<Target Name="CopyBuildOutputToPackage" DependsOnTargets="Build" Outputs="%(TargetFramework.Identity)">
+	<Target Name="CopyBuildOutputToPackage" Outputs="%(TargetFramework.Identity)">
 		<ItemGroup>
 			<BuildOutput Remove="@(BuildOutput)"/>
 			<BuildOutput Include="$(MSBuildThisFileDirectory)..\src\%(TargetFramework.Project)\bin\$(Configuration)\Renci.Security.Cryptography.dll"/>
