@@ -1,5 +1,5 @@
 #Introduction#
-This project groups some crypto classes that were previously only available as part of **SSH.NET**.
+This project groups some crypto classes that were previously part of **SSH.NET**, and makes them available for a broad set of target frameworks.
 
 #Hash algorithms#
 
