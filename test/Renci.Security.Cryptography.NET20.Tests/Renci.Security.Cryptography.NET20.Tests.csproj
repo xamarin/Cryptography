@@ -7,8 +7,8 @@
     <ProjectGuid>{30271F90-FF2A-4427-BF88-8EA37CA6110A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Renci.Security.Cryptography.NET20.Tests</RootNamespace>
-    <AssemblyName>Renci.Security.Cryptography.NET20.Tests</AssemblyName>
+    <RootNamespace>Renci.Security.Cryptography.Tests</RootNamespace>
+    <AssemblyName>Renci.Security.Cryptography.Tests</AssemblyName>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
