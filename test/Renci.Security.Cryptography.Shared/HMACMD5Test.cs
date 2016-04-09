@@ -3,7 +3,7 @@ using Renci.Common.Tests;
 using Renci.Security.Cryptography;
 using Xunit;
 
-namespace Renci.SshNet.Tests.Classes.Security.Cryptography
+namespace Renci.Security.Cryptography.Tests
 {
     /// <summary>
     /// Test cases are from https://tools.ietf.org/html/rfc2202.
