@@ -31,9 +31,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="ByteExtensions.cs" />
+    <Compile Include="..\Renci.Security.Cryptography.Shared\Common\ByteExtensions.cs">
+      <Link>ByteExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\Renci.Security.Cryptography.Shared\Common\StringExtensions.cs">
+      <Link>StringExtensions.cs</Link>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StringExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
