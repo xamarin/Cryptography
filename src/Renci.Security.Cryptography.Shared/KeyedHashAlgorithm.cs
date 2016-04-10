@@ -1,6 +1,8 @@
 ﻿// TODO Remove this class, and add a dependency to the System.Security.Cryptography.Primitives
 // TODO package once this package is available from http://nuget.org with support for UAP 10.0.
 
+#if !FEATURE_CRYPTO_HASHALGORITHM
+
 // Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
@@ -51,5 +53,5 @@ namespace System.Security.Cryptography
         private byte[] _key;
     }
 }
-
+#endif // !FEATURE_CRYPTO_KEYEDHASHALGORITHM
 

@@ -1,6 +1,4 @@
-﻿using System.Security.Cryptography;
-
-namespace Renci.Security.Cryptography
+﻿namespace Renci.Security.Cryptography
 {
     internal class SHA512HashProvider : SHA2HashProviderBase
     {

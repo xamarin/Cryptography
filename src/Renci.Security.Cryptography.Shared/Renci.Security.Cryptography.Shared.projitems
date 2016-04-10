@@ -9,6 +9,8 @@
     <Import_RootNamespace>Renci.Security.Cryptography.Shared</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)HashAlgorithm.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)KeyedHashAlgorithm.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Properties\CommonAssemblyInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HashProviderBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HMAC.cs" />
