@@ -115,77 +115,11 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\Renci.Security.Cryptography.Shared\HashProviderBase.cs">
-      <Link>HashProviderBase.cs</Link>
-    </Compile>
-    <Compile Include="..\Renci.Security.Cryptography.Shared\HMAC.cs">
-      <Link>HMAC.cs</Link>
-    </Compile>
-    <Compile Include="..\Renci.Security.Cryptography.Shared\HMACMD5.cs">
-      <Link>HMACMD5.cs</Link>
-    </Compile>
-    <Compile Include="..\Renci.Security.Cryptography.Shared\HMACRIPEMD160.cs">
-      <Link>HMACRIPEMD160.cs</Link>
-    </Compile>
-    <Compile Include="..\Renci.Security.Cryptography.Shared\HMACSHA1.cs">
-      <Link>HMACSHA1.cs</Link>
-    </Compile>
-    <Compile Include="..\Renci.Security.Cryptography.Shared\HMACSHA256.cs">
-      <Link>HMACSHA256.cs</Link>
-    </Compile>
-    <Compile Include="..\Renci.Security.Cryptography.Shared\HMACSHA384.cs">
-      <Link>HMACSHA384.cs</Link>
-    </Compile>
-    <Compile Include="..\Renci.Security.Cryptography.Shared\HMACSHA512.cs">
-      <Link>HMACSHA512.cs</Link>
-    </Compile>
-    <Compile Include="..\Renci.Security.Cryptography.Shared\IHashProvider.cs">
-      <Link>IHashProvider.cs</Link>
-    </Compile>
-    <Compile Include="..\Renci.Security.Cryptography.Shared\MD5.cs">
-      <Link>MD5.cs</Link>
-    </Compile>
-    <Compile Include="..\Renci.Security.Cryptography.Shared\MD5HashProvider.cs">
-      <Link>MD5HashProvider.cs</Link>
-    </Compile>
-    <Compile Include="..\Renci.Security.Cryptography.Shared\Properties\CommonAssemblyInfo.cs">
-      <Link>Properties\CommonAssemblyInfo.cs</Link>
-    </Compile>
-    <Compile Include="..\Renci.Security.Cryptography.Shared\RIPEMD160.cs">
-      <Link>RIPEMD160.cs</Link>
-    </Compile>
-    <Compile Include="..\Renci.Security.Cryptography.Shared\RIPEMD160HashProvider.cs">
-      <Link>RIPEMD160HashProvider.cs</Link>
-    </Compile>
-    <Compile Include="..\Renci.Security.Cryptography.Shared\SHA1.cs">
-      <Link>SHA1.cs</Link>
-    </Compile>
-    <Compile Include="..\Renci.Security.Cryptography.Shared\SHA1HashProvider.cs">
-      <Link>SHA1HashProvider.cs</Link>
-    </Compile>
-    <Compile Include="..\Renci.Security.Cryptography.Shared\SHA256.cs">
-      <Link>SHA256.cs</Link>
-    </Compile>
-    <Compile Include="..\Renci.Security.Cryptography.Shared\SHA256HashProvider.cs">
-      <Link>SHA256HashProvider.cs</Link>
-    </Compile>
-    <Compile Include="..\Renci.Security.Cryptography.Shared\SHA2HashProviderBase.cs">
-      <Link>SHA2HashProviderBase.cs</Link>
-    </Compile>
-    <Compile Include="..\Renci.Security.Cryptography.Shared\SHA384.cs">
-      <Link>SHA384.cs</Link>
-    </Compile>
-    <Compile Include="..\Renci.Security.Cryptography.Shared\SHA384HashProvider.cs">
-      <Link>SHA384HashProvider.cs</Link>
-    </Compile>
-    <Compile Include="..\Renci.Security.Cryptography.Shared\SHA512.cs">
-      <Link>SHA512.cs</Link>
-    </Compile>
-    <Compile Include="..\Renci.Security.Cryptography.Shared\SHA512HashProvider.cs">
-      <Link>SHA512HashProvider.cs</Link>
-    </Compile>
+    <Compile Include="HashAlgorithm.cs" />
+    <Compile Include="KeyedHashAlgorithm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <Import Project="..\Renci.Security.Cryptography.Shared\Renci.Security.Cryptography.Shared.projitems" Label="Shared" />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
