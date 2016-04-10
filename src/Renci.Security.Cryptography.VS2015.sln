@@ -25,11 +25,17 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Renci.Security.Cryptography
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Renci.Security.Cryptography.Shared", "Renci.Security.Cryptography.Shared\Renci.Security.Cryptography.Shared.shproj", "{FA210478-5AC9-4BE3-8ED6-CB8F3EC8F99A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Renci.Security.Cryptography.NET45", "Renci.Security.Cryptography.NET45\Renci.Security.Cryptography.NET45.csproj", "{34EFA5C7-4A8A-464B-B4C4-915B132483D6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Renci.Security.Cryptography.NET45+Win8+WPA81", "Renci.Security.Cryptography.NET45+Win8+WPA81\Renci.Security.Cryptography.NET45+Win8+WPA81.csproj", "{F9CC3198-697C-439A-B64B-F9DFAF3EBFF7}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		..\test\Renci.Security.Cryptography.Shared.Tests\Renci.Security.Cryptography.Shared.projitems*{1cc697ce-f033-4e5e-9aed-4c397ae56c08}*SharedItemsImports = 4
+		Renci.Security.Cryptography.Shared\Renci.Security.Cryptography.Shared.projitems*{34efa5c7-4a8a-464b-b4c4-915b132483d6}*SharedItemsImports = 4
 		Renci.Security.Cryptography.Shared\Renci.Security.Cryptography.Shared.projitems*{427e4b4a-5245-45b5-b101-2556c9224c88}*SharedItemsImports = 4
 		..\test\Renci.Security.Cryptography.Shared.Tests\Renci.Security.Cryptography.Shared.projitems*{7041ae9e-89f9-4c4a-8ec7-bbac5b22b39d}*SharedItemsImports = 13
+		Renci.Security.Cryptography.Shared\Renci.Security.Cryptography.Shared.projitems*{f9cc3198-697c-439a-b64b-f9dfaf3ebff7}*SharedItemsImports = 4
 		Renci.Security.Cryptography.Shared\Renci.Security.Cryptography.Shared.projitems*{fa210478-5ac9-4be3-8ed6-cb8f3ec8f99a}*SharedItemsImports = 13
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -165,6 +171,38 @@ Global
 		{1CC697CE-F033-4E5E-9AED-4C397AE56C08}.Release|x86.ActiveCfg = Release|x86
 		{1CC697CE-F033-4E5E-9AED-4C397AE56C08}.Release|x86.Build.0 = Release|x86
 		{1CC697CE-F033-4E5E-9AED-4C397AE56C08}.Release|x86.Deploy.0 = Release|x86
+		{34EFA5C7-4A8A-464B-B4C4-915B132483D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34EFA5C7-4A8A-464B-B4C4-915B132483D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34EFA5C7-4A8A-464B-B4C4-915B132483D6}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{34EFA5C7-4A8A-464B-B4C4-915B132483D6}.Debug|ARM.Build.0 = Debug|Any CPU
+		{34EFA5C7-4A8A-464B-B4C4-915B132483D6}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{34EFA5C7-4A8A-464B-B4C4-915B132483D6}.Debug|x64.Build.0 = Debug|Any CPU
+		{34EFA5C7-4A8A-464B-B4C4-915B132483D6}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{34EFA5C7-4A8A-464B-B4C4-915B132483D6}.Debug|x86.Build.0 = Debug|Any CPU
+		{34EFA5C7-4A8A-464B-B4C4-915B132483D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34EFA5C7-4A8A-464B-B4C4-915B132483D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34EFA5C7-4A8A-464B-B4C4-915B132483D6}.Release|ARM.ActiveCfg = Release|Any CPU
+		{34EFA5C7-4A8A-464B-B4C4-915B132483D6}.Release|ARM.Build.0 = Release|Any CPU
+		{34EFA5C7-4A8A-464B-B4C4-915B132483D6}.Release|x64.ActiveCfg = Release|Any CPU
+		{34EFA5C7-4A8A-464B-B4C4-915B132483D6}.Release|x64.Build.0 = Release|Any CPU
+		{34EFA5C7-4A8A-464B-B4C4-915B132483D6}.Release|x86.ActiveCfg = Release|Any CPU
+		{34EFA5C7-4A8A-464B-B4C4-915B132483D6}.Release|x86.Build.0 = Release|Any CPU
+		{F9CC3198-697C-439A-B64B-F9DFAF3EBFF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9CC3198-697C-439A-B64B-F9DFAF3EBFF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9CC3198-697C-439A-B64B-F9DFAF3EBFF7}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{F9CC3198-697C-439A-B64B-F9DFAF3EBFF7}.Debug|ARM.Build.0 = Debug|Any CPU
+		{F9CC3198-697C-439A-B64B-F9DFAF3EBFF7}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{F9CC3198-697C-439A-B64B-F9DFAF3EBFF7}.Debug|x64.Build.0 = Debug|Any CPU
+		{F9CC3198-697C-439A-B64B-F9DFAF3EBFF7}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F9CC3198-697C-439A-B64B-F9DFAF3EBFF7}.Debug|x86.Build.0 = Debug|Any CPU
+		{F9CC3198-697C-439A-B64B-F9DFAF3EBFF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9CC3198-697C-439A-B64B-F9DFAF3EBFF7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9CC3198-697C-439A-B64B-F9DFAF3EBFF7}.Release|ARM.ActiveCfg = Release|Any CPU
+		{F9CC3198-697C-439A-B64B-F9DFAF3EBFF7}.Release|ARM.Build.0 = Release|Any CPU
+		{F9CC3198-697C-439A-B64B-F9DFAF3EBFF7}.Release|x64.ActiveCfg = Release|Any CPU
+		{F9CC3198-697C-439A-B64B-F9DFAF3EBFF7}.Release|x64.Build.0 = Release|Any CPU
+		{F9CC3198-697C-439A-B64B-F9DFAF3EBFF7}.Release|x86.ActiveCfg = Release|Any CPU
+		{F9CC3198-697C-439A-B64B-F9DFAF3EBFF7}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

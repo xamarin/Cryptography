@@ -23,13 +23,9 @@
 			<Project>Renci.Security.Cryptography.NET40</Project>
 			<Moniker>net40</Moniker>
 		</TargetFramework>
-		<TargetFramework Include="Windows Phone 7.1">
-			<Project>Renci.Security.Cryptography.WindowsPhone71</Project>
-			<Moniker>wp71</Moniker>
-		</TargetFramework>
-		<TargetFramework Include="Windows Phone 8.0">
-			<Project>Renci.Security.Cryptography.WindowsPhone80</Project>
-			<Moniker>wp8</Moniker>
+		<TargetFramework Include=".NET Framework 4.5">
+			<Project>Renci.Security.Cryptography.NET45</Project>
+			<Moniker>net45</Moniker>
 		</TargetFramework>
 		<TargetFramework Include="Silverlight 4">
 			<Project>Renci.Security.Cryptography.Silverlight4</Project>
@@ -42,6 +38,18 @@
 		<TargetFramework Include="Universal Windows Platform 10">
 			<Project>Renci.Security.Cryptography.UAP10</Project>
 			<Moniker>uap10</Moniker>
+		</TargetFramework>
+		<TargetFramework Include="Windows Phone Silverlight 7.1">
+			<Project>Renci.Security.Cryptography.WindowsPhone71</Project>
+			<Moniker>wp71</Moniker>
+		</TargetFramework>
+		<TargetFramework Include="Windows Phone Silverlight 8.0">
+			<Project>Renci.Security.Cryptography.WindowsPhone80</Project>
+			<Moniker>wp8</Moniker>
+		</TargetFramework>
+		<TargetFramework Include="Windows 8 and Windows Phone 8.1">
+			<Project>Renci.Security.Cryptography.NET45+Win8+WPA81</Project>
+			<Moniker>portable-net45+win8+wpa81</Moniker>
 		</TargetFramework>
 	</ItemGroup>
 	<Target Name="Clean">
