@@ -31,10 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="..\Renci.Security.Cryptography.Shared\Common\ByteExtensions.cs">
+    <Compile Include="..\Renci.Security.Cryptography.Shared.Tests\Common\ByteExtensions.cs">
       <Link>ByteExtensions.cs</Link>
     </Compile>
-    <Compile Include="..\Renci.Security.Cryptography.Shared\Common\StringExtensions.cs">
+    <Compile Include="..\Renci.Security.Cryptography.Shared.Tests\Common\StringExtensions.cs">
       <Link>StringExtensions.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

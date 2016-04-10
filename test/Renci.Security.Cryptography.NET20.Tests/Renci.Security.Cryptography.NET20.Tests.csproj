@@ -31,40 +31,40 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="..\Renci.Security.Cryptography.Shared\HMACMD5Test.cs">
+    <Compile Include="..\Renci.Security.Cryptography.Shared.Tests\HMACMD5Test.cs">
       <Link>HMACMD5Test.cs</Link>
     </Compile>
-    <Compile Include="..\Renci.Security.Cryptography.Shared\HMACRIPEMD160Test.cs">
+    <Compile Include="..\Renci.Security.Cryptography.Shared.Tests\HMACRIPEMD160Test.cs">
       <Link>HMACRIPEMD160Test.cs</Link>
     </Compile>
-    <Compile Include="..\Renci.Security.Cryptography.Shared\HMACSHA1Test.cs">
+    <Compile Include="..\Renci.Security.Cryptography.Shared.Tests\HMACSHA1Test.cs">
       <Link>HMACSHA1Test.cs</Link>
     </Compile>
-    <Compile Include="..\Renci.Security.Cryptography.Shared\HMACSHA256Test.cs">
+    <Compile Include="..\Renci.Security.Cryptography.Shared.Tests\HMACSHA256Test.cs">
       <Link>HMACSHA256Test.cs</Link>
     </Compile>
-    <Compile Include="..\Renci.Security.Cryptography.Shared\HMACSHA384Test.cs">
+    <Compile Include="..\Renci.Security.Cryptography.Shared.Tests\HMACSHA384Test.cs">
       <Link>HMACSHA384Test.cs</Link>
     </Compile>
-    <Compile Include="..\Renci.Security.Cryptography.Shared\HMACSHA512Test.cs">
+    <Compile Include="..\Renci.Security.Cryptography.Shared.Tests\HMACSHA512Test.cs">
       <Link>HMACSHA512Test.cs</Link>
     </Compile>
-    <Compile Include="..\Renci.Security.Cryptography.Shared\MD5Test.cs">
+    <Compile Include="..\Renci.Security.Cryptography.Shared.Tests\MD5Test.cs">
       <Link>MD5Test.cs</Link>
     </Compile>
-    <Compile Include="..\Renci.Security.Cryptography.Shared\RIPEMD160Test.cs">
+    <Compile Include="..\Renci.Security.Cryptography.Shared.Tests\RIPEMD160Test.cs">
       <Link>RIPEMD160Test.cs</Link>
     </Compile>
-    <Compile Include="..\Renci.Security.Cryptography.Shared\SHA1Test.cs">
+    <Compile Include="..\Renci.Security.Cryptography.Shared.Tests\SHA1Test.cs">
       <Link>SHA1Test.cs</Link>
     </Compile>
-    <Compile Include="..\Renci.Security.Cryptography.Shared\SHA256Test.cs">
+    <Compile Include="..\Renci.Security.Cryptography.Shared.Tests\SHA256Test.cs">
       <Link>SHA256Test.cs</Link>
     </Compile>
-    <Compile Include="..\Renci.Security.Cryptography.Shared\SHA384Test.cs">
+    <Compile Include="..\Renci.Security.Cryptography.Shared.Tests\SHA384Test.cs">
       <Link>SHA384Test.cs</Link>
     </Compile>
-    <Compile Include="..\Renci.Security.Cryptography.Shared\SHA512Test.cs">
+    <Compile Include="..\Renci.Security.Cryptography.Shared.Tests\SHA512Test.cs">
       <Link>SHA512Test.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -87,6 +87,9 @@
       <Project>{0d8efc67-5014-419e-ac36-eeddadac508a}</Project>
       <Name>Renci.Common.Tests</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
