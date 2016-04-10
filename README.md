@@ -40,5 +40,9 @@ The following software is required to build **Renci.Security.Cryptography** in a
 Software                          | .NET 3.5 | .NET 4.0 | .NET 4.5 | SL 4 | SL 5 | WP 71 | WP 80 | WPA 81 | WIN8 | UAP10
 --------------------------------- | :------: | :------: | :------: | :--: | :--: | :---: | :---: | :----: | :--: | :---:
 Windows Phone SDK 8.0             |          |          |          | x    | x    | x     | x     | x      |      | x
-Visual Studio 2012 Update 5       | x        | x        | x        | x    | x    | x     | x     |        |      |
+Visual Studio 2012 Update 5       | x        | x        |          | x    | x    | x     | x     |        |      |
 Visual Studio 2015 Update 2 RC    | x        | x        | x        |      | x    |       | x     | x      | x    | x
+
+***Note:**
+Where possible, we use the **Shared Project** concept - which was introduced in **Visual Studio 2015** - to share code between *flavors* of **Renci.Security.Cryptography**.
+To avoid maintaining two sets of project files, these projects can only be built in Visual Studio 2015 (or higher).
