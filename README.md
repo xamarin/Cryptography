@@ -46,4 +46,4 @@ Visual Studio 2015 Update 2 RC    | x        | x        | x        |      | x   
 **Note:**
 
 Where possible, we use the **Shared Project** concept - which was introduced in **Visual Studio 2015** - to share code between *flavors* of **Renci.Security.Cryptography**.
-To avoid maintaining two sets of project files, these projects can only be built in Visual Studio 2015 (or higher).
+To avoid maintaining two sets of project files, these projects can only be built in **Visual Studio 2015** (or higher).
