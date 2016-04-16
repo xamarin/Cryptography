@@ -34,6 +34,12 @@ This project groups some crypto classes that were previously part of **SSH.NET**
 * Windows Phone 8.1
 * Universal Windows Platform 10
 
+In our codebase, we use the following conditional compilation symbols to identity features supported by a given target framework:
+
+Symbol                       | Description
+:----------------------------| :--------------------------------------------------------------------------------
+FEATURE_CRYPTO_HASHALGORITHM | [HashAlgorithm](https://msdn.microsoft.com/en-us/library/system.security.cryptography.hashalgorithm.aspx) and [KeyedHashAlgorithm](https://msdn.microsoft.com/en-us/library/system.security.cryptography.keyedhashalgorithm.aspx) classes are available
+
 #Build#
 The following software is required to build **Renci.Security.Cryptography** in all its supported flavors:
 
