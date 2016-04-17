@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{30271F90-FF2A-4427-BF88-8EA37CA6110A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SshNet.Security.Cryptography.Tests</RootNamespace>
+    <AssemblyName>SshNet.Security.Cryptography.Tests</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="..\SshNet.Security.Cryptography.Shared.Tests\HMACMD5Test.cs">
+      <Link>HMACMD5Test.cs</Link>
+    </Compile>
+    <Compile Include="..\SshNet.Security.Cryptography.Shared.Tests\HMACRIPEMD160Test.cs">
+      <Link>HMACRIPEMD160Test.cs</Link>
+    </Compile>
+    <Compile Include="..\SshNet.Security.Cryptography.Shared.Tests\HMACSHA1Test.cs">
+      <Link>HMACSHA1Test.cs</Link>
+    </Compile>
+    <Compile Include="..\SshNet.Security.Cryptography.Shared.Tests\HMACSHA256Test.cs">
+      <Link>HMACSHA256Test.cs</Link>
+    </Compile>
+    <Compile Include="..\SshNet.Security.Cryptography.Shared.Tests\HMACSHA384Test.cs">
+      <Link>HMACSHA384Test.cs</Link>
+    </Compile>
+    <Compile Include="..\SshNet.Security.Cryptography.Shared.Tests\HMACSHA512Test.cs">
+      <Link>HMACSHA512Test.cs</Link>
+    </Compile>
+    <Compile Include="..\SshNet.Security.Cryptography.Shared.Tests\MD5Test.cs">
+      <Link>MD5Test.cs</Link>
+    </Compile>
+    <Compile Include="..\SshNet.Security.Cryptography.Shared.Tests\RIPEMD160Test.cs">
+      <Link>RIPEMD160Test.cs</Link>
+    </Compile>
+    <Compile Include="..\SshNet.Security.Cryptography.Shared.Tests\SHA1Test.cs">
+      <Link>SHA1Test.cs</Link>
+    </Compile>
+    <Compile Include="..\SshNet.Security.Cryptography.Shared.Tests\SHA256Test.cs">
+      <Link>SHA256Test.cs</Link>
+    </Compile>
+    <Compile Include="..\SshNet.Security.Cryptography.Shared.Tests\SHA384Test.cs">
+      <Link>SHA384Test.cs</Link>
+    </Compile>
+    <Compile Include="..\SshNet.Security.Cryptography.Shared.Tests\SHA512Test.cs">
+      <Link>SHA512Test.cs</Link>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="xunit, Version=1.9.2.1705, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\xunit.1.9.2\lib\net20\xunit.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\SshNet.Security.Cryptography.NET20\SshNet.Security.Cryptography.NET20.csproj">
+      <Project>{ff9fe022-4b50-4b6a-97ea-a2ecfd5de783}</Project>
+      <Name>SshNet.Security.Cryptography.NET20</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SshNet.Security.Cryptography.Common.Tests\SshNet.Security.Cryptography.Common.Tests.csproj">
+      <Project>{0d8efc67-5014-419e-ac36-eeddadac508a}</Project>
+      <Name>SshNet.Security.Cryptography.Common.Tests</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6A8919D5-1801-42C8-90EC-36A0CA7A406D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SshNet.Security.Cryptography</RootNamespace>
+    <AssemblyName>SshNet.Security.Cryptography</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;FEATURE_CRYPTO_HASHALGORITHM</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <DocumentationFile>bin\Debug\SshNet.Security.Cryptography.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;FEATURE_CRYPTO_HASHALGORITHM</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\SshNet.Security.Cryptography.xml</DocumentationFile>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>..\SshNet.Security.Cryptography.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\SshNet.Security.Cryptography.Shared\HashProviderBase.cs">
+      <Link>HashProviderBase.cs</Link>
+    </Compile>
+    <Compile Include="..\SshNet.Security.Cryptography.Shared\HMAC.cs">
+      <Link>HMAC.cs</Link>
+    </Compile>
+    <Compile Include="..\SshNet.Security.Cryptography.Shared\HMACMD5.cs">
+      <Link>HMACMD5.cs</Link>
+    </Compile>
+    <Compile Include="..\SshNet.Security.Cryptography.Shared\HMACRIPEMD160.cs">
+      <Link>HMACRIPEMD160.cs</Link>
+    </Compile>
+    <Compile Include="..\SshNet.Security.Cryptography.Shared\HMACSHA1.cs">
+      <Link>HMACSHA1.cs</Link>
+    </Compile>
+    <Compile Include="..\SshNet.Security.Cryptography.Shared\HMACSHA256.cs">
+      <Link>HMACSHA256.cs</Link>
+    </Compile>
+    <Compile Include="..\SshNet.Security.Cryptography.Shared\HMACSHA384.cs">
+      <Link>HMACSHA384.cs</Link>
+    </Compile>
+    <Compile Include="..\SshNet.Security.Cryptography.Shared\HMACSHA512.cs">
+      <Link>HMACSHA512.cs</Link>
+    </Compile>
+    <Compile Include="..\SshNet.Security.Cryptography.Shared\IHashProvider.cs">
+      <Link>IHashProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\SshNet.Security.Cryptography.Shared\MD5.cs">
+      <Link>MD5.cs</Link>
+    </Compile>
+    <Compile Include="..\SshNet.Security.Cryptography.Shared\MD5HashProvider.cs">
+      <Link>MD5HashProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\SshNet.Security.Cryptography.Shared\Properties\CommonAssemblyInfo.cs">
+      <Link>Properties\CommonAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\SshNet.Security.Cryptography.Shared\RIPEMD160.cs">
+      <Link>RIPEMD160.cs</Link>
+    </Compile>
+    <Compile Include="..\SshNet.Security.Cryptography.Shared\RIPEMD160HashProvider.cs">
+      <Link>RIPEMD160HashProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\SshNet.Security.Cryptography.Shared\SHA1.cs">
+      <Link>SHA1.cs</Link>
+    </Compile>
+    <Compile Include="..\SshNet.Security.Cryptography.Shared\SHA1HashProvider.cs">
+      <Link>SHA1HashProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\SshNet.Security.Cryptography.Shared\SHA256.cs">
+      <Link>SHA256.cs</Link>
+    </Compile>
+    <Compile Include="..\SshNet.Security.Cryptography.Shared\SHA256HashProvider.cs">
+      <Link>SHA256HashProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\SshNet.Security.Cryptography.Shared\SHA2HashProviderBase.cs">
+      <Link>SHA2HashProviderBase.cs</Link>
+    </Compile>
+    <Compile Include="..\SshNet.Security.Cryptography.Shared\SHA384.cs">
+      <Link>SHA384.cs</Link>
+    </Compile>
+    <Compile Include="..\SshNet.Security.Cryptography.Shared\SHA384HashProvider.cs">
+      <Link>SHA384HashProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\SshNet.Security.Cryptography.Shared\SHA512.cs">
+      <Link>SHA512.cs</Link>
+    </Compile>
+    <Compile Include="..\SshNet.Security.Cryptography.Shared\SHA512HashProvider.cs">
+      <Link>SHA512HashProvider.cs</Link>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\SshNet.Security.Cryptography.snk">
+      <Link>SshNet.Security.Cryptography.snk</Link>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
