@@ -33,7 +33,6 @@ This project groups some crypto classes that were previously part of **SSH.NET**
 * Windows 8.0
 * Windows Phone 8.1
 * Universal Windows Platform 10
-TEST
 
 In our codebase, we use the following conditional compilation symbols to identity features supported by a given target framework:
 
