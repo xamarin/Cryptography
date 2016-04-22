@@ -32,6 +32,50 @@ namespace System.Security.Cryptography
         }
 
         /// <summary>
+        /// Gets the input block size.
+        /// </summary>
+        /// <returns>
+        /// The input block size.
+        /// </returns>
+        public virtual int InputBlockSize
+        {
+            get { return 0; }
+        }
+
+        /// <summary>
+        /// Gets the output block size.
+        /// </summary>
+        /// <returns>
+        /// The output block size.
+        /// </returns>
+        public virtual int OutputBlockSize
+        {
+            get { return 0; }
+        }
+
+        /// <summary>
+        /// Gets a value indicating whether the current transform can be reused.
+        /// </summary>
+        /// <returns>
+        /// Always true.
+        /// </returns>
+        public virtual bool CanReuseTransform
+        {
+            get { return true; }
+        }
+
+        /// <summary>
+        /// Gets a value indicating whether multiple blocks can be transformed.
+        /// </summary>
+        /// <returns>
+        /// true if multiple blocks can be transformed; otherwise, false.
+        /// </returns>
+        public virtual bool CanTransformMultipleBlocks
+        {
+            get { return true; }
+        }
+
+        /// <summary>
         /// Computes the hash value for the specified byte array.
         /// </summary>
         /// <param name="buffer">The input to compute the hash code for. </param>

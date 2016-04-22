@@ -11,8 +11,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SshNet.Security.Cryptograph
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SshNet.Security.Cryptography.NET20.Tests", "..\test\SshNet.Security.Cryptography.NET20.Tests\SshNet.Security.Cryptography.NET20.Tests.csproj", "{30271F90-FF2A-4427-BF88-8EA37CA6110A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SshNet.Security.Cryptography.Common.Tests", "..\test\SshNet.Security.Cryptography.Common.Tests\SshNet.Security.Cryptography.Common.Tests.csproj", "{0D8EFC67-5014-419E-AC36-EEDDADAC508A}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SshNet.Security.Cryptography.NET40.Tests", "..\test\SshNet.Security.Cryptography.NET40.Tests\SshNet.Security.Cryptography.NET40.Tests.csproj", "{D1C3BADA-73AC-41B7-B6D0-629C3B75BBD0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SshNet.Security.Cryptography.Silverlight5", "SshNet.Security.Cryptography.Silverlight5\SshNet.Security.Cryptography.Silverlight5.csproj", "{AA7BB3E4-6146-432A-A472-5A5319050EE4}"
@@ -99,18 +97,6 @@ Global
 		{30271F90-FF2A-4427-BF88-8EA37CA6110A}.Release|x64.ActiveCfg = Release|Any CPU
 		{30271F90-FF2A-4427-BF88-8EA37CA6110A}.Release|x86.ActiveCfg = Release|Any CPU
 		{30271F90-FF2A-4427-BF88-8EA37CA6110A}.Release|x86.Build.0 = Release|Any CPU
-		{0D8EFC67-5014-419E-AC36-EEDDADAC508A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0D8EFC67-5014-419E-AC36-EEDDADAC508A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0D8EFC67-5014-419E-AC36-EEDDADAC508A}.Debug|ARM.ActiveCfg = Debug|Any CPU
-		{0D8EFC67-5014-419E-AC36-EEDDADAC508A}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{0D8EFC67-5014-419E-AC36-EEDDADAC508A}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{0D8EFC67-5014-419E-AC36-EEDDADAC508A}.Debug|x86.Build.0 = Debug|Any CPU
-		{0D8EFC67-5014-419E-AC36-EEDDADAC508A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0D8EFC67-5014-419E-AC36-EEDDADAC508A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0D8EFC67-5014-419E-AC36-EEDDADAC508A}.Release|ARM.ActiveCfg = Release|Any CPU
-		{0D8EFC67-5014-419E-AC36-EEDDADAC508A}.Release|x64.ActiveCfg = Release|Any CPU
-		{0D8EFC67-5014-419E-AC36-EEDDADAC508A}.Release|x86.ActiveCfg = Release|Any CPU
-		{0D8EFC67-5014-419E-AC36-EEDDADAC508A}.Release|x86.Build.0 = Release|Any CPU
 		{D1C3BADA-73AC-41B7-B6D0-629C3B75BBD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D1C3BADA-73AC-41B7-B6D0-629C3B75BBD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D1C3BADA-73AC-41B7-B6D0-629C3B75BBD0}.Debug|ARM.ActiveCfg = Debug|Any CPU
@@ -151,8 +137,8 @@ Global
 		{427E4B4A-5245-45B5-B101-2556C9224C88}.Release|x64.Build.0 = Release|x64
 		{427E4B4A-5245-45B5-B101-2556C9224C88}.Release|x86.ActiveCfg = Release|Any CPU
 		{427E4B4A-5245-45B5-B101-2556C9224C88}.Release|x86.Build.0 = Release|Any CPU
-		{1CC697CE-F033-4E5E-9AED-4C397AE56C08}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{1CC697CE-F033-4E5E-9AED-4C397AE56C08}.Debug|Any CPU.Build.0 = Debug|x86
+		{1CC697CE-F033-4E5E-9AED-4C397AE56C08}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{1CC697CE-F033-4E5E-9AED-4C397AE56C08}.Debug|Any CPU.Build.0 = Debug|x64
 		{1CC697CE-F033-4E5E-9AED-4C397AE56C08}.Debug|ARM.ActiveCfg = Debug|ARM
 		{1CC697CE-F033-4E5E-9AED-4C397AE56C08}.Debug|ARM.Build.0 = Debug|ARM
 		{1CC697CE-F033-4E5E-9AED-4C397AE56C08}.Debug|ARM.Deploy.0 = Debug|ARM
@@ -163,6 +149,7 @@ Global
 		{1CC697CE-F033-4E5E-9AED-4C397AE56C08}.Debug|x86.Build.0 = Debug|x86
 		{1CC697CE-F033-4E5E-9AED-4C397AE56C08}.Debug|x86.Deploy.0 = Debug|x86
 		{1CC697CE-F033-4E5E-9AED-4C397AE56C08}.Release|Any CPU.ActiveCfg = Release|x86
+		{1CC697CE-F033-4E5E-9AED-4C397AE56C08}.Release|Any CPU.Build.0 = Release|x86
 		{1CC697CE-F033-4E5E-9AED-4C397AE56C08}.Release|ARM.ActiveCfg = Release|ARM
 		{1CC697CE-F033-4E5E-9AED-4C397AE56C08}.Release|ARM.Build.0 = Release|ARM
 		{1CC697CE-F033-4E5E-9AED-4C397AE56C08}.Release|ARM.Deploy.0 = Release|ARM

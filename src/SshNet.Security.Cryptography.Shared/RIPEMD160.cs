@@ -1,6 +1,6 @@
 ﻿using System.Security.Cryptography;
 
-namespace Renci.Security.Cryptography
+namespace SshNet.Security.Cryptography
 {
     /// <summary>
     /// Cryptographic hash function based upon the Merkle–Damgård construction.
@@ -37,11 +37,7 @@ namespace Renci.Security.Cryptography
         /// <returns>
         /// The input block size.
         /// </returns>
-        public
-#if !NETFX_CORE
-        override
-#endif
-        int InputBlockSize
+        public override int InputBlockSize
         {
             get
             {
@@ -55,11 +51,7 @@ namespace Renci.Security.Cryptography
         /// <returns>
         /// The output block size.
         /// </returns>
-        public
-#if !NETFX_CORE
-        override
-#endif
-        int OutputBlockSize
+        public override int OutputBlockSize
         {
             get
             {
@@ -68,7 +60,6 @@ namespace Renci.Security.Cryptography
             }
         }
 
-#if !NETFX_CORE
         /// <summary>
         /// Gets a value indicating whether the current transform can be reused.
         /// </summary>
@@ -96,7 +87,6 @@ namespace Renci.Security.Cryptography
                 return true;
             }
         }
-#endif // !NETFX_CORE
 
         /// <summary>
         /// Routes data written to the object into the hash algorithm for computing the hash.

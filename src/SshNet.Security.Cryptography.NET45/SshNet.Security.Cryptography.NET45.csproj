@@ -7,8 +7,8 @@
     <ProjectGuid>{34EFA5C7-4A8A-464B-B4C4-915B132483D6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SshNet.Security.Cryptography.NET45</RootNamespace>
-    <AssemblyName>SshNet.Security.Cryptography.NET45</AssemblyName>
+    <RootNamespace>SshNet.Security.Cryptography</RootNamespace>
+    <AssemblyName>SshNet.Security.Cryptography</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -20,6 +20,7 @@
     <DefineConstants>TRACE;DEBUG;FEATURE_CRYPTO_HASHALGORITHM</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\SshNet.Security.Cryptography.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -28,6 +29,7 @@
     <DefineConstants>TRACE;FEATURE_CRYPTO_HASHALGORITHM</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\SshNet.Security.Cryptography.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />

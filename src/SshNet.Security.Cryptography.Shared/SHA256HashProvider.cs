@@ -1,4 +1,4 @@
-﻿namespace Renci.Security.Cryptography
+﻿namespace SshNet.Security.Cryptography
 {
     internal class SHA256HashProvider : HashProviderBase
     {

@@ -2,7 +2,7 @@ using System;
 using System.Reflection;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyDescription("Cryptographic functions for .NET")]
+[assembly: AssemblyDescription("Tests for SshNet.Security.Cryptography")]
 [assembly: AssemblyCompany("Renci")]
 [assembly: AssemblyProduct("SshNet.Security.Cryptography")]
 [assembly: AssemblyCopyright("Copyright © Renci 2010-2016")]

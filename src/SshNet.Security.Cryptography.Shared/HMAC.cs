@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Security.Cryptography;
 
-namespace Renci.Security.Cryptography
+namespace SshNet.Security.Cryptography
 {
     /// <summary>
     /// Provides HMAC algorithm implementation.

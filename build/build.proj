@@ -8,47 +8,47 @@
 	</PropertyGroup>
 	<ItemGroup>
 		<VisualStudioVersion Include="2012">
-			<SolutionFile>$(MSBuildThisFileDirectory)..\src\Renci.Security.Cryptography.VS2012.sln</SolutionFile>
+			<SolutionFile>$(MSBuildThisFileDirectory)..\src\SshNet.Security.Cryptography.VS2012.sln</SolutionFile>
 		</VisualStudioVersion>
 		<VisualStudioVersion Include="2015">
-			<SolutionFile>$(MSBuildThisFileDirectory)..\src\Renci.Security.Cryptography.VS2015.sln</SolutionFile>
+			<SolutionFile>$(MSBuildThisFileDirectory)..\src\SshNet.Security.Cryptography.VS2015.sln</SolutionFile>
 		</VisualStudioVersion>
 	</ItemGroup>
 	<ItemGroup>
 		<TargetFramework Include=".NET Framework 2.0">
-			<Project>Renci.Security.Cryptography.NET20</Project>
+			<Project>SshNet.Security.Cryptography.NET20</Project>
 			<Moniker>net20</Moniker>
 		</TargetFramework>
 		<TargetFramework Include=".NET Framework 4.0">
-			<Project>Renci.Security.Cryptography.NET40</Project>
+			<Project>SshNet.Security.Cryptography.NET40</Project>
 			<Moniker>net40</Moniker>
 		</TargetFramework>
 		<TargetFramework Include=".NET Framework 4.5">
-			<Project>Renci.Security.Cryptography.NET45</Project>
+			<Project>SshNet.Security.Cryptography.NET45</Project>
 			<Moniker>net45</Moniker>
 		</TargetFramework>
 		<TargetFramework Include="Silverlight 4">
-			<Project>Renci.Security.Cryptography.Silverlight4</Project>
+			<Project>SshNet.Security.Cryptography.Silverlight4</Project>
 			<Moniker>sl4</Moniker>
 		</TargetFramework>
 		<TargetFramework Include="Silverlight 5">
-			<Project>Renci.Security.Cryptography.Silverlight5</Project>
+			<Project>SshNet.Security.Cryptography.Silverlight5</Project>
 			<Moniker>sl5</Moniker>
 		</TargetFramework>
 		<TargetFramework Include="Universal Windows Platform 10">
-			<Project>Renci.Security.Cryptography.UAP10</Project>
+			<Project>SshNet.Security.Cryptography.UAP10</Project>
 			<Moniker>uap10</Moniker>
 		</TargetFramework>
 		<TargetFramework Include="Windows Phone Silverlight 7.1">
-			<Project>Renci.Security.Cryptography.WindowsPhone71</Project>
+			<Project>SshNet.Security.Cryptography.WindowsPhone71</Project>
 			<Moniker>wp71</Moniker>
 		</TargetFramework>
 		<TargetFramework Include="Windows Phone Silverlight 8.0">
-			<Project>Renci.Security.Cryptography.WindowsPhone80</Project>
+			<Project>SshNet.Security.Cryptography.WindowsPhone80</Project>
 			<Moniker>wp8</Moniker>
 		</TargetFramework>
 		<TargetFramework Include="Windows 8 and Windows Phone 8.1">
-			<Project>Renci.Security.Cryptography.NET45+Win8+WPA81</Project>
+			<Project>SshNet.Security.Cryptography.NET45+Win8+WPA81</Project>
 			<Moniker>portable-net45+win8+wpa81</Moniker>
 		</TargetFramework>
 	</ItemGroup>
@@ -59,7 +59,7 @@
 	<Target Name="DownloadNuGet">
 		<MakeDir Directories="$(MSBuildThisFileDirectory)target\nuget"/>
 		<DownloadFile
-			Address="https://dist.nuget.org/win-x86-commandline/v3.4.0-rc/nuget.exe"
+			Address="https://dist.nuget.org/win-x86-commandline/latest/nuget.exe"
 			FileName="$(MSBuildThisFileDirectory)target\nuget\nuget.exe"/>
 	</Target>
 	
@@ -79,13 +79,13 @@
 	</Target>
 
 	<Target Name="CreatePackage" DependsOnTargets="CopyBuildOutputToPackage">
-		<Exec Command="$(NuGetExe) pack $(MSBuildThisFileDirectory)nuget\Renci.Security.Cryptography.nuspec -OutputDirectory &quot;$(MSBuildThisFileDirectory)target&quot; -BasePath &quot;$(MSBuildThisFileDirectory)target\package&quot; -NonInteractive"/>
+		<Exec Command="$(NuGetExe) pack $(MSBuildThisFileDirectory)nuget\SshNet.Security.Cryptography.nuspec -OutputDirectory &quot;$(MSBuildThisFileDirectory)target&quot; -BasePath &quot;$(MSBuildThisFileDirectory)target\package&quot; -NonInteractive"/>
 	</Target>
 	<Target Name="CopyBuildOutputToPackage" Outputs="%(TargetFramework.Identity)">
 		<ItemGroup>
 			<BuildOutput Remove="@(BuildOutput)"/>
-			<BuildOutput Include="$(MSBuildThisFileDirectory)..\src\%(TargetFramework.Project)\bin\$(Configuration)\Renci.Security.Cryptography.dll"/>
-			<BuildOutput Include="$(MSBuildThisFileDirectory)..\src\%(TargetFramework.Project)\bin\$(Configuration)\Renci.Security.Cryptography.xml"/>
+			<BuildOutput Include="$(MSBuildThisFileDirectory)..\src\%(TargetFramework.Project)\bin\$(Configuration)\SshNet.Security.Cryptography.dll"/>
+			<BuildOutput Include="$(MSBuildThisFileDirectory)..\src\%(TargetFramework.Project)\bin\$(Configuration)\SshNet.Security.Cryptography.xml"/>
 		</ItemGroup>
 		<Copy SourceFiles="@(BuildOutput)" DestinationFolder="$(MSBuildThisFileDirectory)target\package\lib\%(TargetFramework.Moniker)"/>
 	</Target>

@@ -3,6 +3,7 @@ src/**/bin/**
 src/**/obj/**
 test/**/bin/**
 test/**/obj/**
+test/SshNet.Security.Cryptography.UAP10.Tests/AppPackages/**
 
 # User-specific files 
 *.suo

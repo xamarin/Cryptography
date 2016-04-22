@@ -11,8 +11,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SshNet.Security.Cryptograph
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SshNet.Security.Cryptography.NET20.Tests", "..\test\SshNet.Security.Cryptography.NET20.Tests\SshNet.Security.Cryptography.NET20.Tests.csproj", "{30271F90-FF2A-4427-BF88-8EA37CA6110A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SshNet.Security.Cryptography.Common.Tests", "..\test\SshNet.Security.Cryptography.Common.Tests\SshNet.Security.Cryptography.Common.Tests.csproj", "{0D8EFC67-5014-419E-AC36-EEDDADAC508A}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SshNet.Security.Cryptography.NET40.Tests", "..\test\SshNet.Security.Cryptography.NET40.Tests\SshNet.Security.Cryptography.NET40.Tests.csproj", "{D1C3BADA-73AC-41B7-B6D0-629C3B75BBD0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SshNet.Security.Cryptography.Silverlight4", "SshNet.Security.Cryptography.Silverlight4\SshNet.Security.Cryptography.Silverlight4.csproj", "{17B0CC1F-2BFB-4B17-A1D2-4F800962A475}"
@@ -85,16 +83,6 @@ Global
 		{30271F90-FF2A-4427-BF88-8EA37CA6110A}.Release|ARM.ActiveCfg = Release|Any CPU
 		{30271F90-FF2A-4427-BF88-8EA37CA6110A}.Release|x64.ActiveCfg = Release|Any CPU
 		{30271F90-FF2A-4427-BF88-8EA37CA6110A}.Release|x86.ActiveCfg = Release|Any CPU
-		{0D8EFC67-5014-419E-AC36-EEDDADAC508A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0D8EFC67-5014-419E-AC36-EEDDADAC508A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0D8EFC67-5014-419E-AC36-EEDDADAC508A}.Debug|ARM.ActiveCfg = Debug|Any CPU
-		{0D8EFC67-5014-419E-AC36-EEDDADAC508A}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{0D8EFC67-5014-419E-AC36-EEDDADAC508A}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{0D8EFC67-5014-419E-AC36-EEDDADAC508A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0D8EFC67-5014-419E-AC36-EEDDADAC508A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0D8EFC67-5014-419E-AC36-EEDDADAC508A}.Release|ARM.ActiveCfg = Release|Any CPU
-		{0D8EFC67-5014-419E-AC36-EEDDADAC508A}.Release|x64.ActiveCfg = Release|Any CPU
-		{0D8EFC67-5014-419E-AC36-EEDDADAC508A}.Release|x86.ActiveCfg = Release|Any CPU
 		{D1C3BADA-73AC-41B7-B6D0-629C3B75BBD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D1C3BADA-73AC-41B7-B6D0-629C3B75BBD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D1C3BADA-73AC-41B7-B6D0-629C3B75BBD0}.Debug|ARM.ActiveCfg = Debug|Any CPU

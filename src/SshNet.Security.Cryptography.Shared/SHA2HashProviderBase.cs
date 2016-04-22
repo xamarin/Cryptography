@@ -1,6 +1,4 @@
-﻿using System.Security.Cryptography;
-
-namespace Renci.Security.Cryptography
+﻿namespace SshNet.Security.Cryptography
 {
     internal abstract class SHA2HashProviderBase : HashProviderBase
     {

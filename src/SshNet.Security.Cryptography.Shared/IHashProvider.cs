@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Renci.Security.Cryptography
+namespace SshNet.Security.Cryptography
 {
     internal interface IHashProvider : IDisposable
     {

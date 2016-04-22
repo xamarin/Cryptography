@@ -18,6 +18,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)HMACSHA384Test.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HMACSHA512Test.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MD5Test.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Properties\CommonAssemblyInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RIPEMD160Test.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SHA1Test.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SHA256Test.cs" />

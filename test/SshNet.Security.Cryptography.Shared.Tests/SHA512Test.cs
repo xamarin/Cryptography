@@ -2,7 +2,7 @@
 using SshNet.Security.Cryptography.Common.Tests;
 using Xunit;
 
-namespace Renci.Security.Cryptography.Tests
+namespace SshNet.Security.Cryptography.Tests
 {
     /// <summary>
     /// Test cases are from http://csrc.nist.gov/groups/ST/toolkit/documents/Examples/SHA_All.pdf

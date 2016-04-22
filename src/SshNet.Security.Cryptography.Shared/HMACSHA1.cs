@@ -1,4 +1,4 @@
-﻿namespace Renci.Security.Cryptography
+﻿namespace SshNet.Security.Cryptography
 {
     /// <summary>
     /// Computes a Hash-based Message Authentication Code (HMAC) by using the <see cref="SHA1"/> hash function.

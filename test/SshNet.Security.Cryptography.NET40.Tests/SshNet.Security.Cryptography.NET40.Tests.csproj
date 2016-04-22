@@ -31,6 +31,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="..\SshNet.Security.Cryptography.Shared.Tests\Common\ByteExtensions.cs">
+      <Link>Common\ByteExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\SshNet.Security.Cryptography.Shared.Tests\Common\StringExtensions.cs">
+      <Link>Common\StringExtensions.cs</Link>
+    </Compile>
     <Compile Include="..\SshNet.Security.Cryptography.Shared.Tests\HMACMD5Test.cs">
       <Link>HMACMD5Test.cs</Link>
     </Compile>
@@ -51,6 +57,9 @@
     </Compile>
     <Compile Include="..\SshNet.Security.Cryptography.Shared.Tests\MD5Test.cs">
       <Link>MD5Test.cs</Link>
+    </Compile>
+    <Compile Include="..\SshNet.Security.Cryptography.Shared.Tests\Properties\CommonAssemblyInfo.cs">
+      <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="..\SshNet.Security.Cryptography.Shared.Tests\RIPEMD160Test.cs">
       <Link>RIPEMD160Test.cs</Link>
@@ -73,10 +82,6 @@
     <ProjectReference Include="..\..\src\SshNet.Security.Cryptography.NET40\SshNet.Security.Cryptography.NET40.csproj">
       <Project>{6a8919d5-1801-42c8-90ec-36a0ca7a406d}</Project>
       <Name>SshNet.Security.Cryptography.NET40</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SshNet.Security.Cryptography.Common.Tests\SshNet.Security.Cryptography.Common.Tests.csproj">
-      <Project>{0d8efc67-5014-419e-ac36-eeddadac508a}</Project>
-      <Name>SshNet.Security.Cryptography.Common.Tests</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
