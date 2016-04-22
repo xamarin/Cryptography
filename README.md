@@ -47,7 +47,7 @@ Software                          | .NET 3.5 | .NET 4.0 | .NET 4.5 | SL 4 | SL 5
 --------------------------------- | :------: | :------: | :------: | :--: | :--: | :---: | :---: | :----: | :--: | :---:
 Windows Phone SDK 8.0             |          |          |          | x    | x    | x     | x     | x      |      | x
 Visual Studio 2012 Update 5       | x        | x        |          | x    | x    | x     | x     |        |      |
-Visual Studio 2015 Update 2 RC    | x        | x        | x        |      | x    |       | x     | x      | x    | x
+Visual Studio 2015 Update 2       | x        | x        | x        |      | x    |       | x     | x      | x    | x
 
 **Note:**
 
