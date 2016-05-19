@@ -23,70 +23,11 @@ namespace SshNet.Security.Cryptography
         /// <returns>
         /// The size, in bits, of the computed hash code.
         /// </returns>
-        public
-        override
-        int HashSize
+        public override int HashSize
         {
             get
             {
                 return _hashProvider.HashSize;
-            }
-        }
-
-        /// <summary>
-        /// Gets the input block size.
-        /// </summary>
-        /// <returns>
-        /// The input block size.
-        /// </returns>
-        public override int InputBlockSize
-        {
-            get
-            {
-                return _hashProvider.InputBlockSize;
-            }
-        }
-
-        /// <summary>
-        /// Gets the output block size.
-        /// </summary>
-        /// <returns>
-        /// The output block size.
-        /// </returns>
-        public override int OutputBlockSize
-        {
-            get
-            {
-                return _hashProvider.OutputBlockSize;
-
-            }
-        }
-
-        /// <summary>
-        /// Gets a value indicating whether the current transform can be reused.
-        /// </summary>
-        /// <returns>
-        /// Always true.
-        /// </returns>
-        public override bool CanReuseTransform
-        {
-            get
-            {
-                return true;
-            }
-        }
-
-        /// <summary>
-        /// Gets a value indicating whether multiple blocks can be transformed.
-        /// </summary>
-        /// <returns>
-        /// true if multiple blocks can be transformed; otherwise, false.
-        /// </returns>
-        public override bool CanTransformMultipleBlocks
-        {
-            get
-            {
-                return true;
             }
         }
 
