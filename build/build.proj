@@ -16,40 +16,48 @@
 	</ItemGroup>
 	<ItemGroup>
 		<TargetFramework Include=".NET Framework 2.0">
-			<Project>SshNet.Security.Cryptography.NET20</Project>
+			<OutputDirectory>SshNet.Security.Cryptography.NET20\bin\$(Configuration)</OutputDirectory>
 			<Moniker>net20</Moniker>
 		</TargetFramework>
 		<TargetFramework Include=".NET Framework 4.0">
-			<Project>SshNet.Security.Cryptography.NET40</Project>
+			<OutputDirectory>SshNet.Security.Cryptography.NET40\bin\$(Configuration)</OutputDirectory>
 			<Moniker>net40</Moniker>
 		</TargetFramework>
 		<TargetFramework Include=".NET Framework 4.5">
-			<Project>SshNet.Security.Cryptography.NET45</Project>
+			<OutputDirectory>SshNet.Security.Cryptography.NET45\bin\$(Configuration)</OutputDirectory>
 			<Moniker>net45</Moniker>
 		</TargetFramework>
 		<TargetFramework Include="Silverlight 4">
-			<Project>SshNet.Security.Cryptography.Silverlight4</Project>
+			<OutputDirectory>SshNet.Security.Cryptography.Silverlight4\bin\$(Configuration)</OutputDirectory>
 			<Moniker>sl4</Moniker>
 		</TargetFramework>
 		<TargetFramework Include="Silverlight 5">
-			<Project>SshNet.Security.Cryptography.Silverlight5</Project>
+			<OutputDirectory>SshNet.Security.Cryptography.Silverlight5\bin\$(Configuration)</OutputDirectory>
 			<Moniker>sl5</Moniker>
 		</TargetFramework>
 		<TargetFramework Include="Universal Windows Platform 10">
-			<Project>SshNet.Security.Cryptography.UAP10</Project>
+			<OutputDirectory>SshNet.Security.Cryptography.UAP10\bin\$(Configuration)</OutputDirectory>
 			<Moniker>uap10</Moniker>
 		</TargetFramework>
 		<TargetFramework Include="Windows Phone Silverlight 7.1">
-			<Project>SshNet.Security.Cryptography.WindowsPhone71</Project>
+			<OutputDirectory>SshNet.Security.Cryptography.WindowsPhone71\bin\$(Configuration)</OutputDirectory>
 			<Moniker>wp71</Moniker>
 		</TargetFramework>
 		<TargetFramework Include="Windows Phone Silverlight 8.0">
-			<Project>SshNet.Security.Cryptography.WindowsPhone80</Project>
+			<OutputDirectory>SshNet.Security.Cryptography.WindowsPhone80\bin\$(Configuration)</OutputDirectory>
 			<Moniker>wp8</Moniker>
 		</TargetFramework>
 		<TargetFramework Include="Windows 8 and Windows Phone 8.1">
-			<Project>SshNet.Security.Cryptography.NET45+Win8+WPA81</Project>
+			<OutputDirectory>SshNet.Security.Cryptography.NET45+Win8+WPA81\bin\$(Configuration)</OutputDirectory>
 			<Moniker>portable-net45+win8+wpa81</Moniker>
+		</TargetFramework>
+		<TargetFramework Include=".NETStandard 1.0">
+			<OutputDirectory>SshNet.Security.Cryptography.NETCore\bin\$(Configuration)\netstandard1.0</OutputDirectory>
+			<Moniker>netstandard1.0</Moniker>
+		</TargetFramework>
+		<TargetFramework Include=".NETStandard 1.3">
+			<OutputDirectory>SshNet.Security.Cryptography.NETCore\bin\$(Configuration)\netstandard1.3</OutputDirectory>
+			<Moniker>netstandard1.3</Moniker>
 		</TargetFramework>
 	</ItemGroup>
 	<Target Name="Clean">
@@ -84,8 +92,8 @@
 	<Target Name="CopyBuildOutputToPackage" Outputs="%(TargetFramework.Identity)">
 		<ItemGroup>
 			<BuildOutput Remove="@(BuildOutput)"/>
-			<BuildOutput Include="$(MSBuildThisFileDirectory)..\src\%(TargetFramework.Project)\bin\$(Configuration)\SshNet.Security.Cryptography.dll"/>
-			<BuildOutput Include="$(MSBuildThisFileDirectory)..\src\%(TargetFramework.Project)\bin\$(Configuration)\SshNet.Security.Cryptography.xml"/>
+			<BuildOutput Include="$(MSBuildThisFileDirectory)..\src\%(TargetFramework.OutputDirectory)\SshNet.Security.Cryptography.dll"/>
+			<BuildOutput Include="$(MSBuildThisFileDirectory)..\src\%(TargetFramework.OutputDirectory)\SshNet.Security.Cryptography.xml"/>
 		</ItemGroup>
 		<Copy SourceFiles="@(BuildOutput)" DestinationFolder="$(MSBuildThisFileDirectory)target\package\lib\%(TargetFramework.Moniker)"/>
 	</Target>

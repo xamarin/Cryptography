@@ -23,6 +23,8 @@ This project groups some crypto classes that were previously part of **SSH.NET**
 
 #Framework Support#
 **SshNet.Security.Cryptography** is available for the following target frameworks:
+* .NET Platform Standard 1.0
+* .NET Platform Standard 1.3
 * .NET Framework 2.0
 * .NET Framework 4.0
 * .NET Framework 4.5
@@ -43,11 +45,12 @@ FEATURE_CRYPTO_HASHALGORITHM | [HashAlgorithm](https://msdn.microsoft.com/en-us/
 #Build#
 The following software is required to build **SshNet.Security.Cryptography** in all its supported flavors:
 
-Software                          | .NET 3.5 | .NET 4.0 | .NET 4.5 | SL 4 | SL 5 | WP 71 | WP 80 | WPA 81 | WIN8 | UAP10
---------------------------------- | :------: | :------: | :------: | :--: | :--: | :---: | :---: | :----: | :--: | :---:
-Windows Phone SDK 8.0             |          |          |          | x    | x    | x     | x     | x      |      | x
-Visual Studio 2012 Update 5       | x        | x        |          | x    | x    | x     | x     |        |      |
-Visual Studio 2015 Update 2       | x        | x        | x        |      | x    |       | x     | x      | x    | x
+Software                          | .NET 3.5 | .NET 4.0 | .NET 4.5 | SL 4 | SL 5 | WP 71 | WP 80 | WPA 81 | WIN8 | UAP10 | .NETStandard 1.0 | .NETStandard 1.3
+--------------------------------- | :------: | :------: | :------: | :--: | :--: | :---: | :---: | :----: | :--: | :---: |:---------------: | :--------------:
+Windows Phone SDK 8.0             |          |          |          | x    | x    | x     | x     | x      |      | x     |                  |
+Visual Studio 2012 Update 5       | x        | x        |          | x    | x    | x     | x     |        |      |       |                  |
+Visual Studio 2015 Update 2       | x        | x        | x        |      | x    |       | x     | x      | x    | x     | x                | x
+.NET CLI SDK Preview 1            |          |          |          |      |      |       |       |        |      |       | x                | x
 
 **Note:**
 
