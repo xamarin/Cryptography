@@ -100,7 +100,7 @@ namespace SshNet.Security.Cryptography
             // from the MSDN docs:
             // the return value of this method is not the hash value, but only a copy of the hashed part of the input data
             var outputBytes = new byte[inputCount];
-            Array.Copy(inputBuffer, inputOffset, outputBytes, 0, inputCount);
+            Buffer.BlockCopy(inputBuffer, inputOffset, outputBytes, 0, inputCount);
             return outputBytes;
         }
 
