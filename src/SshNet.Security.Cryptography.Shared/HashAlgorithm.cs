@@ -185,7 +185,6 @@ namespace System.Security.Cryptography
                 // for compatibility with the desktop framework.
                 _disposed = true;
             }
-            return;
         }
 
         /// <summary>
