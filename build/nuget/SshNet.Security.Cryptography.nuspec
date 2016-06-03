@@ -10,7 +10,6 @@
         <projectUrl>https://github.com/sshnet/Cryptography/</projectUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>Cryptographic functions for .NET</description>
-        <releaseNotes></releaseNotes>
         <summary>Cryptographic functions for .NET</summary>
         <copyright>2010-2016, RENCI</copyright>
         <language>en-US</language>
