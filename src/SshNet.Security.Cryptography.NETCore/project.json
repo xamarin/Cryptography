@@ -1,5 +1,4 @@
 ﻿{
-  "version": "1.0.0",
   "dependencies": {
     "System.IO": "4.1.0-rc2-24027"
   },
