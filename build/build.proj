@@ -37,7 +37,7 @@
 		</TargetFramework>
 		<TargetFramework Include="Universal Windows Platform 10">
 			<OutputDirectory>SshNet.Security.Cryptography.UAP10\bin\$(Configuration)</OutputDirectory>
-			<Moniker>uap10</Moniker>
+			<Moniker>uap10.0</Moniker>
 		</TargetFramework>
 		<TargetFramework Include="Windows Phone Silverlight 7.1">
 			<OutputDirectory>SshNet.Security.Cryptography.WindowsPhone71\bin\$(Configuration)</OutputDirectory>
