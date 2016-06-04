@@ -41,15 +41,6 @@
     <AssemblyOriginatorKeyFile>..\SshNet.Security.Cryptography.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="..\SshNet.Security.Cryptography.Shared\HashProviderBase.cs">
       <Link>HashProviderBase.cs</Link>
     </Compile>
