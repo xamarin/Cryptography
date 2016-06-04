@@ -5,7 +5,7 @@
         private readonly byte[] _buffer = new byte[4];
         private int _bufferOffset;
         private long _byteCount;
-        private int H1, H2, H3, H4;         // IV's
+        private int _h1, _h2, _h3, _h4;         // IV's
 
         /// <summary>
         /// The word buffer.
@@ -127,10 +127,10 @@
 
             var output = new byte[16];
 
-            UnpackWord(H1, output, 0);
-            UnpackWord(H2, output, 0 + 4);
-            UnpackWord(H3, output, 0 + 8);
-            UnpackWord(H4, output, 0 + 12);
+            UnpackWord(_h1, output, 0);
+            UnpackWord(_h2, output, 4);
+            UnpackWord(_h3, output, 8);
+            UnpackWord(_h4, output, 12);
 
             Initialize();
 
@@ -154,10 +154,10 @@
                 _buffer[i] = 0;
             }
 
-            H1 = unchecked(0x67452301);
-            H2 = unchecked((int)0xefcdab89);
-            H3 = unchecked((int)0x98badcfe);
-            H4 = unchecked(0x10325476);
+            _h1 = unchecked(0x67452301);
+            _h2 = unchecked((int)0xefcdab89);
+            _h3 = unchecked((int)0x98badcfe);
+            _h4 = unchecked(0x10325476);
 
             _offset = 0;
             for (var i = 0; i != _x.Length; i++)
@@ -190,7 +190,7 @@
             }
         }
 
-        private void UnpackWord(int word, byte[] outBytes, int outOff)
+        private static void UnpackWord(int word, byte[] outBytes, int outOff)
         {
             outBytes[outOff] = (byte) word;
             outBytes[outOff + 1] = (byte) ((uint) word >> 8);
@@ -263,10 +263,10 @@
 
         private void ProcessBlock()
         {
-            var a = H1;
-            var b = H2;
-            var c = H3;
-            var d = H4;
+            var a = _h1;
+            var b = _h2;
+            var c = _h3;
+            var d = _h4;
 
             //
             // Round 1 - F cycle, 16 times.
@@ -348,10 +348,10 @@
             c = RotateLeft((c + K(d, a, b) + _x[2] + unchecked(0x2ad7d2bb)), S43) + d;
             b = RotateLeft((b + K(c, d, a) + _x[9] + unchecked((int)0xeb86d391)), S44) + c;
 
-            H1 += a;
-            H2 += b;
-            H3 += c;
-            H4 += d;
+            _h1 += a;
+            _h2 += b;
+            _h3 += c;
+            _h4 += d;
 
             //
             // reset the offset and clean out the word buffer.

@@ -4,7 +4,7 @@
     {
         private const int DigestSize = 32;
 
-        private uint H1, H2, H3, H4, H5, H6, H7, H8;
+        private uint _h1, _h2, _h3, _h4, _h5, _h6, _h7, _h8;
 
         /// <summary>
         /// The word buffer.
@@ -135,14 +135,14 @@
 
             ProcessBlock();
 
-            UInt32_To_BE(H1, output, 0);
-            UInt32_To_BE(H2, output, 0 + 4);
-            UInt32_To_BE(H3, output, 0 + 8);
-            UInt32_To_BE(H4, output, 0 + 12);
-            UInt32_To_BE(H5, output, 0 + 16);
-            UInt32_To_BE(H6, output, 0 + 20);
-            UInt32_To_BE(H7, output, 0 + 24);
-            UInt32_To_BE(H8, output, 0 + 28);
+            UInt32_To_BE(_h1, output, 0);
+            UInt32_To_BE(_h2, output, 4);
+            UInt32_To_BE(_h3, output, 8);
+            UInt32_To_BE(_h4, output, 12);
+            UInt32_To_BE(_h5, output, 16);
+            UInt32_To_BE(_h6, output, 20);
+            UInt32_To_BE(_h7, output, 24);
+            UInt32_To_BE(_h8, output, 28);
 
             Initialize();
 
@@ -166,14 +166,14 @@
                 _buffer[i] = 0;
             }
 
-            H1 = 0x6a09e667;
-            H2 = 0xbb67ae85;
-            H3 = 0x3c6ef372;
-            H4 = 0xa54ff53a;
-            H5 = 0x510e527f;
-            H6 = 0x9b05688c;
-            H7 = 0x1f83d9ab;
-            H8 = 0x5be0cd19;
+            _h1 = 0x6a09e667;
+            _h2 = 0xbb67ae85;
+            _h3 = 0x3c6ef372;
+            _h4 = 0xa54ff53a;
+            _h5 = 0x510e527f;
+            _h6 = 0x9b05688c;
+            _h7 = 0x1f83d9ab;
+            _h8 = 0x5be0cd19;
 
             _offset = 0;
             for (var i = 0; i < _x.Length; i++)
@@ -235,14 +235,14 @@
             //
             // set up working variables.
             //
-            var a = H1;
-            var b = H2;
-            var c = H3;
-            var d = H4;
-            var e = H5;
-            var f = H6;
-            var g = H7;
-            var h = H8;
+            var a = _h1;
+            var b = _h2;
+            var c = _h3;
+            var d = _h4;
+            var e = _h5;
+            var f = _h6;
+            var g = _h7;
+            var h = _h8;
 
             var t = 0;
             for (var i = 0; i < 8; ++i)
@@ -296,14 +296,14 @@
                 ++t;
             }
 
-            H1 += a;
-            H2 += b;
-            H3 += c;
-            H4 += d;
-            H5 += e;
-            H6 += f;
-            H7 += g;
-            H8 += h;
+            _h1 += a;
+            _h2 += b;
+            _h3 += c;
+            _h4 += d;
+            _h5 += e;
+            _h6 += f;
+            _h7 += g;
+            _h8 += h;
 
             //
             // reset the offset and clean out the word buffer.

@@ -58,7 +58,7 @@
         protected SHA2HashProviderBase()
         {
             _buffer = new byte[8];
-            Initialize();
+            InternalInitialize();
         }
 
         /// <summary>
@@ -102,6 +102,11 @@
         /// Initializes an implementation of the <see cref="HashProviderBase"/> class.
         /// </summary>
         public override void Initialize()
+        {
+            InternalInitialize();
+        }
+
+        private void InternalInitialize()
         {
             _byteCount1 = 0;
             _byteCount2 = 0;

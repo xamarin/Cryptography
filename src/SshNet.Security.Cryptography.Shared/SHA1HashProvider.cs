@@ -8,7 +8,7 @@
         private const uint Y3 = 0x8f1bbcdc;
         private const uint Y4 = 0xca62c1d6;
 
-        private uint H1, H2, H3, H4, H5;
+        private uint _h1, _h2, _h3, _h4, _h5;
 
         /// <summary>
         /// The word buffer.
@@ -31,7 +31,9 @@
         /// <summary>
         /// Gets the size, in bits, of the computed hash code.
         /// </summary>
-        /// <returns>The size, in bits, of the computed hash code.</returns>
+        /// <returns>
+        /// The size, in bits, of the computed hash code.
+        /// </returns>
         public override int HashSize
         {
             get
@@ -134,11 +136,11 @@
 
             ProcessBlock();
 
-            UInt32ToBigEndian(H1, output, 0);
-            UInt32ToBigEndian(H2, output, 4);
-            UInt32ToBigEndian(H3, output, 8);
-            UInt32ToBigEndian(H4, output, 12);
-            UInt32ToBigEndian(H5, output, 16);
+            UInt32ToBigEndian(_h1, output, 0);
+            UInt32ToBigEndian(_h2, output, 4);
+            UInt32ToBigEndian(_h3, output, 8);
+            UInt32ToBigEndian(_h4, output, 12);
+            UInt32ToBigEndian(_h5, output, 16);
 
             Initialize();
 
@@ -162,11 +164,11 @@
                 _buffer[i] = 0;
             }
 
-            H1 = 0x67452301;
-            H2 = 0xefcdab89;
-            H3 = 0x98badcfe;
-            H4 = 0x10325476;
-            H5 = 0xc3d2e1f0;
+            _h1 = 0x67452301;
+            _h2 = 0xefcdab89;
+            _h3 = 0x98badcfe;
+            _h4 = 0x10325476;
+            _h5 = 0xc3d2e1f0;
 
             _offset = 0;
             for (var i = 0; i != _x.Length; i++)
@@ -227,11 +229,11 @@
             //
             // set up working variables.
             //
-            var A = H1;
-            var B = H2;
-            var C = H3;
-            var D = H4;
-            var E = H5;
+            var a = _h1;
+            var b = _h2;
+            var c = _h3;
+            var d = _h4;
+            var e = _h5;
 
             //
             // round 1
@@ -240,276 +242,276 @@
 
             // E = rotateLeft(A, 5) + F(B, C, D) + E + X[idx++] + Y1
             // B = rotateLeft(B, 30)
-            E += (A << 5 | (A >> 27)) + F(B, C, D) + _x[idx++] + Y1;
-            B = B << 30 | (B >> 2);
+            e += (a << 5 | (a >> 27)) + F(b, c, d) + _x[idx++] + Y1;
+            b = b << 30 | (b >> 2);
 
-            D += (E << 5 | (E >> 27)) + F(A, B, C) + _x[idx++] + Y1;
-            A = A << 30 | (A >> 2);
+            d += (e << 5 | (e >> 27)) + F(a, b, c) + _x[idx++] + Y1;
+            a = a << 30 | (a >> 2);
 
-            C += (D << 5 | (D >> 27)) + F(E, A, B) + _x[idx++] + Y1;
-            E = E << 30 | (E >> 2);
+            c += (d << 5 | (d >> 27)) + F(e, a, b) + _x[idx++] + Y1;
+            e = e << 30 | (e >> 2);
 
-            B += (C << 5 | (C >> 27)) + F(D, E, A) + _x[idx++] + Y1;
-            D = D << 30 | (D >> 2);
+            b += (c << 5 | (c >> 27)) + F(d, e, a) + _x[idx++] + Y1;
+            d = d << 30 | (d >> 2);
 
-            A += (B << 5 | (B >> 27)) + F(C, D, E) + _x[idx++] + Y1;
-            C = C << 30 | (C >> 2);
+            a += (b << 5 | (b >> 27)) + F(c, d, e) + _x[idx++] + Y1;
+            c = c << 30 | (c >> 2);
             // E = rotateLeft(A, 5) + F(B, C, D) + E + X[idx++] + Y1
             // B = rotateLeft(B, 30)
-            E += (A << 5 | (A >> 27)) + F(B, C, D) + _x[idx++] + Y1;
-            B = B << 30 | (B >> 2);
+            e += (a << 5 | (a >> 27)) + F(b, c, d) + _x[idx++] + Y1;
+            b = b << 30 | (b >> 2);
 
-            D += (E << 5 | (E >> 27)) + F(A, B, C) + _x[idx++] + Y1;
-            A = A << 30 | (A >> 2);
+            d += (e << 5 | (e >> 27)) + F(a, b, c) + _x[idx++] + Y1;
+            a = a << 30 | (a >> 2);
 
-            C += (D << 5 | (D >> 27)) + F(E, A, B) + _x[idx++] + Y1;
-            E = E << 30 | (E >> 2);
+            c += (d << 5 | (d >> 27)) + F(e, a, b) + _x[idx++] + Y1;
+            e = e << 30 | (e >> 2);
 
-            B += (C << 5 | (C >> 27)) + F(D, E, A) + _x[idx++] + Y1;
-            D = D << 30 | (D >> 2);
+            b += (c << 5 | (c >> 27)) + F(d, e, a) + _x[idx++] + Y1;
+            d = d << 30 | (d >> 2);
 
-            A += (B << 5 | (B >> 27)) + F(C, D, E) + _x[idx++] + Y1;
-            C = C << 30 | (C >> 2);
+            a += (b << 5 | (b >> 27)) + F(c, d, e) + _x[idx++] + Y1;
+            c = c << 30 | (c >> 2);
             // E = rotateLeft(A, 5) + F(B, C, D) + E + X[idx++] + Y1
             // B = rotateLeft(B, 30)
-            E += (A << 5 | (A >> 27)) + F(B, C, D) + _x[idx++] + Y1;
-            B = B << 30 | (B >> 2);
+            e += (a << 5 | (a >> 27)) + F(b, c, d) + _x[idx++] + Y1;
+            b = b << 30 | (b >> 2);
 
-            D += (E << 5 | (E >> 27)) + F(A, B, C) + _x[idx++] + Y1;
-            A = A << 30 | (A >> 2);
+            d += (e << 5 | (e >> 27)) + F(a, b, c) + _x[idx++] + Y1;
+            a = a << 30 | (a >> 2);
 
-            C += (D << 5 | (D >> 27)) + F(E, A, B) + _x[idx++] + Y1;
-            E = E << 30 | (E >> 2);
+            c += (d << 5 | (d >> 27)) + F(e, a, b) + _x[idx++] + Y1;
+            e = e << 30 | (e >> 2);
 
-            B += (C << 5 | (C >> 27)) + F(D, E, A) + _x[idx++] + Y1;
-            D = D << 30 | (D >> 2);
+            b += (c << 5 | (c >> 27)) + F(d, e, a) + _x[idx++] + Y1;
+            d = d << 30 | (d >> 2);
 
-            A += (B << 5 | (B >> 27)) + F(C, D, E) + _x[idx++] + Y1;
-            C = C << 30 | (C >> 2);
+            a += (b << 5 | (b >> 27)) + F(c, d, e) + _x[idx++] + Y1;
+            c = c << 30 | (c >> 2);
             // E = rotateLeft(A, 5) + F(B, C, D) + E + X[idx++] + Y1
             // B = rotateLeft(B, 30)
-            E += (A << 5 | (A >> 27)) + F(B, C, D) + _x[idx++] + Y1;
-            B = B << 30 | (B >> 2);
+            e += (a << 5 | (a >> 27)) + F(b, c, d) + _x[idx++] + Y1;
+            b = b << 30 | (b >> 2);
 
-            D += (E << 5 | (E >> 27)) + F(A, B, C) + _x[idx++] + Y1;
-            A = A << 30 | (A >> 2);
+            d += (e << 5 | (e >> 27)) + F(a, b, c) + _x[idx++] + Y1;
+            a = a << 30 | (a >> 2);
 
-            C += (D << 5 | (D >> 27)) + F(E, A, B) + _x[idx++] + Y1;
-            E = E << 30 | (E >> 2);
+            c += (d << 5 | (d >> 27)) + F(e, a, b) + _x[idx++] + Y1;
+            e = e << 30 | (e >> 2);
 
-            B += (C << 5 | (C >> 27)) + F(D, E, A) + _x[idx++] + Y1;
-            D = D << 30 | (D >> 2);
+            b += (c << 5 | (c >> 27)) + F(d, e, a) + _x[idx++] + Y1;
+            d = d << 30 | (d >> 2);
 
-            A += (B << 5 | (B >> 27)) + F(C, D, E) + _x[idx++] + Y1;
-            C = C << 30 | (C >> 2);
+            a += (b << 5 | (b >> 27)) + F(c, d, e) + _x[idx++] + Y1;
+            c = c << 30 | (c >> 2);
             //
             // round 2
             //
             // E = rotateLeft(A, 5) + H(B, C, D) + E + X[idx++] + Y2
             // B = rotateLeft(B, 30)
-            E += (A << 5 | (A >> 27)) + H(B, C, D) + _x[idx++] + Y2;
-            B = B << 30 | (B >> 2);
+            e += (a << 5 | (a >> 27)) + H(b, c, d) + _x[idx++] + Y2;
+            b = b << 30 | (b >> 2);
 
-            D += (E << 5 | (E >> 27)) + H(A, B, C) + _x[idx++] + Y2;
-            A = A << 30 | (A >> 2);
+            d += (e << 5 | (e >> 27)) + H(a, b, c) + _x[idx++] + Y2;
+            a = a << 30 | (a >> 2);
 
-            C += (D << 5 | (D >> 27)) + H(E, A, B) + _x[idx++] + Y2;
-            E = E << 30 | (E >> 2);
+            c += (d << 5 | (d >> 27)) + H(e, a, b) + _x[idx++] + Y2;
+            e = e << 30 | (e >> 2);
 
-            B += (C << 5 | (C >> 27)) + H(D, E, A) + _x[idx++] + Y2;
-            D = D << 30 | (D >> 2);
+            b += (c << 5 | (c >> 27)) + H(d, e, a) + _x[idx++] + Y2;
+            d = d << 30 | (d >> 2);
 
-            A += (B << 5 | (B >> 27)) + H(C, D, E) + _x[idx++] + Y2;
-            C = C << 30 | (C >> 2);
+            a += (b << 5 | (b >> 27)) + H(c, d, e) + _x[idx++] + Y2;
+            c = c << 30 | (c >> 2);
             // E = rotateLeft(A, 5) + H(B, C, D) + E + X[idx++] + Y2
             // B = rotateLeft(B, 30)
-            E += (A << 5 | (A >> 27)) + H(B, C, D) + _x[idx++] + Y2;
-            B = B << 30 | (B >> 2);
+            e += (a << 5 | (a >> 27)) + H(b, c, d) + _x[idx++] + Y2;
+            b = b << 30 | (b >> 2);
 
-            D += (E << 5 | (E >> 27)) + H(A, B, C) + _x[idx++] + Y2;
-            A = A << 30 | (A >> 2);
+            d += (e << 5 | (e >> 27)) + H(a, b, c) + _x[idx++] + Y2;
+            a = a << 30 | (a >> 2);
 
-            C += (D << 5 | (D >> 27)) + H(E, A, B) + _x[idx++] + Y2;
-            E = E << 30 | (E >> 2);
+            c += (d << 5 | (d >> 27)) + H(e, a, b) + _x[idx++] + Y2;
+            e = e << 30 | (e >> 2);
 
-            B += (C << 5 | (C >> 27)) + H(D, E, A) + _x[idx++] + Y2;
-            D = D << 30 | (D >> 2);
+            b += (c << 5 | (c >> 27)) + H(d, e, a) + _x[idx++] + Y2;
+            d = d << 30 | (d >> 2);
 
-            A += (B << 5 | (B >> 27)) + H(C, D, E) + _x[idx++] + Y2;
-            C = C << 30 | (C >> 2);
+            a += (b << 5 | (b >> 27)) + H(c, d, e) + _x[idx++] + Y2;
+            c = c << 30 | (c >> 2);
             // E = rotateLeft(A, 5) + H(B, C, D) + E + X[idx++] + Y2
             // B = rotateLeft(B, 30)
-            E += (A << 5 | (A >> 27)) + H(B, C, D) + _x[idx++] + Y2;
-            B = B << 30 | (B >> 2);
+            e += (a << 5 | (a >> 27)) + H(b, c, d) + _x[idx++] + Y2;
+            b = b << 30 | (b >> 2);
 
-            D += (E << 5 | (E >> 27)) + H(A, B, C) + _x[idx++] + Y2;
-            A = A << 30 | (A >> 2);
+            d += (e << 5 | (e >> 27)) + H(a, b, c) + _x[idx++] + Y2;
+            a = a << 30 | (a >> 2);
 
-            C += (D << 5 | (D >> 27)) + H(E, A, B) + _x[idx++] + Y2;
-            E = E << 30 | (E >> 2);
+            c += (d << 5 | (d >> 27)) + H(e, a, b) + _x[idx++] + Y2;
+            e = e << 30 | (e >> 2);
 
-            B += (C << 5 | (C >> 27)) + H(D, E, A) + _x[idx++] + Y2;
-            D = D << 30 | (D >> 2);
+            b += (c << 5 | (c >> 27)) + H(d, e, a) + _x[idx++] + Y2;
+            d = d << 30 | (d >> 2);
 
-            A += (B << 5 | (B >> 27)) + H(C, D, E) + _x[idx++] + Y2;
-            C = C << 30 | (C >> 2);
+            a += (b << 5 | (b >> 27)) + H(c, d, e) + _x[idx++] + Y2;
+            c = c << 30 | (c >> 2);
             // E = rotateLeft(A, 5) + H(B, C, D) + E + X[idx++] + Y2
             // B = rotateLeft(B, 30)
-            E += (A << 5 | (A >> 27)) + H(B, C, D) + _x[idx++] + Y2;
-            B = B << 30 | (B >> 2);
+            e += (a << 5 | (a >> 27)) + H(b, c, d) + _x[idx++] + Y2;
+            b = b << 30 | (b >> 2);
 
-            D += (E << 5 | (E >> 27)) + H(A, B, C) + _x[idx++] + Y2;
-            A = A << 30 | (A >> 2);
+            d += (e << 5 | (e >> 27)) + H(a, b, c) + _x[idx++] + Y2;
+            a = a << 30 | (a >> 2);
 
-            C += (D << 5 | (D >> 27)) + H(E, A, B) + _x[idx++] + Y2;
-            E = E << 30 | (E >> 2);
+            c += (d << 5 | (d >> 27)) + H(e, a, b) + _x[idx++] + Y2;
+            e = e << 30 | (e >> 2);
 
-            B += (C << 5 | (C >> 27)) + H(D, E, A) + _x[idx++] + Y2;
-            D = D << 30 | (D >> 2);
+            b += (c << 5 | (c >> 27)) + H(d, e, a) + _x[idx++] + Y2;
+            d = d << 30 | (d >> 2);
 
-            A += (B << 5 | (B >> 27)) + H(C, D, E) + _x[idx++] + Y2;
-            C = C << 30 | (C >> 2);
+            a += (b << 5 | (b >> 27)) + H(c, d, e) + _x[idx++] + Y2;
+            c = c << 30 | (c >> 2);
 
             //
             // round 3
             // E = rotateLeft(A, 5) + G(B, C, D) + E + X[idx++] + Y3
             // B = rotateLeft(B, 30)
-            E += (A << 5 | (A >> 27)) + G(B, C, D) + _x[idx++] + Y3;
-            B = B << 30 | (B >> 2);
+            e += (a << 5 | (a >> 27)) + G(b, c, d) + _x[idx++] + Y3;
+            b = b << 30 | (b >> 2);
 
-            D += (E << 5 | (E >> 27)) + G(A, B, C) + _x[idx++] + Y3;
-            A = A << 30 | (A >> 2);
+            d += (e << 5 | (e >> 27)) + G(a, b, c) + _x[idx++] + Y3;
+            a = a << 30 | (a >> 2);
 
-            C += (D << 5 | (D >> 27)) + G(E, A, B) + _x[idx++] + Y3;
-            E = E << 30 | (E >> 2);
+            c += (d << 5 | (d >> 27)) + G(e, a, b) + _x[idx++] + Y3;
+            e = e << 30 | (e >> 2);
 
-            B += (C << 5 | (C >> 27)) + G(D, E, A) + _x[idx++] + Y3;
-            D = D << 30 | (D >> 2);
+            b += (c << 5 | (c >> 27)) + G(d, e, a) + _x[idx++] + Y3;
+            d = d << 30 | (d >> 2);
 
-            A += (B << 5 | (B >> 27)) + G(C, D, E) + _x[idx++] + Y3;
-            C = C << 30 | (C >> 2);
+            a += (b << 5 | (b >> 27)) + G(c, d, e) + _x[idx++] + Y3;
+            c = c << 30 | (c >> 2);
             // E = rotateLeft(A, 5) + G(B, C, D) + E + X[idx++] + Y3
             // B = rotateLeft(B, 30)
-            E += (A << 5 | (A >> 27)) + G(B, C, D) + _x[idx++] + Y3;
-            B = B << 30 | (B >> 2);
+            e += (a << 5 | (a >> 27)) + G(b, c, d) + _x[idx++] + Y3;
+            b = b << 30 | (b >> 2);
 
-            D += (E << 5 | (E >> 27)) + G(A, B, C) + _x[idx++] + Y3;
-            A = A << 30 | (A >> 2);
+            d += (e << 5 | (e >> 27)) + G(a, b, c) + _x[idx++] + Y3;
+            a = a << 30 | (a >> 2);
 
-            C += (D << 5 | (D >> 27)) + G(E, A, B) + _x[idx++] + Y3;
-            E = E << 30 | (E >> 2);
+            c += (d << 5 | (d >> 27)) + G(e, a, b) + _x[idx++] + Y3;
+            e = e << 30 | (e >> 2);
 
-            B += (C << 5 | (C >> 27)) + G(D, E, A) + _x[idx++] + Y3;
-            D = D << 30 | (D >> 2);
+            b += (c << 5 | (c >> 27)) + G(d, e, a) + _x[idx++] + Y3;
+            d = d << 30 | (d >> 2);
 
-            A += (B << 5 | (B >> 27)) + G(C, D, E) + _x[idx++] + Y3;
-            C = C << 30 | (C >> 2);
+            a += (b << 5 | (b >> 27)) + G(c, d, e) + _x[idx++] + Y3;
+            c = c << 30 | (c >> 2);
             // E = rotateLeft(A, 5) + G(B, C, D) + E + X[idx++] + Y3
             // B = rotateLeft(B, 30)
-            E += (A << 5 | (A >> 27)) + G(B, C, D) + _x[idx++] + Y3;
-            B = B << 30 | (B >> 2);
+            e += (a << 5 | (a >> 27)) + G(b, c, d) + _x[idx++] + Y3;
+            b = b << 30 | (b >> 2);
 
-            D += (E << 5 | (E >> 27)) + G(A, B, C) + _x[idx++] + Y3;
-            A = A << 30 | (A >> 2);
+            d += (e << 5 | (e >> 27)) + G(a, b, c) + _x[idx++] + Y3;
+            a = a << 30 | (a >> 2);
 
-            C += (D << 5 | (D >> 27)) + G(E, A, B) + _x[idx++] + Y3;
-            E = E << 30 | (E >> 2);
+            c += (d << 5 | (d >> 27)) + G(e, a, b) + _x[idx++] + Y3;
+            e = e << 30 | (e >> 2);
 
-            B += (C << 5 | (C >> 27)) + G(D, E, A) + _x[idx++] + Y3;
-            D = D << 30 | (D >> 2);
+            b += (c << 5 | (c >> 27)) + G(d, e, a) + _x[idx++] + Y3;
+            d = d << 30 | (d >> 2);
 
-            A += (B << 5 | (B >> 27)) + G(C, D, E) + _x[idx++] + Y3;
-            C = C << 30 | (C >> 2);
+            a += (b << 5 | (b >> 27)) + G(c, d, e) + _x[idx++] + Y3;
+            c = c << 30 | (c >> 2);
             // E = rotateLeft(A, 5) + G(B, C, D) + E + X[idx++] + Y3
             // B = rotateLeft(B, 30)
-            E += (A << 5 | (A >> 27)) + G(B, C, D) + _x[idx++] + Y3;
-            B = B << 30 | (B >> 2);
+            e += (a << 5 | (a >> 27)) + G(b, c, d) + _x[idx++] + Y3;
+            b = b << 30 | (b >> 2);
 
-            D += (E << 5 | (E >> 27)) + G(A, B, C) + _x[idx++] + Y3;
-            A = A << 30 | (A >> 2);
+            d += (e << 5 | (e >> 27)) + G(a, b, c) + _x[idx++] + Y3;
+            a = a << 30 | (a >> 2);
 
-            C += (D << 5 | (D >> 27)) + G(E, A, B) + _x[idx++] + Y3;
-            E = E << 30 | (E >> 2);
+            c += (d << 5 | (d >> 27)) + G(e, a, b) + _x[idx++] + Y3;
+            e = e << 30 | (e >> 2);
 
-            B += (C << 5 | (C >> 27)) + G(D, E, A) + _x[idx++] + Y3;
-            D = D << 30 | (D >> 2);
+            b += (c << 5 | (c >> 27)) + G(d, e, a) + _x[idx++] + Y3;
+            d = d << 30 | (d >> 2);
 
-            A += (B << 5 | (B >> 27)) + G(C, D, E) + _x[idx++] + Y3;
-            C = C << 30 | (C >> 2);
+            a += (b << 5 | (b >> 27)) + G(c, d, e) + _x[idx++] + Y3;
+            c = c << 30 | (c >> 2);
 
             //
             // round 4
             //
             // E = rotateLeft(A, 5) + H(B, C, D) + E + X[idx++] + Y4
             // B = rotateLeft(B, 30)
-            E += (A << 5 | (A >> 27)) + H(B, C, D) + _x[idx++] + Y4;
-            B = B << 30 | (B >> 2);
+            e += (a << 5 | (a >> 27)) + H(b, c, d) + _x[idx++] + Y4;
+            b = b << 30 | (b >> 2);
 
-            D += (E << 5 | (E >> 27)) + H(A, B, C) + _x[idx++] + Y4;
-            A = A << 30 | (A >> 2);
+            d += (e << 5 | (e >> 27)) + H(a, b, c) + _x[idx++] + Y4;
+            a = a << 30 | (a >> 2);
 
-            C += (D << 5 | (D >> 27)) + H(E, A, B) + _x[idx++] + Y4;
-            E = E << 30 | (E >> 2);
+            c += (d << 5 | (d >> 27)) + H(e, a, b) + _x[idx++] + Y4;
+            e = e << 30 | (e >> 2);
 
-            B += (C << 5 | (C >> 27)) + H(D, E, A) + _x[idx++] + Y4;
-            D = D << 30 | (D >> 2);
+            b += (c << 5 | (c >> 27)) + H(d, e, a) + _x[idx++] + Y4;
+            d = d << 30 | (d >> 2);
 
-            A += (B << 5 | (B >> 27)) + H(C, D, E) + _x[idx++] + Y4;
-            C = C << 30 | (C >> 2);
+            a += (b << 5 | (b >> 27)) + H(c, d, e) + _x[idx++] + Y4;
+            c = c << 30 | (c >> 2);
             // E = rotateLeft(A, 5) + H(B, C, D) + E + X[idx++] + Y4
             // B = rotateLeft(B, 30)
-            E += (A << 5 | (A >> 27)) + H(B, C, D) + _x[idx++] + Y4;
-            B = B << 30 | (B >> 2);
+            e += (a << 5 | (a >> 27)) + H(b, c, d) + _x[idx++] + Y4;
+            b = b << 30 | (b >> 2);
 
-            D += (E << 5 | (E >> 27)) + H(A, B, C) + _x[idx++] + Y4;
-            A = A << 30 | (A >> 2);
+            d += (e << 5 | (e >> 27)) + H(a, b, c) + _x[idx++] + Y4;
+            a = a << 30 | (a >> 2);
 
-            C += (D << 5 | (D >> 27)) + H(E, A, B) + _x[idx++] + Y4;
-            E = E << 30 | (E >> 2);
+            c += (d << 5 | (d >> 27)) + H(e, a, b) + _x[idx++] + Y4;
+            e = e << 30 | (e >> 2);
 
-            B += (C << 5 | (C >> 27)) + H(D, E, A) + _x[idx++] + Y4;
-            D = D << 30 | (D >> 2);
+            b += (c << 5 | (c >> 27)) + H(d, e, a) + _x[idx++] + Y4;
+            d = d << 30 | (d >> 2);
 
-            A += (B << 5 | (B >> 27)) + H(C, D, E) + _x[idx++] + Y4;
-            C = C << 30 | (C >> 2);
+            a += (b << 5 | (b >> 27)) + H(c, d, e) + _x[idx++] + Y4;
+            c = c << 30 | (c >> 2);
             // E = rotateLeft(A, 5) + H(B, C, D) + E + X[idx++] + Y4
             // B = rotateLeft(B, 30)
-            E += (A << 5 | (A >> 27)) + H(B, C, D) + _x[idx++] + Y4;
-            B = B << 30 | (B >> 2);
+            e += (a << 5 | (a >> 27)) + H(b, c, d) + _x[idx++] + Y4;
+            b = b << 30 | (b >> 2);
 
-            D += (E << 5 | (E >> 27)) + H(A, B, C) + _x[idx++] + Y4;
-            A = A << 30 | (A >> 2);
+            d += (e << 5 | (e >> 27)) + H(a, b, c) + _x[idx++] + Y4;
+            a = a << 30 | (a >> 2);
 
-            C += (D << 5 | (D >> 27)) + H(E, A, B) + _x[idx++] + Y4;
-            E = E << 30 | (E >> 2);
+            c += (d << 5 | (d >> 27)) + H(e, a, b) + _x[idx++] + Y4;
+            e = e << 30 | (e >> 2);
 
-            B += (C << 5 | (C >> 27)) + H(D, E, A) + _x[idx++] + Y4;
-            D = D << 30 | (D >> 2);
+            b += (c << 5 | (c >> 27)) + H(d, e, a) + _x[idx++] + Y4;
+            d = d << 30 | (d >> 2);
 
-            A += (B << 5 | (B >> 27)) + H(C, D, E) + _x[idx++] + Y4;
-            C = C << 30 | (C >> 2);
+            a += (b << 5 | (b >> 27)) + H(c, d, e) + _x[idx++] + Y4;
+            c = c << 30 | (c >> 2);
             // E = rotateLeft(A, 5) + H(B, C, D) + E + X[idx++] + Y4
             // B = rotateLeft(B, 30)
-            E += (A << 5 | (A >> 27)) + H(B, C, D) + _x[idx++] + Y4;
-            B = B << 30 | (B >> 2);
+            e += (a << 5 | (a >> 27)) + H(b, c, d) + _x[idx++] + Y4;
+            b = b << 30 | (b >> 2);
 
-            D += (E << 5 | (E >> 27)) + H(A, B, C) + _x[idx++] + Y4;
-            A = A << 30 | (A >> 2);
+            d += (e << 5 | (e >> 27)) + H(a, b, c) + _x[idx++] + Y4;
+            a = a << 30 | (a >> 2);
 
-            C += (D << 5 | (D >> 27)) + H(E, A, B) + _x[idx++] + Y4;
-            E = E << 30 | (E >> 2);
+            c += (d << 5 | (d >> 27)) + H(e, a, b) + _x[idx++] + Y4;
+            e = e << 30 | (e >> 2);
 
-            B += (C << 5 | (C >> 27)) + H(D, E, A) + _x[idx++] + Y4;
-            D = D << 30 | (D >> 2);
+            b += (c << 5 | (c >> 27)) + H(d, e, a) + _x[idx++] + Y4;
+            d = d << 30 | (d >> 2);
 
-            A += (B << 5 | (B >> 27)) + H(C, D, E) + _x[idx++] + Y4;
-            C = C << 30 | (C >> 2);
+            a += (b << 5 | (b >> 27)) + H(c, d, e) + _x[idx] + Y4;
+            c = c << 30 | (c >> 2);
 
-            H1 += A;
-            H2 += B;
-            H3 += C;
-            H4 += D;
-            H5 += E;
+            _h1 += a;
+            _h2 += b;
+            _h3 += c;
+            _h4 += d;
+            _h5 += e;
 
             //
             // reset start of the buffer.
