@@ -51,6 +51,14 @@
 			<OutputDirectory>SshNet.Security.Cryptography.NET45+Win8+WPA81\bin\$(Configuration)</OutputDirectory>
 			<Moniker>portable-net45+win8+wpa81</Moniker>
 		</TargetFramework>
+		<TargetFramework Include=".NETStandard 1.0">
+			<OutputDirectory>SshNet.Security.Cryptography.NETCore\bin\$(Configuration)\netstandard1.0</OutputDirectory>
+			<Moniker>netstandard1.0</Moniker>
+		</TargetFramework>
+		<TargetFramework Include=".NETStandard 1.3">
+			<OutputDirectory>SshNet.Security.Cryptography.NETCore\bin\$(Configuration)\netstandard1.3</OutputDirectory>
+			<Moniker>netstandard1.3</Moniker>
+		</TargetFramework>
 	</ItemGroup>
 	<Target Name="Clean">
 		<RemoveDir Directories="$(MSBuildThisFileDirectory)target"/>
