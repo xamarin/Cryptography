@@ -15,4 +15,13 @@
         <language>en-US</language>
         <tags>crypto</tags>
     </metadata>
+    <dependencies>
+        <group targetFramework="netstandard1.0">
+            <dependency id="System.IO" version="4.0.0-rc2-24027" />
+        </group>
+        <group targetFramework="netstandard1.3">
+            <dependency id="System.IO" version="4.0.0-rc2-24027" />
+            <dependency id="System.Security.Cryptography.Primitives" version="4.0.0-rc2-24027" />
+        </group>
+    </dependencies>
 </package>
