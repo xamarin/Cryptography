@@ -1,7 +1,4 @@
 ﻿{
-  "dependencies": {
-    "System.IO": "4.1.0-rc2-24027"
-  },
   "configurations": {
     "debug": { "buildOptions": { "define": [ "DEBUG", "TRACE" ] } },
     "release": { "buildOptions": { "define": [ "TRACE" ] } }
@@ -19,14 +16,18 @@
   },
   "frameworks": {
     "netstandard1.0": {
-    },
-    "netstandard1.3": {
       "dependencies": {
-        "System.Security.Cryptography.Primitives": "4.0.0-rc2-24027"
+        "System.IO": "4.1.0-rc2-24027"
+      }
       },
-      "buildOptions": {
-        "define": [ "FEATURE_CRYPTO_HASHALGORITHM" ]
+      "netstandard1.3": {
+        "dependencies": {
+          "System.IO": "4.1.0-rc2-24027",
+          "System.Security.Cryptography.Primitives": "4.0.0-rc2-24027"
+        },
+        "buildOptions": {
+          "define": [ "FEATURE_CRYPTO_HASHALGORITHM" ]
+        }
       }
     }
-  }
 }
