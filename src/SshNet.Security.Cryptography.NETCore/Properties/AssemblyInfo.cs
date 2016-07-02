@@ -1,3 +1,3 @@
 ﻿using System.Reflection;
 
-[assembly: AssemblyTitle("SshNet.Security.Cryptography for .NETStandard 1.0")]
+[assembly: AssemblyTitle("SshNet.Security.Cryptography for .NET Core")]

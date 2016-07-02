@@ -1,7 +1,17 @@
 ﻿{
   "configurations": {
-    "debug": { "buildOptions": { "define": [ "DEBUG", "TRACE" ] } },
-    "release": { "buildOptions": { "define": [ "TRACE" ] } }
+    "debug": {
+      "buildOptions": {
+        "define": [ "DEBUG", "TRACE" ],
+        "optimize": false
+      }
+    },
+    "release": {
+      "buildOptions": {
+        "define": [ "TRACE" ],
+        "optimize": true
+      }
+    }
   },
   "buildOptions": {
     "outputName": "SshNet.Security.Cryptography",
@@ -11,23 +21,22 @@
         "../SshNet.Security.Cryptography.Shared/**/*.cs"
       ]
     },
-    "xmlDoc": true,
-    "optimize": true
+    "xmlDoc": true
   },
   "frameworks": {
     "netstandard1.0": {
       "dependencies": {
-        "System.IO": "4.1.0-rc2-24027"
+        "System.IO": "4.1.0"
       }
+    },
+    "netstandard1.3": {
+      "dependencies": {
+        "System.IO": "4.1.0",
+        "System.Security.Cryptography.Primitives": "4.0.0"
       },
-      "netstandard1.3": {
-        "dependencies": {
-          "System.IO": "4.1.0-rc2-24027",
-          "System.Security.Cryptography.Primitives": "4.0.0-rc2-24027"
-        },
-        "buildOptions": {
-          "define": [ "FEATURE_CRYPTO_HASHALGORITHM" ]
-        }
+      "buildOptions": {
+        "define": [ "FEATURE_CRYPTO_HASHALGORITHM" ]
       }
     }
+  }
 }
