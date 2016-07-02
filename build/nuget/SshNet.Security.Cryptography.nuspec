@@ -1,28 +1,37 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
-    <metadata>
-        <id>SshNet.Security.Cryptography</id>
-        <version>1.1.0-beta1</version>
-        <title>SshNet.Security.Cryptography</title>
-        <authors>Renci</authors>
-        <owners>drieseng,olegkap</owners>
-        <licenseUrl>https://github.com/sshnet/Cryptography/LICENSE</licenseUrl>
-        <projectUrl>https://github.com/sshnet/Cryptography/</projectUrl>
-        <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <description>Cryptographic functions for .NET</description>
-        <releaseNotes>Added support for .NET Core 1.0 RC2 (.NETStandard 1.0 and 1.3).</releaseNotes>
-        <summary>Cryptographic functions for .NET</summary>
-        <copyright>2010-2016, RENCI</copyright>
-        <language>en-US</language>
-        <tags>crypto</tags>
-        <dependencies>
-            <group targetFramework="netstandard1.0">
-                <dependency id="System.IO" version="4.0.0-rc2-24027" />
-            </group>
-            <group targetFramework="netstandard1.3">
-                <dependency id="System.IO" version="4.0.0-rc2-24027" />
-                <dependency id="System.Security.Cryptography.Primitives" version="4.0.0-rc2-24027" />
-            </group>
-        </dependencies>
-    </metadata>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>SshNet.Security.Cryptography</id>
+    <version>1.1.0</version>
+    <title>SshNet.Security.Cryptography</title>
+    <authors>Renci</authors>
+    <owners>drieseng,olegkap</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <licenseUrl>https://github.com/sshnet/Cryptography/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/sshnet/Cryptography/</projectUrl>
+    <description>Cryptographic functions for .NET</description>
+    <summary>Cryptographic functions for .NET</summary>
+    <releaseNotes>Added support for .NET Core 1.0 (.NETStandard 1.0 and 1.3).</releaseNotes>
+    <copyright>2010-2016, RENCI</copyright>
+    <language>en-US</language>
+    <tags>crypto</tags>
+    <dependencies>
+      <group targetFramework=".NETFramework2.0" />
+      <group targetFramework=".NETFramework4.0" />
+      <group targetFramework=".NETFramework4.5" />
+      <group targetFramework=".NETStandard1.0">
+        <dependency id="System.IO" version="4.1.0" />
+      </group>
+      <group targetFramework=".NETStandard1.3">
+        <dependency id="System.IO" version="4.1.0" />
+        <dependency id="System.Security.Cryptography.Primitives" version="4.0.0" />
+      </group>
+      <group targetFramework=".NETPortable0.0-Profile111" />
+      <group targetFramework="Silverlight4.0" />
+      <group targetFramework="Silverlight5.0" />
+      <group targetFramework="UAP10.0" />
+      <group targetFramework="WindowsPhone7.1" />
+      <group targetFramework="WindowsPhone8.0" />
+    </dependencies>
+  </metadata>
 </package>
