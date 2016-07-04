@@ -208,6 +208,105 @@ namespace System.Security.Cryptography
         /// </summary>
         public abstract void Initialize();
 
+        /// <summary>
+        /// Computes the hash value for the specified region of the input byte array and copies the specified
+        /// region of the input byte array to the specified region of the output byte array.
+        /// </summary>
+        /// <param name="inputBuffer">The input to compute the hash code for.</param>
+        /// <param name="inputOffset">The offset into the input byte array from which to begin using data.</param>
+        /// <param name="inputCount">The number of bytes in the input byte array to use as data.</param>
+        /// <param name="outputBuffer">A copy of the part of the input array used to compute the hash code.</param>
+        /// <param name="outputOffset">The offset into the output byte array from which to begin writing data.</param>
+        /// <returns>
+        /// The number of bytes written.
+        /// </returns>
+        /// <exception cref="ArgumentException">
+        /// <para><paramref name="inputCount"/> uses an invalid value.</para>
+        /// <para>-or-</para>
+        /// <para><paramref name="inputBuffer"/> has an invalid length.</para>
+        /// </exception>
+        /// <exception cref="ArgumentNullException"><paramref name="inputBuffer"/> is <c>null</c>.</exception>
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="inputOffset"/> is out of range. This parameter requires a non-negative number.</exception>
+        /// <exception cref="ObjectDisposedException">The object has already been disposed.</exception>
+        internal int TransformBlock(byte[] inputBuffer, int inputOffset, int inputCount, byte[] outputBuffer, int outputOffset)
+        {
+            if (_disposed)
+                throw new ObjectDisposedException(GetType().FullName);
+            if (inputBuffer == null)
+                throw new ArgumentNullException("inputBuffer");
+            if (inputOffset < 0)
+                throw new ArgumentOutOfRangeException("inputOffset");
+            if (inputCount < 0 || (inputCount > inputBuffer.Length))
+                throw new ArgumentException("XX");
+            if ((inputBuffer.Length - inputCount) < inputOffset)
+                throw new ArgumentException("xx");
+
+            HashCore(inputBuffer, inputOffset, inputCount);
+
+            // todo: optimize this by taking into account that inputBuffer and outputBuffer can be the same
+            Buffer.BlockCopy(inputBuffer, inputOffset, outputBuffer, outputOffset, inputCount);
+            return inputCount;
+        }
+
+        /// <summary>
+        /// Computes the hash value for the specified region of the specified byte array.
+        /// </summary>
+        /// <param name="inputBuffer">The input to compute the hash code for.</param>
+        /// <param name="inputOffset">The offset into the byte array from which to begin using data.</param>
+        /// <param name="inputCount">The number of bytes in the byte array to use as data.</param>
+        /// <returns>
+        /// An array that is a copy of the part of the input that is hashed.
+        /// </returns>
+        /// <exception cref="ArgumentException">
+        /// <para><paramref name="inputCount"/> uses an invalid value.</para>
+        /// <para>-or-</para>
+        /// <para><paramref name="inputBuffer"/> has an invalid length.</para>
+        /// </exception>
+        /// <exception cref="ArgumentNullException"><paramref name="inputBuffer"/> is <c>null</c>.</exception>
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="inputOffset"/> is out of range. This parameter requires a non-negative number.</exception>
+        /// <exception cref="ObjectDisposedException">The object has already been disposed.</exception>
+        internal byte[] TransformFinalBlock(byte[] inputBuffer, int inputOffset, int inputCount)
+        {
+            if (_disposed)
+                throw new ObjectDisposedException(GetType().FullName);
+            if (inputBuffer == null)
+                throw new ArgumentNullException("inputBuffer");
+            if (inputOffset < 0)
+                throw new ArgumentOutOfRangeException("inputOffset");
+            if (inputCount < 0 || (inputCount > inputBuffer.Length))
+                throw new ArgumentException("XX");
+            if ((inputBuffer.Length - inputCount) < inputOffset)
+                throw new ArgumentException("xx");
+
+            HashCore(inputBuffer, inputOffset, inputCount);
+            _hashValue = HashFinal();
+
+            // from the MSDN docs:
+            // the return value of this method is not the hash value, but only a copy of the hashed part of the input data
+            var outputBytes = new byte[inputCount];
+            Buffer.BlockCopy(inputBuffer, inputOffset, outputBytes, 0, inputCount);
+            return outputBytes;
+        }
+
+        /// <summary>
+        /// Gets the value of the computed hash code.
+        /// </summary>
+        /// <value>
+        /// The current value of the computed hash code.
+        /// </value>
+        /// <exception cref="ObjectDisposedException">The object has already been disposed.</exception>
+        internal byte[] Hash
+        {
+            get
+            {
+                if (_disposed)
+                    throw new ObjectDisposedException(GetType().FullName);
+                return (byte[]) _hashValue.Clone();
+            }
+        }
+
+        private byte[] _hashValue;
+
         private bool _disposed;
     }
 }

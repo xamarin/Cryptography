@@ -38,9 +38,9 @@ namespace SshNet.Security.Cryptography
         byte[] Hash { get; }
 
         /// <summary>
-        /// Initializes an implementation of the <see cref="IHashProvider"/>.
+        /// Resets an implementation of the <see cref="IHashProvider"/> to its initial state.
         /// </summary>
-        void Initialize();
+        void Reset();
 
         /// <summary>
         /// Routes data written to the object into the hash algorithm for computing the hash.

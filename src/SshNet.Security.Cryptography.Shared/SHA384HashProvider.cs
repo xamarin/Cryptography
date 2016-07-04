@@ -4,6 +4,11 @@
     {
         private const int DigestSize = 48;
 
+        public SHA384HashProvider()
+        {
+            InitializeHashValue();
+        }
+
         /// <summary>
         /// Gets the size, in bits, of the computed hash code.
         /// </summary>
@@ -65,18 +70,21 @@
             UInt64_To_BE(H5, output, 32);
             UInt64_To_BE(H6, output, 40);
 
-            Initialize();
-
             return output;
         }
 
         /// <summary>
-        /// Initializes an implementation of the <see cref="HashProviderBase"/> class.
+        /// Resets <see cref="SHA384HashProvider"/> to its initial state.
         /// </summary>
-        public override void Initialize()
+        public override void Reset()
         {
-            base.Initialize();
+            base.Reset();
 
+            InitializeHashValue();
+        }
+
+        private void InitializeHashValue()
+        {
             /*
              * SHA-384 initial hash value
              * The first 64 bits of the fractional parts of the square roots

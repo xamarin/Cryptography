@@ -4,6 +4,11 @@
     {
         private const int DigestSize = 64;
 
+        public SHA512HashProvider()
+        {
+            InitializeHashValue();
+        }
+
         /// <summary>
         /// Gets the size, in bits, of the computed hash code.
         /// </summary>
@@ -67,18 +72,21 @@
             UInt64_To_BE(H7, output, 48);
             UInt64_To_BE(H8, output, 56);
 
-            Initialize();
-
             return output;
         }
 
         /// <summary>
-        /// Initializes an implementation of the <see cref="HashProviderBase"/> class.
+        /// Resets <see cref="SHA512HashProvider"/> to its initial state.
         /// </summary>
-        public override void Initialize()
+        public override void Reset()
         {
-            base.Initialize();
+            base.Reset();
 
+            InitializeHashValue();
+        }
+
+        private void InitializeHashValue()
+        {
             /*
              * SHA-512 initial hash value
              * The first 64 bits of the fractional parts of the square roots

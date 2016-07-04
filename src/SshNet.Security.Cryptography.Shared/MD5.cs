@@ -58,7 +58,7 @@ namespace SshNet.Security.Cryptography
         /// </summary>
         public override void Initialize()
         {
-            _hashProvider.Initialize();
+            _hashProvider.Reset();
         }
 
         /// <summary>

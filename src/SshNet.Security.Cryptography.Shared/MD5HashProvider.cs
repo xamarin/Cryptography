@@ -2,7 +2,7 @@
 {
     internal class MD5HashProvider : HashProviderBase
     {
-        private readonly byte[] _buffer = new byte[4];
+        private readonly byte[] _buffer;
         private int _bufferOffset;
         private long _byteCount;
         private int _h1, _h2, _h3, _h4;         // IV's
@@ -10,7 +10,7 @@
         /// <summary>
         /// The word buffer.
         /// </summary>
-        private readonly int[] _x = new int[16];
+        private readonly int[] _x;
         private int _offset;
 
         /// <summary>
@@ -18,7 +18,10 @@
         /// </summary>
         public MD5HashProvider()
         {
-            InternalInitialize();
+            _buffer = new byte[4];
+            _x = new int[16];
+
+            InitializeHashValue();
         }
 
         /// <summary>
@@ -132,21 +135,16 @@
             UnpackWord(_h3, output, 8);
             UnpackWord(_h4, output, 12);
 
-            Initialize();
-
             return output;
         }
 
         /// <summary>
-        /// Initializes an implementation of the <see cref="HashProviderBase"/> class.
+        /// Resets <see cref="MD5HashProvider"/> to its initial state.
         /// </summary>
-        public override void Initialize()
+        public override void Reset()
         {
-            InternalInitialize();
-        }
+            InitializeHashValue();
 
-        private void InternalInitialize()
-        {
             _byteCount = 0;
             _bufferOffset = 0;
             for (var i = 0; i < 4; i++)
@@ -154,16 +152,19 @@
                 _buffer[i] = 0;
             }
 
-            _h1 = unchecked(0x67452301);
-            _h2 = unchecked((int)0xefcdab89);
-            _h3 = unchecked((int)0x98badcfe);
-            _h4 = unchecked(0x10325476);
-
             _offset = 0;
             for (var i = 0; i != _x.Length; i++)
             {
                 _x[i] = 0;
             }
+        }
+
+        private void InitializeHashValue()
+        {
+            _h1 = unchecked(0x67452301);
+            _h2 = unchecked((int) 0xefcdab89);
+            _h3 = unchecked((int) 0x98badcfe);
+            _h4 = unchecked(0x10325476);
         }
 
         private void Update(byte input)

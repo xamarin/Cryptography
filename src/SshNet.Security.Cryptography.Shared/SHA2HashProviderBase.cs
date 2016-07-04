@@ -45,7 +45,7 @@
         /// <summary>
         /// The word buffer.
         /// </summary>
-        private readonly ulong[] _x = new ulong[80];
+        private readonly ulong[] _x;
         private int _offset;
         private readonly byte[] _buffer;
         private int _bufferOffset;
@@ -57,8 +57,8 @@
         /// </summary>
         protected SHA2HashProviderBase()
         {
+            _x = new ulong[80];
             _buffer = new byte[8];
-            InternalInitialize();
         }
 
         /// <summary>
@@ -99,14 +99,9 @@
         }
 
         /// <summary>
-        /// Initializes an implementation of the <see cref="HashProviderBase"/> class.
+        /// Resets a <see cref="SHA2HashProviderBase"/> class to its initial state.
         /// </summary>
-        public override void Initialize()
-        {
-            InternalInitialize();
-        }
-
-        private void InternalInitialize()
+        public override void Reset()
         {
             _byteCount1 = 0;
             _byteCount2 = 0;
@@ -358,7 +353,7 @@
             bs[++offset] = (byte)(n);
         }
 
-        internal static void UInt64_To_BE(ulong n, byte[] bs, int offset)
+        protected static void UInt64_To_BE(ulong n, byte[] bs, int offset)
         {
             UInt32_To_BE((uint)(n >> 32), bs, offset);
             UInt32_To_BE((uint)(n), bs, offset + 4);

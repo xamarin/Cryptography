@@ -9,7 +9,7 @@
         /// <summary>
         /// The word buffer.
         /// </summary>
-        private readonly uint[] _x = new uint[64];
+        private readonly uint[] _x;
 
         private int _offset;
 
@@ -25,7 +25,9 @@
         public SHA256HashProvider()
         {
             _buffer = new byte[4];
-            InternalInitialize();
+            _x = new uint[64];
+
+            InitializeHashValue();
         }
 
         /// <summary>
@@ -144,21 +146,16 @@
             UInt32_To_BE(_h7, output, 24);
             UInt32_To_BE(_h8, output, 28);
 
-            Initialize();
-
             return output;
         }
 
         /// <summary>
-        /// Initializes an implementation of the <see cref="HashProviderBase"/> class.
+        /// Resets <see cref="SHA256HashProvider"/> to its initial state.
         /// </summary>
-        public override void Initialize()
+        public override void Reset()
         {
-            InternalInitialize();
-        }
+            InitializeHashValue();
 
-        private void InternalInitialize()
-        {
             _byteCount = 0;
             _bufferOffset = 0;
             for (var i = 0; i < _buffer.Length; i++)
@@ -166,6 +163,15 @@
                 _buffer[i] = 0;
             }
 
+            _offset = 0;
+            for (var i = 0; i < _x.Length; i++)
+            {
+                _x[i] = 0;
+            }
+        }
+
+        private void InitializeHashValue()
+        {
             _h1 = 0x6a09e667;
             _h2 = 0xbb67ae85;
             _h3 = 0x3c6ef372;
@@ -174,12 +180,6 @@
             _h6 = 0x9b05688c;
             _h7 = 0x1f83d9ab;
             _h8 = 0x5be0cd19;
-
-            _offset = 0;
-            for (var i = 0; i < _x.Length; i++)
-            {
-                _x[i] = 0;
-            }
         }
 
         private void Update(byte input)
@@ -305,7 +305,7 @@
             _h7 += g;
             _h8 += h;
 
-            //
+            // 
             // reset the offset and clean out the word buffer.
             //
             _offset = 0;

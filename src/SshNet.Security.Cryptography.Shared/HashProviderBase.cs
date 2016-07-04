@@ -122,7 +122,7 @@ namespace SshNet.Security.Cryptography
 
             HashCore(buffer, 0, buffer.Length);
             _hashValue = HashFinal();
-            Initialize();
+            Reset();
             return Hash;
         }
 
@@ -174,9 +174,9 @@ namespace SshNet.Security.Cryptography
         public abstract int OutputBlockSize { get; }
 
         /// <summary>
-        /// Initializes an implementation of the <see cref="HashProviderBase"/>.
+        /// Resets an implementation of <see cref="HashProviderBase"/> to its initial state.
         /// </summary>
-        public abstract void Initialize();
+        public abstract void Reset();
 
         /// <summary>
         /// Routes data written to the object into the hash algorithm for computing the hash.

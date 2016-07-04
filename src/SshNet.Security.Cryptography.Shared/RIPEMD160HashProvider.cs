@@ -13,7 +13,7 @@
         /// <summary>
         /// The word buffer.
         /// </summary>
-        private readonly int[] X = new int[16];
+        private readonly int[] X;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RIPEMD160HashProvider" /> class.
@@ -21,7 +21,9 @@
         public RIPEMD160HashProvider()
         {
             _buffer = new byte[4];
-            InternalInitialize();
+            X = new int[16];
+
+            InitializeHashValue();
         }
 
         /// <summary>
@@ -135,17 +137,38 @@
             UnpackWord(H3, output, 12);
             UnpackWord(H4, output, 16);
 
-            InternalInitialize();
-
             return output;
         }
 
         /// <summary>
-        /// Initializes an implementation of the <see cref="HashProviderBase"/> class.
+        /// Resets <see cref="RIPEMD160HashProvider"/> to its initial state.
         /// </summary>
-        public override void Initialize()
+        public override void Reset()
         {
-            InternalInitialize();
+            InitializeHashValue();
+
+            _byteCount = 0;
+            _bufferOffset = 0;
+            for (var i = 0; i < _buffer.Length; i++)
+            {
+                _buffer[i] = 0;
+            }
+
+            _offset = 0;
+
+            for (var i = 0; i != X.Length; i++)
+            {
+                X[i] = 0;
+            }
+        }
+
+        private void InitializeHashValue()
+        {
+            H0 = unchecked(0x67452301);
+            H1 = unchecked((int)0xefcdab89);
+            H2 = unchecked((int)0x98badcfe);
+            H3 = unchecked(0x10325476);
+            H4 = unchecked((int)0xc3d2e1f0);
         }
 
         private void ProcessWord(byte[] input, int inOff)
@@ -189,32 +212,6 @@
             }
 
             _byteCount++;
-        }
-
-        /// <summary>
-        /// Reset the chaining variables to the IV values.
-        /// </summary>
-        private void InternalInitialize()
-        {
-            _byteCount = 0;
-            _bufferOffset = 0;
-            for (var i = 0; i < _buffer.Length; i++)
-            {
-                _buffer[i] = 0;
-            }
-
-            H0 = unchecked((int)0x67452301);
-            H1 = unchecked((int)0xefcdab89);
-            H2 = unchecked((int)0x98badcfe);
-            H3 = unchecked((int)0x10325476);
-            H4 = unchecked((int)0xc3d2e1f0);
-
-            _offset = 0;
-
-            for (var i = 0; i != X.Length; i++)
-            {
-                X[i] = 0;
-            }
         }
 
         private int RL(int x, int n)

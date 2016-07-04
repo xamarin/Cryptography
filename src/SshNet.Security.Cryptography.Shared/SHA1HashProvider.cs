@@ -13,7 +13,7 @@
         /// <summary>
         /// The word buffer.
         /// </summary>
-        private readonly uint[] _x = new uint[80];
+        private readonly uint[] _x;
         private int _offset;
         private readonly byte[] _buffer;
         private int _bufferOffset;
@@ -25,7 +25,9 @@
         public SHA1HashProvider()
         {
             _buffer = new byte[4];
-            InternalInitialize();
+            _x = new uint[80];
+
+            InitializeHashValue();
         }
 
         /// <summary>
@@ -87,13 +89,13 @@
             }
 
             //  Process whole words.
-            while (cbSize > _buffer.Length)
+            while (cbSize >= 4)
             {
                 ProcessWord(array, ibStart);
 
-                ibStart += _buffer.Length;
-                cbSize -= _buffer.Length;
-                _byteCount += _buffer.Length;
+                ibStart += 4;
+                cbSize -= 4;
+                _byteCount += 4;
             }
 
             //  Load in the remainder.
@@ -133,7 +135,6 @@
             _x[14] = (uint)((ulong)bitLength >> 32);
             _x[15] = (uint)((ulong)bitLength);
 
-
             ProcessBlock();
 
             UInt32ToBigEndian(_h1, output, 0);
@@ -142,39 +143,37 @@
             UInt32ToBigEndian(_h4, output, 12);
             UInt32ToBigEndian(_h5, output, 16);
 
-            Initialize();
-
             return output;
         }
 
         /// <summary>
-        /// Initializes an implementation of the <see cref="HashProviderBase"/> class.
+        /// Resets <see cref="SHA1HashProvider"/> to its initial state.
         /// </summary>
-        public override void Initialize()
+        public override void Reset()
         {
-            InternalInitialize();
-        }
+            InitializeHashValue();
 
-        private void InternalInitialize()
-        {
             _byteCount = 0;
             _bufferOffset = 0;
-            for (var i = 0; i < 4; i++)
+            for (var i = 0; i < _buffer.Length; i++)
             {
                 _buffer[i] = 0;
             }
-
-            _h1 = 0x67452301;
-            _h2 = 0xefcdab89;
-            _h3 = 0x98badcfe;
-            _h4 = 0x10325476;
-            _h5 = 0xc3d2e1f0;
 
             _offset = 0;
             for (var i = 0; i != _x.Length; i++)
             {
                 _x[i] = 0;
             }
+        }
+
+        private void InitializeHashValue()
+        {
+            _h1 = 0x67452301;
+            _h2 = 0xefcdab89;
+            _h3 = 0x98badcfe;
+            _h4 = 0x10325476;
+            _h5 = 0xc3d2e1f0;
         }
 
         private void Update(byte input)
@@ -186,6 +185,15 @@
                 ProcessWord(_buffer, 0);
                 _bufferOffset = 0;
             }
+
+            //if ((_bufferOffset % 4) == 0)
+            //{
+            //    ProcessWord(_buffer, _bufferOffset - 4);
+            //    if (_bufferOffset == _buffer.Length)
+            //    {
+            //        _bufferOffset = 0;
+            //    }
+            //}
 
             _byteCount++;
         }
