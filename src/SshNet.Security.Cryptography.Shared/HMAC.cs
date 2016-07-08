@@ -85,6 +85,7 @@ namespace SshNet.Security.Cryptography
             }
             set
             {
+                _hashProvider.Reset();
                 SetKey(value);
             }
         }
@@ -105,7 +106,7 @@ namespace SshNet.Security.Cryptography
         /// <param name="cb">The cb.</param>
         protected override void HashCore(byte[] rgb, int ib, int cb)
         {
-            _hashProvider.TransformBlock(rgb, ib, cb, rgb, ib);
+            _hashProvider.HashCore(rgb, ib, cb);
         }
 
         /// <summary>
@@ -121,6 +122,8 @@ namespace SshNet.Security.Cryptography
 
             var hashValue = _hashProvider.Hash;
 
+            _hashProvider.Reset();
+
             // Write the outer array.
             _hashProvider.TransformBlock(_outerPadding, 0, BlockSize, _outerPadding, 0);
 
@@ -128,7 +131,7 @@ namespace SshNet.Security.Cryptography
             _hashProvider.TransformFinalBlock(hashValue, 0, hashValue.Length);
 
             var hash = _hashProvider.Hash;
-            
+
             return GetTruncatedHash(hash);
         }
 
@@ -185,7 +188,6 @@ namespace SshNet.Security.Cryptography
                 _outerPadding[i] = 0x5C;
             }
 
-            _hashProvider.Initialize();
             _hashProvider.TransformBlock(_innerPadding, 0, BlockSize, _innerPadding, 0);
 
             // no need to explicitly clone as this is already done in the setter

@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
 using SshNet.Security.Cryptography.Common.Tests;
 using Xunit;
 
@@ -101,6 +102,28 @@ namespace SshNet.Security.Cryptography.Tests
 
             var actualHash = hmac.ComputeHash(data);
 
+            Assert.Equal(expectedHash, actualHash);
+        }
+
+        [Fact]
+        public void SetKetShouldResetHashProvider()
+        {
+            // Rfc2202_7
+            var key = ByteExtensions.Repeat(0xaa, 80);
+            var data = Encoding.ASCII.GetBytes("Test Using Larger Than Block-Size Key and Larger Than One Block-Size Data");
+            var expectedHash = ByteExtensions.HexToByteArray("6f630fad67cda0ee1fb1f562db3aa53e");
+            var hmac = new HMACMD5(key);
+
+            var actualHash = hmac.ComputeHash(data);
+            Assert.Equal(expectedHash, actualHash);
+
+            // Rfc2202_2
+            key = Encoding.ASCII.GetBytes("Jefe");
+            data = Encoding.ASCII.GetBytes("what do ya want for nothing?");
+            expectedHash = ByteExtensions.HexToByteArray("750c783e6ab0b503eaa86e310a5db738");
+
+            hmac.Key = key;
+            actualHash = hmac.ComputeHash(data);
             Assert.Equal(expectedHash, actualHash);
         }
     }
