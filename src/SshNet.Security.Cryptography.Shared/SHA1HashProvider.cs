@@ -31,21 +31,28 @@ namespace SshNet.Security.Cryptography
         /// The word buffer.
         /// </summary>
         private readonly uint[] _words;
-        private int _offset;
+
+        /// <summary>
+        /// Buffered bytes.
+        /// </summary>
         private readonly byte[] _buffer;
-        private int _bufferOffset;
+
+        /// <summary>
+        /// The number of bytes in the buffer.
+        /// </summary>
+        private int _bufferByteCount;
 
         /// <summary>
         /// The number of bytes in the message.
         /// </summary>
-        private long _byteCount;
+        private long _messageByteCount;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SHA1"/> class.
         /// </summary>
         public SHA1HashProvider()
         {
-            _buffer = new byte[64];
+            _buffer = new byte[BlockSize];
             _words = new uint[80];
 
             InitializeHashValue();
@@ -101,19 +108,22 @@ namespace SshNet.Security.Cryptography
         /// <param name="cbSize">The number of bytes in the byte array to use as data.</param>
         public override void HashCore(byte[] array, int ibStart, int cbSize)
         {
-            _byteCount += cbSize;
+            _messageByteCount += cbSize;
 
             // when there's an incomplete block, then complete and process it
-            if (_bufferOffset > 0 && (cbSize + _bufferOffset) >= BlockSize)
+            if (_bufferByteCount > 0 && (cbSize + _bufferByteCount) >= BlockSize)
             {
-                var bytesToCopy = BlockSize - _bufferOffset;
-                Buffer.BlockCopy(array, ibStart, _buffer, _bufferOffset, bytesToCopy);
+                var bytesToCopy = BlockSize - _bufferByteCount;
+                Buffer.BlockCopy(array, ibStart, _buffer, _bufferByteCount, bytesToCopy);
 
+                // process complete block
                 ProcessBlock(_buffer, 0);
 
                 ibStart += bytesToCopy;
                 cbSize -= bytesToCopy;
-                _bufferOffset = 0;
+
+                // we've processed all buffered bytes
+                _bufferByteCount = 0;
             }
 
             // process whole blocks
@@ -121,15 +131,15 @@ namespace SshNet.Security.Cryptography
             {
                 ProcessBlock(array, ibStart);
 
-                ibStart += 64;
-                cbSize -= 64;
+                ibStart += BlockSize;
+                cbSize -= BlockSize;
             }
 
             // buffer remaining bytes
             if (cbSize > 0)
             {
-                Buffer.BlockCopy(array, ibStart, _buffer, _bufferOffset, cbSize);
-                _bufferOffset += cbSize;
+                Buffer.BlockCopy(array, ibStart, _buffer, _bufferByteCount, cbSize);
+                _bufferByteCount += cbSize;
             }
         }
 
@@ -144,10 +154,10 @@ namespace SshNet.Security.Cryptography
             var output = new byte[DigestSize];
 
             // capture message length in bytes before padding
-            var bitLength = (_byteCount << 3);
+            var bitLength = (_messageByteCount << 3);
 
             // total length of the padded message must be a multiple of the block size (64 bytes)
-            var paddingLength = BlockSize - (_byteCount % BlockSize);
+            var paddingLength = BlockSize - (_messageByteCount % BlockSize);
 
             // ensure padding can contain 64-bit integer representing the message length
             // if necessary another block must be added
@@ -183,14 +193,14 @@ namespace SshNet.Security.Cryptography
         {
             InitializeHashValue();
 
-            _byteCount = 0;
-            _bufferOffset = 0;
+            _messageByteCount = 0;
+
+            _bufferByteCount = 0;
             for (var i = 0; i < _buffer.Length; i++)
             {
                 _buffer[i] = 0;
             }
 
-            _offset = 0;
             for (var i = 0; i != _words.Length; i++)
             {
                 _words[i] = 0;
@@ -225,7 +235,7 @@ namespace SshNet.Security.Cryptography
         {
             for (var i = 0; i < 16; i++)
             {
-                _words[_offset++] = BigEndianToUInt32(buffer, offset);
+                _words[i] = BigEndianToUInt32(buffer, offset);
                 offset += 4;
             }
 
@@ -524,11 +534,6 @@ namespace SshNet.Security.Cryptography
             _h3 += c;
             _h4 += d;
             _h5 += e;
-
-            //
-            // reset start of the buffer.
-            //
-            _offset = 0;
         }
 
         private static uint BigEndianToUInt32(byte[] bs, int off)
