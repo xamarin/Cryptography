@@ -20,15 +20,30 @@ namespace SshNet.Security.Cryptography
         /// </summary>
         private const int BlockSize = 64;
 
+        /// <summary>
+        /// Constant word to be used on index 0 to 19 of the word sequence.
+        /// </summary>
         private const uint Y1 = 0x5a827999;
+
+        /// <summary>
+        /// Constant word to be used on index 20 to 39 of the word sequence.
+        /// </summary>
         private const uint Y2 = 0x6ed9eba1;
+
+        /// <summary>
+        /// Constant word to be used on index 40 to 59 of the word sequence.
+        /// </summary>
         private const uint Y3 = 0x8f1bbcdc;
+
+        /// <summary>
+        /// Constant word to be used on index 60 to 79 of the word sequence.
+        /// </summary>
         private const uint Y4 = 0xca62c1d6;
 
         private uint _h1, _h2, _h3, _h4, _h5;
 
         /// <summary>
-        /// The word buffer.
+        /// The word sequence.
         /// </summary>
         private readonly uint[] _words;
 
@@ -257,277 +272,95 @@ namespace SshNet.Security.Cryptography
             var d = _h4;
             var e = _h5;
 
+            var idx = 0;
+
             //
             // round 1
             //
-            var idx = 0;
 
-            // E = rotateLeft(A, 5) + F(B, C, D) + E + X[idx++] + Y1
-            // B = rotateLeft(B, 30)
-            e += (a << 5 | (a >> 27)) + F(b, c, d) + _words[idx++] + Y1;
-            b = b << 30 | (b >> 2);
+            for (var i = 0; i < 4; i++)
+            {
+                e += (a << 5 | (a >> 27)) + F(b, c, d) + _words[idx++] + Y1;
+                b = b << 30 | (b >> 2);
 
-            d += (e << 5 | (e >> 27)) + F(a, b, c) + _words[idx++] + Y1;
-            a = a << 30 | (a >> 2);
+                d += (e << 5 | (e >> 27)) + F(a, b, c) + _words[idx++] + Y1;
+                a = a << 30 | (a >> 2);
 
-            c += (d << 5 | (d >> 27)) + F(e, a, b) + _words[idx++] + Y1;
-            e = e << 30 | (e >> 2);
+                c += (d << 5 | (d >> 27)) + F(e, a, b) + _words[idx++] + Y1;
+                e = e << 30 | (e >> 2);
 
-            b += (c << 5 | (c >> 27)) + F(d, e, a) + _words[idx++] + Y1;
-            d = d << 30 | (d >> 2);
+                b += (c << 5 | (c >> 27)) + F(d, e, a) + _words[idx++] + Y1;
+                d = d << 30 | (d >> 2);
 
-            a += (b << 5 | (b >> 27)) + F(c, d, e) + _words[idx++] + Y1;
-            c = c << 30 | (c >> 2);
-            // E = rotateLeft(A, 5) + F(B, C, D) + E + X[idx++] + Y1
-            // B = rotateLeft(B, 30)
-            e += (a << 5 | (a >> 27)) + F(b, c, d) + _words[idx++] + Y1;
-            b = b << 30 | (b >> 2);
+                a += (b << 5 | (b >> 27)) + F(c, d, e) + _words[idx++] + Y1;
+                c = c << 30 | (c >> 2);
+            }
 
-            d += (e << 5 | (e >> 27)) + F(a, b, c) + _words[idx++] + Y1;
-            a = a << 30 | (a >> 2);
-
-            c += (d << 5 | (d >> 27)) + F(e, a, b) + _words[idx++] + Y1;
-            e = e << 30 | (e >> 2);
-
-            b += (c << 5 | (c >> 27)) + F(d, e, a) + _words[idx++] + Y1;
-            d = d << 30 | (d >> 2);
-
-            a += (b << 5 | (b >> 27)) + F(c, d, e) + _words[idx++] + Y1;
-            c = c << 30 | (c >> 2);
-            // E = rotateLeft(A, 5) + F(B, C, D) + E + X[idx++] + Y1
-            // B = rotateLeft(B, 30)
-            e += (a << 5 | (a >> 27)) + F(b, c, d) + _words[idx++] + Y1;
-            b = b << 30 | (b >> 2);
-
-            d += (e << 5 | (e >> 27)) + F(a, b, c) + _words[idx++] + Y1;
-            a = a << 30 | (a >> 2);
-
-            c += (d << 5 | (d >> 27)) + F(e, a, b) + _words[idx++] + Y1;
-            e = e << 30 | (e >> 2);
-
-            b += (c << 5 | (c >> 27)) + F(d, e, a) + _words[idx++] + Y1;
-            d = d << 30 | (d >> 2);
-
-            a += (b << 5 | (b >> 27)) + F(c, d, e) + _words[idx++] + Y1;
-            c = c << 30 | (c >> 2);
-            // E = rotateLeft(A, 5) + F(B, C, D) + E + X[idx++] + Y1
-            // B = rotateLeft(B, 30)
-            e += (a << 5 | (a >> 27)) + F(b, c, d) + _words[idx++] + Y1;
-            b = b << 30 | (b >> 2);
-
-            d += (e << 5 | (e >> 27)) + F(a, b, c) + _words[idx++] + Y1;
-            a = a << 30 | (a >> 2);
-
-            c += (d << 5 | (d >> 27)) + F(e, a, b) + _words[idx++] + Y1;
-            e = e << 30 | (e >> 2);
-
-            b += (c << 5 | (c >> 27)) + F(d, e, a) + _words[idx++] + Y1;
-            d = d << 30 | (d >> 2);
-
-            a += (b << 5 | (b >> 27)) + F(c, d, e) + _words[idx++] + Y1;
-            c = c << 30 | (c >> 2);
             //
             // round 2
             //
-            // E = rotateLeft(A, 5) + H(B, C, D) + E + X[idx++] + Y2
-            // B = rotateLeft(B, 30)
-            e += (a << 5 | (a >> 27)) + H(b, c, d) + _words[idx++] + Y2;
-            b = b << 30 | (b >> 2);
 
-            d += (e << 5 | (e >> 27)) + H(a, b, c) + _words[idx++] + Y2;
-            a = a << 30 | (a >> 2);
+            for (var i = 0; i < 4; i++)
+            {
+                e += (a << 5 | (a >> 27)) + H(b, c, d) + _words[idx++] + Y2;
+                b = b << 30 | (b >> 2);
 
-            c += (d << 5 | (d >> 27)) + H(e, a, b) + _words[idx++] + Y2;
-            e = e << 30 | (e >> 2);
+                d += (e << 5 | (e >> 27)) + H(a, b, c) + _words[idx++] + Y2;
+                a = a << 30 | (a >> 2);
 
-            b += (c << 5 | (c >> 27)) + H(d, e, a) + _words[idx++] + Y2;
-            d = d << 30 | (d >> 2);
+                c += (d << 5 | (d >> 27)) + H(e, a, b) + _words[idx++] + Y2;
+                e = e << 30 | (e >> 2);
 
-            a += (b << 5 | (b >> 27)) + H(c, d, e) + _words[idx++] + Y2;
-            c = c << 30 | (c >> 2);
-            // E = rotateLeft(A, 5) + H(B, C, D) + E + X[idx++] + Y2
-            // B = rotateLeft(B, 30)
-            e += (a << 5 | (a >> 27)) + H(b, c, d) + _words[idx++] + Y2;
-            b = b << 30 | (b >> 2);
+                b += (c << 5 | (c >> 27)) + H(d, e, a) + _words[idx++] + Y2;
+                d = d << 30 | (d >> 2);
 
-            d += (e << 5 | (e >> 27)) + H(a, b, c) + _words[idx++] + Y2;
-            a = a << 30 | (a >> 2);
-
-            c += (d << 5 | (d >> 27)) + H(e, a, b) + _words[idx++] + Y2;
-            e = e << 30 | (e >> 2);
-
-            b += (c << 5 | (c >> 27)) + H(d, e, a) + _words[idx++] + Y2;
-            d = d << 30 | (d >> 2);
-
-            a += (b << 5 | (b >> 27)) + H(c, d, e) + _words[idx++] + Y2;
-            c = c << 30 | (c >> 2);
-            // E = rotateLeft(A, 5) + H(B, C, D) + E + X[idx++] + Y2
-            // B = rotateLeft(B, 30)
-            e += (a << 5 | (a >> 27)) + H(b, c, d) + _words[idx++] + Y2;
-            b = b << 30 | (b >> 2);
-
-            d += (e << 5 | (e >> 27)) + H(a, b, c) + _words[idx++] + Y2;
-            a = a << 30 | (a >> 2);
-
-            c += (d << 5 | (d >> 27)) + H(e, a, b) + _words[idx++] + Y2;
-            e = e << 30 | (e >> 2);
-
-            b += (c << 5 | (c >> 27)) + H(d, e, a) + _words[idx++] + Y2;
-            d = d << 30 | (d >> 2);
-
-            a += (b << 5 | (b >> 27)) + H(c, d, e) + _words[idx++] + Y2;
-            c = c << 30 | (c >> 2);
-            // E = rotateLeft(A, 5) + H(B, C, D) + E + X[idx++] + Y2
-            // B = rotateLeft(B, 30)
-            e += (a << 5 | (a >> 27)) + H(b, c, d) + _words[idx++] + Y2;
-            b = b << 30 | (b >> 2);
-
-            d += (e << 5 | (e >> 27)) + H(a, b, c) + _words[idx++] + Y2;
-            a = a << 30 | (a >> 2);
-
-            c += (d << 5 | (d >> 27)) + H(e, a, b) + _words[idx++] + Y2;
-            e = e << 30 | (e >> 2);
-
-            b += (c << 5 | (c >> 27)) + H(d, e, a) + _words[idx++] + Y2;
-            d = d << 30 | (d >> 2);
-
-            a += (b << 5 | (b >> 27)) + H(c, d, e) + _words[idx++] + Y2;
-            c = c << 30 | (c >> 2);
+                a += (b << 5 | (b >> 27)) + H(c, d, e) + _words[idx++] + Y2;
+                c = c << 30 | (c >> 2);
+            }
 
             //
             // round 3
-            // E = rotateLeft(A, 5) + G(B, C, D) + E + X[idx++] + Y3
-            // B = rotateLeft(B, 30)
-            e += (a << 5 | (a >> 27)) + G(b, c, d) + _words[idx++] + Y3;
-            b = b << 30 | (b >> 2);
+            //
 
-            d += (e << 5 | (e >> 27)) + G(a, b, c) + _words[idx++] + Y3;
-            a = a << 30 | (a >> 2);
+            for (var i = 0; i < 4; i++)
+            {
+                e += (a << 5 | (a >> 27)) + G(b, c, d) + _words[idx++] + Y3;
+                b = b << 30 | (b >> 2);
 
-            c += (d << 5 | (d >> 27)) + G(e, a, b) + _words[idx++] + Y3;
-            e = e << 30 | (e >> 2);
+                d += (e << 5 | (e >> 27)) + G(a, b, c) + _words[idx++] + Y3;
+                a = a << 30 | (a >> 2);
 
-            b += (c << 5 | (c >> 27)) + G(d, e, a) + _words[idx++] + Y3;
-            d = d << 30 | (d >> 2);
+                c += (d << 5 | (d >> 27)) + G(e, a, b) + _words[idx++] + Y3;
+                e = e << 30 | (e >> 2);
 
-            a += (b << 5 | (b >> 27)) + G(c, d, e) + _words[idx++] + Y3;
-            c = c << 30 | (c >> 2);
-            // E = rotateLeft(A, 5) + G(B, C, D) + E + X[idx++] + Y3
-            // B = rotateLeft(B, 30)
-            e += (a << 5 | (a >> 27)) + G(b, c, d) + _words[idx++] + Y3;
-            b = b << 30 | (b >> 2);
+                b += (c << 5 | (c >> 27)) + G(d, e, a) + _words[idx++] + Y3;
+                d = d << 30 | (d >> 2);
 
-            d += (e << 5 | (e >> 27)) + G(a, b, c) + _words[idx++] + Y3;
-            a = a << 30 | (a >> 2);
-
-            c += (d << 5 | (d >> 27)) + G(e, a, b) + _words[idx++] + Y3;
-            e = e << 30 | (e >> 2);
-
-            b += (c << 5 | (c >> 27)) + G(d, e, a) + _words[idx++] + Y3;
-            d = d << 30 | (d >> 2);
-
-            a += (b << 5 | (b >> 27)) + G(c, d, e) + _words[idx++] + Y3;
-            c = c << 30 | (c >> 2);
-            // E = rotateLeft(A, 5) + G(B, C, D) + E + X[idx++] + Y3
-            // B = rotateLeft(B, 30)
-            e += (a << 5 | (a >> 27)) + G(b, c, d) + _words[idx++] + Y3;
-            b = b << 30 | (b >> 2);
-
-            d += (e << 5 | (e >> 27)) + G(a, b, c) + _words[idx++] + Y3;
-            a = a << 30 | (a >> 2);
-
-            c += (d << 5 | (d >> 27)) + G(e, a, b) + _words[idx++] + Y3;
-            e = e << 30 | (e >> 2);
-
-            b += (c << 5 | (c >> 27)) + G(d, e, a) + _words[idx++] + Y3;
-            d = d << 30 | (d >> 2);
-
-            a += (b << 5 | (b >> 27)) + G(c, d, e) + _words[idx++] + Y3;
-            c = c << 30 | (c >> 2);
-            // E = rotateLeft(A, 5) + G(B, C, D) + E + X[idx++] + Y3
-            // B = rotateLeft(B, 30)
-            e += (a << 5 | (a >> 27)) + G(b, c, d) + _words[idx++] + Y3;
-            b = b << 30 | (b >> 2);
-
-            d += (e << 5 | (e >> 27)) + G(a, b, c) + _words[idx++] + Y3;
-            a = a << 30 | (a >> 2);
-
-            c += (d << 5 | (d >> 27)) + G(e, a, b) + _words[idx++] + Y3;
-            e = e << 30 | (e >> 2);
-
-            b += (c << 5 | (c >> 27)) + G(d, e, a) + _words[idx++] + Y3;
-            d = d << 30 | (d >> 2);
-
-            a += (b << 5 | (b >> 27)) + G(c, d, e) + _words[idx++] + Y3;
-            c = c << 30 | (c >> 2);
+                a += (b << 5 | (b >> 27)) + G(c, d, e) + _words[idx++] + Y3;
+                c = c << 30 | (c >> 2);
+            }
 
             //
             // round 4
             //
-            // E = rotateLeft(A, 5) + H(B, C, D) + E + X[idx++] + Y4
-            // B = rotateLeft(B, 30)
-            e += (a << 5 | (a >> 27)) + H(b, c, d) + _words[idx++] + Y4;
-            b = b << 30 | (b >> 2);
 
-            d += (e << 5 | (e >> 27)) + H(a, b, c) + _words[idx++] + Y4;
-            a = a << 30 | (a >> 2);
+            for (var i = 0; i < 4; i++)
+            {
+                e += (a << 5 | (a >> 27)) + H(b, c, d) + _words[idx++] + Y4;
+                b = b << 30 | (b >> 2);
 
-            c += (d << 5 | (d >> 27)) + H(e, a, b) + _words[idx++] + Y4;
-            e = e << 30 | (e >> 2);
+                d += (e << 5 | (e >> 27)) + H(a, b, c) + _words[idx++] + Y4;
+                a = a << 30 | (a >> 2);
 
-            b += (c << 5 | (c >> 27)) + H(d, e, a) + _words[idx++] + Y4;
-            d = d << 30 | (d >> 2);
+                c += (d << 5 | (d >> 27)) + H(e, a, b) + _words[idx++] + Y4;
+                e = e << 30 | (e >> 2);
 
-            a += (b << 5 | (b >> 27)) + H(c, d, e) + _words[idx++] + Y4;
-            c = c << 30 | (c >> 2);
-            // E = rotateLeft(A, 5) + H(B, C, D) + E + X[idx++] + Y4
-            // B = rotateLeft(B, 30)
-            e += (a << 5 | (a >> 27)) + H(b, c, d) + _words[idx++] + Y4;
-            b = b << 30 | (b >> 2);
+                b += (c << 5 | (c >> 27)) + H(d, e, a) + _words[idx++] + Y4;
+                d = d << 30 | (d >> 2);
 
-            d += (e << 5 | (e >> 27)) + H(a, b, c) + _words[idx++] + Y4;
-            a = a << 30 | (a >> 2);
-
-            c += (d << 5 | (d >> 27)) + H(e, a, b) + _words[idx++] + Y4;
-            e = e << 30 | (e >> 2);
-
-            b += (c << 5 | (c >> 27)) + H(d, e, a) + _words[idx++] + Y4;
-            d = d << 30 | (d >> 2);
-
-            a += (b << 5 | (b >> 27)) + H(c, d, e) + _words[idx++] + Y4;
-            c = c << 30 | (c >> 2);
-            // E = rotateLeft(A, 5) + H(B, C, D) + E + X[idx++] + Y4
-            // B = rotateLeft(B, 30)
-            e += (a << 5 | (a >> 27)) + H(b, c, d) + _words[idx++] + Y4;
-            b = b << 30 | (b >> 2);
-
-            d += (e << 5 | (e >> 27)) + H(a, b, c) + _words[idx++] + Y4;
-            a = a << 30 | (a >> 2);
-
-            c += (d << 5 | (d >> 27)) + H(e, a, b) + _words[idx++] + Y4;
-            e = e << 30 | (e >> 2);
-
-            b += (c << 5 | (c >> 27)) + H(d, e, a) + _words[idx++] + Y4;
-            d = d << 30 | (d >> 2);
-
-            a += (b << 5 | (b >> 27)) + H(c, d, e) + _words[idx++] + Y4;
-            c = c << 30 | (c >> 2);
-            // E = rotateLeft(A, 5) + H(B, C, D) + E + X[idx++] + Y4
-            // B = rotateLeft(B, 30)
-            e += (a << 5 | (a >> 27)) + H(b, c, d) + _words[idx++] + Y4;
-            b = b << 30 | (b >> 2);
-
-            d += (e << 5 | (e >> 27)) + H(a, b, c) + _words[idx++] + Y4;
-            a = a << 30 | (a >> 2);
-
-            c += (d << 5 | (d >> 27)) + H(e, a, b) + _words[idx++] + Y4;
-            e = e << 30 | (e >> 2);
-
-            b += (c << 5 | (c >> 27)) + H(d, e, a) + _words[idx++] + Y4;
-            d = d << 30 | (d >> 2);
-
-            a += (b << 5 | (b >> 27)) + H(c, d, e) + _words[idx] + Y4;
-            c = c << 30 | (c >> 2);
+                a += (b << 5 | (b >> 27)) + H(c, d, e) + _words[idx++] + Y4;
+                c = c << 30 | (c >> 2);
+            }
 
             _h1 += a;
             _h2 += b;
