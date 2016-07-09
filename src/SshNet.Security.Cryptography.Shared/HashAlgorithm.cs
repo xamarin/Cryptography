@@ -1,7 +1,4 @@
-﻿// TODO Remove this class, and add a dependency to the System.Security.Cryptography.Primitives
-// TODO package once this package is available from http://nuget.org with support for UAP 10.0.
-
-#if !FEATURE_CRYPTO_HASHALGORITHM
+﻿#if !FEATURE_CRYPTO_HASHALGORITHM
 
 // Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
@@ -158,7 +155,7 @@ namespace System.Security.Cryptography
             byte[] hashValue = HashFinal();
             // Clone the hash value prior to invoking Initialize in case the user-defined Initialize
             // manipulates the array.
-            hashValue = (byte[]) hashValue.Clone();
+            _hashValue = hashValue = (byte[]) hashValue.Clone();
             Initialize();
             return hashValue;
         }
@@ -228,7 +225,7 @@ namespace System.Security.Cryptography
         /// <exception cref="ArgumentNullException"><paramref name="inputBuffer"/> is <c>null</c>.</exception>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="inputOffset"/> is out of range. This parameter requires a non-negative number.</exception>
         /// <exception cref="ObjectDisposedException">The object has already been disposed.</exception>
-        internal int TransformBlock(byte[] inputBuffer, int inputOffset, int inputCount, byte[] outputBuffer, int outputOffset)
+        public int TransformBlock(byte[] inputBuffer, int inputOffset, int inputCount, byte[] outputBuffer, int outputOffset)
         {
             if (_disposed)
                 throw new ObjectDisposedException(GetType().FullName);
@@ -265,7 +262,7 @@ namespace System.Security.Cryptography
         /// <exception cref="ArgumentNullException"><paramref name="inputBuffer"/> is <c>null</c>.</exception>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="inputOffset"/> is out of range. This parameter requires a non-negative number.</exception>
         /// <exception cref="ObjectDisposedException">The object has already been disposed.</exception>
-        internal byte[] TransformFinalBlock(byte[] inputBuffer, int inputOffset, int inputCount)
+        public byte[] TransformFinalBlock(byte[] inputBuffer, int inputOffset, int inputCount)
         {
             if (_disposed)
                 throw new ObjectDisposedException(GetType().FullName);
@@ -295,7 +292,7 @@ namespace System.Security.Cryptography
         /// The current value of the computed hash code.
         /// </value>
         /// <exception cref="ObjectDisposedException">The object has already been disposed.</exception>
-        internal byte[] Hash
+        public byte[] Hash
         {
             get
             {

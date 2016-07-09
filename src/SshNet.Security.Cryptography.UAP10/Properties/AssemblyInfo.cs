@@ -1,6 +1,3 @@
 ﻿using System.Reflection;
-using System.Runtime.CompilerServices;
 
 [assembly: AssemblyTitle("SshNet.Security.Cryptography for UAP 10.0")]
-
-[assembly:InternalsVisibleTo("SshNet.Security.Cryptography.Tests, PublicKey=002400000480000094000000060200000024000052534131000400000100010001adaa58f98282abe75820b5b972ef2a53aa8a048cb06565f3d4e81c18585b170339300dbec1518144e15863057995239e249788cf8e7a062ffefa5de01272d77b9187af1c2b444deb15685769fa1073154be44d876b356862532aa9d76f7d2d6c117b51949ad2551766cae783412fb124ab5221b7f34aac4b108c4e3b9433d6")]
