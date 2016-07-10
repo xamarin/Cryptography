@@ -45,10 +45,6 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System.Xml" />
-    <Reference Include="System.Net" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="..\SshNet.Security.Cryptography.Shared\HashProviderBase.cs">
       <Link>HashProviderBase.cs</Link>
     </Compile>
