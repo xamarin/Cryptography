@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
 using SshNet.Security.Cryptography.Common.Tests;
 using Xunit;
 
