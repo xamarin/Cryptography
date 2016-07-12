@@ -19,7 +19,7 @@ namespace SshNet.Security.Cryptography.Tests
         [Fact]
         public void Rfc3174_1()
         {
-            var data = Encoding.ASCII.GetBytes("abc");
+            var data = ByteExtensions.HexToByteArray("616263"); // "abc"
             var expectedHash = ByteExtensions.HexToByteArray("A9993E364706816ABA3E25717850C26C9CD0D89D");
 
             var actualHash = _hashAlgorithm.ComputeHash(data);
@@ -30,7 +30,7 @@ namespace SshNet.Security.Cryptography.Tests
         [Fact]
         public void Rfc3174_2()
         {
-            var data = Encoding.ASCII.GetBytes("abcdbcdecdefdefgefghfghighijhijkijkljklmklmnlmnomnopnopq");
+            var data = ByteExtensions.HexToByteArray("6162636462636465636465666465666765666768666768696768696a68696a6b696a6b6c6a6b6c6d6b6c6d6e6c6d6e6f6d6e6f706e6f7071"); // "abcdbcdecdefdefgefghfghighijhijkijkljklmklmnlmnomnopnopq"
             var expectedHash = ByteExtensions.HexToByteArray("84983E441C3BD26EBAAE4AA1F95129E5E54670F1");
 
             var actualHash = _hashAlgorithm.ComputeHash(data);
@@ -41,7 +41,7 @@ namespace SshNet.Security.Cryptography.Tests
         [Fact]
         public void Rfc3174_3()
         {
-            var data = Encoding.ASCII.GetBytes(new string('a', 1000000));
+            var data = ByteExtensions.HexToByteArray(StringExtensions.Repeat("61", 1000000)); // "a" * 1000000
             var expectedHash = ByteExtensions.HexToByteArray("34AA973CD4C4DAA4F61EEB2BDBAD27316534016F");
 
             var actualHash = _hashAlgorithm.ComputeHash(data);
@@ -52,7 +52,7 @@ namespace SshNet.Security.Cryptography.Tests
         [Fact]
         public void Rfc3174_4()
         {
-            var data = Encoding.ASCII.GetBytes(StringExtensions.Repeat("0123456701234567012345670123456701234567012345670123456701234567", 10));
+            var data = ByteExtensions.HexToByteArray(StringExtensions.Repeat("3031323334353637", 8 * 10)); // "01234567" * (8*10)
             var expectedHash = ByteExtensions.HexToByteArray("DEA356A2CDDD90C7A7ECEDC5EBB563934F460452");
 
             var actualHash = _hashAlgorithm.ComputeHash(data);

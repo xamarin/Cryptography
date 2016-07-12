@@ -13,7 +13,7 @@ namespace SshNet.Security.Cryptography.Tests
         public void Rfc4231_1()
         {
             var key = ByteExtensions.Repeat(0x0b, 20);
-            var data = Encoding.ASCII.GetBytes("Hi There");
+            var data = ByteExtensions.HexToByteArray("4869205468657265"); // "Hi There"
             var expectedHash = ByteExtensions.HexToByteArray("87aa7cdea5ef619d4ff0b4241a1d6cb02379f4e2ce4ec2787ad0b30545e17cdedaa833b7d6b8a702038b274eaea3f4e4be9d914eeb61f1702e696c203a126854");
             var hmac = new HMACSHA512(key);
 
@@ -28,8 +28,8 @@ namespace SshNet.Security.Cryptography.Tests
         [Fact]
         public void Rfc4231_2()
         {
-            var key = Encoding.ASCII.GetBytes("Jefe");
-            var data = Encoding.ASCII.GetBytes("what do ya want for nothing?");
+            var key = ByteExtensions.HexToByteArray("4a656665"); // "Jefe"
+            var data = ByteExtensions.HexToByteArray("7768617420646f2079612077616e7420666f72206e6f7468696e673f"); // "what do ya want for nothing?"
             var expectedHash = ByteExtensions.HexToByteArray("164b7a7bfcf819e2e395fbe73b56e0a387bd64222e831fd610270cd7ea2505549758bf75c05a994a6d034f65f8f0e6fdcaeab1a34d4a6b4b636e070a38bce737");
             var hmac = new HMACSHA512(key);
 
@@ -77,7 +77,7 @@ namespace SshNet.Security.Cryptography.Tests
         public void Rfc4231_5()
         {
             var key = ByteExtensions.Repeat(0x0c, 20);
-            var data = Encoding.ASCII.GetBytes("Test With Truncation");
+            var data = ByteExtensions.HexToByteArray("546573742057697468205472756e636174696f6e"); // "Test With Truncation"
             var expectedHash = ByteExtensions.HexToByteArray("415fad6271580a531d4179bc891d87a6");
             var hmac = new HMACSHA512(key, 128);
 
@@ -93,7 +93,7 @@ namespace SshNet.Security.Cryptography.Tests
         public void Rfc4231_6()
         {
             var key = ByteExtensions.Repeat(0xaa, 131);
-            var data = Encoding.ASCII.GetBytes("Test Using Larger Than Block-Size Key - Hash Key First");
+            var data = ByteExtensions.HexToByteArray("54657374205573696e67204c6172676572205468616e20426c6f636b2d53697a65204b6579202d2048617368204b6579204669727374"); // "Test Using Larger Than Block-Size Key - Hash Key First"
             var expectedHash = ByteExtensions.HexToByteArray("80b24263c7c1a3ebb71493c1dd7be8b49b46d1f41b4aeec1121b013783f8f3526b56d037e05f2598bd0fd2215d6a1e5295e64f73f63f0aec8b915a985d786598");
             var hmac = new HMACSHA512(key);
 
@@ -109,7 +109,7 @@ namespace SshNet.Security.Cryptography.Tests
         public void Rfc4231_7()
         {
             var key = ByteExtensions.Repeat(0xaa, 131);
-            var data = Encoding.ASCII.GetBytes("This is a test using a larger than block-size key and a larger than block-size data. The key needs to be hashed before being used by the HMAC algorithm.");
+            var data = ByteExtensions.HexToByteArray("5468697320697320612074657374207573696e672061206c6172676572207468616e20626c6f636b2d73697a65206b657920616e642061206c6172676572207468616e20626c6f636b2d73697a6520646174612e20546865206b6579206e6565647320746f20626520686173686564206265666f7265206265696e6720757365642062792074686520484d414320616c676f726974686d2e"); // "This is a test using a larger than block-size key and a larger than block-size data. The key needs to be hashed before being used by the HMAC algorithm."
             var expectedHash = ByteExtensions.HexToByteArray("e37b6a775dc87dbaa4dfa9f96e5e3ffddebd71f8867289865df5a32d20cdc944b6022cac3c4982b10d5eeb55c3e4de15134676fb6de0446065c97440fa8c6a58");
             var hmac = new HMACSHA512(key);
 
