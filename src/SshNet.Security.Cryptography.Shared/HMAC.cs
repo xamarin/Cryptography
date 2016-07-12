@@ -14,6 +14,11 @@ namespace SshNet.Security.Cryptography
         private readonly int _hashSize;
 
         /// <summary>
+        /// Holds value indicating whether the inner padding was already written.
+        /// </summary>
+        private bool _innerPaddingWritten;
+
+        /// <summary>
         /// Gets the size of the block.
         /// </summary>
         /// <value>
@@ -68,7 +73,7 @@ namespace SshNet.Security.Cryptography
         internal HMAC(IHashProvider hashProvider, byte[] key)
             : this(hashProvider)
         {
-            InternalInitialize(key);
+            SetKey(key);
         }
 
         /// <summary>
@@ -85,7 +90,6 @@ namespace SshNet.Security.Cryptography
             }
             set
             {
-                _hashProvider.Reset();
                 SetKey(value);
             }
         }
@@ -95,7 +99,8 @@ namespace SshNet.Security.Cryptography
         /// </summary>
         public override void Initialize()
         {
-            InternalInitialize(Key);
+            _hashProvider.Reset();
+            _innerPaddingWritten = false;
         }
 
         /// <summary>
@@ -106,6 +111,15 @@ namespace SshNet.Security.Cryptography
         /// <param name="cb">The cb.</param>
         protected override void HashCore(byte[] rgb, int ib, int cb)
         {
+            if (!_innerPaddingWritten)
+            {
+                // write the inner padding
+                _hashProvider.TransformBlock(_innerPadding, 0, BlockSize, _innerPadding, 0);
+
+                // ensure we only write inner padding once
+                _innerPaddingWritten = true;
+            }
+
             _hashProvider.HashCore(rgb, ib, cb);
         }
 
@@ -117,17 +131,13 @@ namespace SshNet.Security.Cryptography
         /// </returns>
         protected override byte[] HashFinal()
         {
-            // Finalize the original hash.
-            _hashProvider.TransformFinalBlock(new byte[0], 0, 0);
+            // finalize the original hash
+            var hashValue = _hashProvider.ComputeHash(new byte[0]);
 
-            var hashValue = _hashProvider.Hash;
-
-            _hashProvider.Reset();
-
-            // Write the outer array.
+            // write the outer padding
             _hashProvider.TransformBlock(_outerPadding, 0, BlockSize, _outerPadding, 0);
 
-            // Write the inner hash and finalize the hash.
+            // write the inner hash and finalize the hash
             _hashProvider.TransformFinalBlock(hashValue, 0, hashValue.Length);
 
             var hash = _hashProvider.Hash;
@@ -155,18 +165,12 @@ namespace SshNet.Security.Cryptography
             var hashSizeBytes = HashSize / 8;
             if (hash.Length == hashSizeBytes)
             {
-                // TODO: check if we should clone the hash
                 return hash;
             }
 
             var truncatedHash = new byte[hashSizeBytes];
             Buffer.BlockCopy(hash, 0, truncatedHash, 0, hashSizeBytes);
             return truncatedHash;
-        }
-
-        private void InternalInitialize(byte[] key)
-        {
-            SetKey(key);
         }
 
         private void SetKey(byte[] value)
@@ -187,8 +191,6 @@ namespace SshNet.Security.Cryptography
                 _innerPadding[i] = 0x36;
                 _outerPadding[i] = 0x5C;
             }
-
-            _hashProvider.TransformBlock(_innerPadding, 0, BlockSize, _innerPadding, 0);
 
             // no need to explicitly clone as this is already done in the setter
             base.Key = shortenedKey;

@@ -161,10 +161,10 @@
 
         private void InitializeHashValue()
         {
-            _h1 = unchecked(0x67452301);
+            _h1 = 0x67452301;
             _h2 = unchecked((int) 0xefcdab89);
             _h3 = unchecked((int) 0x98badcfe);
-            _h4 = unchecked(0x10325476);
+            _h4 = 0x10325476;
         }
 
         private void Update(byte input)
@@ -272,82 +272,82 @@
             //
             // Round 1 - F cycle, 16 times.
             //
-            a = RotateLeft((a + F(b, c, d) + _x[0] + unchecked((int) 0xd76aa478)), S11) + b;
-            d = RotateLeft((d + F(a, b, c) + _x[1] + unchecked((int) 0xe8c7b756)), S12) + a;
-            c = RotateLeft((c + F(d, a, b) + _x[2] + unchecked(0x242070db)), S13) + d;
-            b = RotateLeft((b + F(c, d, a) + _x[3] + unchecked((int) 0xc1bdceee)), S14) + c;
-            a = RotateLeft((a + F(b, c, d) + _x[4] + unchecked((int) 0xf57c0faf)), S11) + b;
-            d = RotateLeft((d + F(a, b, c) + _x[5] + unchecked(0x4787c62a)), S12) + a;
-            c = RotateLeft((c + F(d, a, b) + _x[6] + unchecked((int) 0xa8304613)), S13) + d;
-            b = RotateLeft((b + F(c, d, a) + _x[7] + unchecked((int) 0xfd469501)), S14) + c;
-            a = RotateLeft((a + F(b, c, d) + _x[8] + unchecked(0x698098d8)), S11) + b;
-            d = RotateLeft((d + F(a, b, c) + _x[9] + unchecked((int) 0x8b44f7af)), S12) + a;
-            c = RotateLeft((c + F(d, a, b) + _x[10] + unchecked((int) 0xffff5bb1)), S13) + d;
-            b = RotateLeft((b + F(c, d, a) + _x[11] + unchecked((int) 0x895cd7be)), S14) + c;
-            a = RotateLeft((a + F(b, c, d) + _x[12] + unchecked(0x6b901122)), S11) + b;
-            d = RotateLeft((d + F(a, b, c) + _x[13] + unchecked((int) 0xfd987193)), S12) + a;
-            c = RotateLeft((c + F(d, a, b) + _x[14] + unchecked((int) 0xa679438e)), S13) + d;
-            b = RotateLeft((b + F(c, d, a) + _x[15] + unchecked(0x49b40821)), S14) + c;
+            a = RotateLeft(a + F(b, c, d) + _x[0] + unchecked((int) 0xd76aa478), S11) + b;
+            d = RotateLeft(d + F(a, b, c) + _x[1] + unchecked((int) 0xe8c7b756), S12) + a;
+            c = RotateLeft(c + F(d, a, b) + _x[2] + 0x242070db, S13) + d;
+            b = RotateLeft(b + F(c, d, a) + _x[3] + unchecked((int) 0xc1bdceee), S14) + c;
+            a = RotateLeft(a + F(b, c, d) + _x[4] + unchecked((int) 0xf57c0faf), S11) + b;
+            d = RotateLeft(d + F(a, b, c) + _x[5] + 0x4787c62a, S12) + a;
+            c = RotateLeft(c + F(d, a, b) + _x[6] + unchecked((int) 0xa8304613), S13) + d;
+            b = RotateLeft(b + F(c, d, a) + _x[7] + unchecked((int) 0xfd469501), S14) + c;
+            a = RotateLeft(a + F(b, c, d) + _x[8] + 0x698098d8, S11) + b;
+            d = RotateLeft(d + F(a, b, c) + _x[9] + unchecked((int) 0x8b44f7af), S12) + a;
+            c = RotateLeft(c + F(d, a, b) + _x[10] + unchecked((int) 0xffff5bb1), S13) + d;
+            b = RotateLeft(b + F(c, d, a) + _x[11] + unchecked((int) 0x895cd7be), S14) + c;
+            a = RotateLeft(a + F(b, c, d) + _x[12] + 0x6b901122, S11) + b;
+            d = RotateLeft(d + F(a, b, c) + _x[13] + unchecked((int) 0xfd987193), S12) + a;
+            c = RotateLeft(c + F(d, a, b) + _x[14] + unchecked((int) 0xa679438e), S13) + d;
+            b = RotateLeft(b + F(c, d, a) + _x[15] + 0x49b40821, S14) + c;
 
             //
             // Round 2 - G cycle, 16 times.
             //
-            a = RotateLeft((a + G(b, c, d) + _x[1] + unchecked((int) 0xf61e2562)), S21) + b;
-            d = RotateLeft((d + G(a, b, c) + _x[6] + unchecked((int) 0xc040b340)), S22) + a;
-            c = RotateLeft((c + G(d, a, b) + _x[11] + unchecked(0x265e5a51)), S23) + d;
-            b = RotateLeft((b + G(c, d, a) + _x[0] + unchecked((int) 0xe9b6c7aa)), S24) + c;
-            a = RotateLeft((a + G(b, c, d) + _x[5] + unchecked((int) 0xd62f105d)), S21) + b;
-            d = RotateLeft((d + G(a, b, c) + _x[10] + unchecked(0x02441453)), S22) + a;
-            c = RotateLeft((c + G(d, a, b) + _x[15] + unchecked((int) 0xd8a1e681)), S23) + d;
-            b = RotateLeft((b + G(c, d, a) + _x[4] + unchecked((int) 0xe7d3fbc8)), S24) + c;
-            a = RotateLeft((a + G(b, c, d) + _x[9] + unchecked(0x21e1cde6)), S21) + b;
-            d = RotateLeft((d + G(a, b, c) + _x[14] + unchecked((int) 0xc33707d6)), S22) + a;
-            c = RotateLeft((c + G(d, a, b) + _x[3] + unchecked((int) 0xf4d50d87)), S23) + d;
-            b = RotateLeft((b + G(c, d, a) + _x[8] + unchecked(0x455a14ed)), S24) + c;
-            a = RotateLeft((a + G(b, c, d) + _x[13] + unchecked((int) 0xa9e3e905)), S21) + b;
-            d = RotateLeft((d + G(a, b, c) + _x[2] + unchecked((int) 0xfcefa3f8)), S22) + a;
-            c = RotateLeft((c + G(d, a, b) + _x[7] + unchecked(0x676f02d9)), S23) + d;
-            b = RotateLeft((b + G(c, d, a) + _x[12] + unchecked((int) 0x8d2a4c8a)), S24) + c;
+            a = RotateLeft(a + G(b, c, d) + _x[1] + unchecked((int) 0xf61e2562), S21) + b;
+            d = RotateLeft(d + G(a, b, c) + _x[6] + unchecked((int) 0xc040b340), S22) + a;
+            c = RotateLeft(c + G(d, a, b) + _x[11] + 0x265e5a51, S23) + d;
+            b = RotateLeft(b + G(c, d, a) + _x[0] + unchecked((int) 0xe9b6c7aa), S24) + c;
+            a = RotateLeft(a + G(b, c, d) + _x[5] + unchecked((int) 0xd62f105d), S21) + b;
+            d = RotateLeft(d + G(a, b, c) + _x[10] + 0x02441453, S22) + a;
+            c = RotateLeft(c + G(d, a, b) + _x[15] + unchecked((int) 0xd8a1e681), S23) + d;
+            b = RotateLeft(b + G(c, d, a) + _x[4] + unchecked((int) 0xe7d3fbc8), S24) + c;
+            a = RotateLeft(a + G(b, c, d) + _x[9] + 0x21e1cde6, S21) + b;
+            d = RotateLeft(d + G(a, b, c) + _x[14] + unchecked((int) 0xc33707d6), S22) + a;
+            c = RotateLeft(c + G(d, a, b) + _x[3] + unchecked((int) 0xf4d50d87), S23) + d;
+            b = RotateLeft(b + G(c, d, a) + _x[8] + 0x455a14ed, S24) + c;
+            a = RotateLeft(a + G(b, c, d) + _x[13] + unchecked((int) 0xa9e3e905), S21) + b;
+            d = RotateLeft(d + G(a, b, c) + _x[2] + unchecked((int) 0xfcefa3f8), S22) + a;
+            c = RotateLeft(c + G(d, a, b) + _x[7] + 0x676f02d9, S23) + d;
+            b = RotateLeft(b + G(c, d, a) + _x[12] + unchecked((int) 0x8d2a4c8a), S24) + c;
 
             //
             // Round 3 - H cycle, 16 times.
             //
-            a = RotateLeft((a + H(b, c, d) + _x[5] + unchecked((int)0xfffa3942)), S31) + b;
-            d = RotateLeft((d + H(a, b, c) + _x[8] + unchecked((int)0x8771f681)), S32) + a;
-            c = RotateLeft((c + H(d, a, b) + _x[11] + unchecked(0x6d9d6122)), S33) + d;
-            b = RotateLeft((b + H(c, d, a) + _x[14] + unchecked((int)0xfde5380c)), S34) + c;
-            a = RotateLeft((a + H(b, c, d) + _x[1] + unchecked((int)0xa4beea44)), S31) + b;
-            d = RotateLeft((d + H(a, b, c) + _x[4] + unchecked(0x4bdecfa9)), S32) + a;
-            c = RotateLeft((c + H(d, a, b) + _x[7] + unchecked((int)0xf6bb4b60)), S33) + d;
-            b = RotateLeft((b + H(c, d, a) + _x[10] + unchecked((int)0xbebfbc70)), S34) + c;
-            a = RotateLeft((a + H(b, c, d) + _x[13] + unchecked(0x289b7ec6)), S31) + b;
-            d = RotateLeft((d + H(a, b, c) + _x[0] + unchecked((int)0xeaa127fa)), S32) + a;
-            c = RotateLeft((c + H(d, a, b) + _x[3] + unchecked((int)0xd4ef3085)), S33) + d;
-            b = RotateLeft((b + H(c, d, a) + _x[6] + unchecked(0x04881d05)), S34) + c;
-            a = RotateLeft((a + H(b, c, d) + _x[9] + unchecked((int)0xd9d4d039)), S31) + b;
-            d = RotateLeft((d + H(a, b, c) + _x[12] + unchecked((int)0xe6db99e5)), S32) + a;
-            c = RotateLeft((c + H(d, a, b) + _x[15] + unchecked(0x1fa27cf8)), S33) + d;
-            b = RotateLeft((b + H(c, d, a) + _x[2] + unchecked((int)0xc4ac5665)), S34) + c;
+            a = RotateLeft(a + H(b, c, d) + _x[5] + unchecked((int) 0xfffa3942), S31) + b;
+            d = RotateLeft(d + H(a, b, c) + _x[8] + unchecked((int) 0x8771f681), S32) + a;
+            c = RotateLeft(c + H(d, a, b) + _x[11] + 0x6d9d6122, S33) + d;
+            b = RotateLeft(b + H(c, d, a) + _x[14] + unchecked((int) 0xfde5380c), S34) + c;
+            a = RotateLeft(a + H(b, c, d) + _x[1] + unchecked((int) 0xa4beea44), S31) + b;
+            d = RotateLeft(d + H(a, b, c) + _x[4] + 0x4bdecfa9, S32) + a;
+            c = RotateLeft(c + H(d, a, b) + _x[7] + unchecked((int) 0xf6bb4b60), S33) + d;
+            b = RotateLeft(b + H(c, d, a) + _x[10] + unchecked((int) 0xbebfbc70), S34) + c;
+            a = RotateLeft(a + H(b, c, d) + _x[13] + 0x289b7ec6, S31) + b;
+            d = RotateLeft(d + H(a, b, c) + _x[0] + unchecked((int) 0xeaa127fa), S32) + a;
+            c = RotateLeft(c + H(d, a, b) + _x[3] + unchecked((int) 0xd4ef3085), S33) + d;
+            b = RotateLeft(b + H(c, d, a) + _x[6] + 0x04881d05, S34) + c;
+            a = RotateLeft(a + H(b, c, d) + _x[9] + unchecked((int) 0xd9d4d039), S31) + b;
+            d = RotateLeft(d + H(a, b, c) + _x[12] + unchecked((int) 0xe6db99e5), S32) + a;
+            c = RotateLeft(c + H(d, a, b) + _x[15] + 0x1fa27cf8, S33) + d;
+            b = RotateLeft(b + H(c, d, a) + _x[2] + unchecked((int) 0xc4ac5665), S34) + c;
 
             //
             // Round 4 - K cycle, 16 times.
             //
-            a = RotateLeft((a + K(b, c, d) + _x[0] + unchecked((int)0xf4292244)), S41) + b;
-            d = RotateLeft((d + K(a, b, c) + _x[7] + unchecked(0x432aff97)), S42) + a;
-            c = RotateLeft((c + K(d, a, b) + _x[14] + unchecked((int)0xab9423a7)), S43) + d;
-            b = RotateLeft((b + K(c, d, a) + _x[5] + unchecked((int)0xfc93a039)), S44) + c;
-            a = RotateLeft((a + K(b, c, d) + _x[12] + unchecked(0x655b59c3)), S41) + b;
-            d = RotateLeft((d + K(a, b, c) + _x[3] + unchecked((int)0x8f0ccc92)), S42) + a;
-            c = RotateLeft((c + K(d, a, b) + _x[10] + unchecked((int)0xffeff47d)), S43) + d;
-            b = RotateLeft((b + K(c, d, a) + _x[1] + unchecked((int)0x85845dd1)), S44) + c;
-            a = RotateLeft((a + K(b, c, d) + _x[8] + unchecked(0x6fa87e4f)), S41) + b;
-            d = RotateLeft((d + K(a, b, c) + _x[15] + unchecked((int)0xfe2ce6e0)), S42) + a;
-            c = RotateLeft((c + K(d, a, b) + _x[6] + unchecked((int)0xa3014314)), S43) + d;
-            b = RotateLeft((b + K(c, d, a) + _x[13] + unchecked(0x4e0811a1)), S44) + c;
-            a = RotateLeft((a + K(b, c, d) + _x[4] + unchecked((int)0xf7537e82)), S41) + b;
-            d = RotateLeft((d + K(a, b, c) + _x[11] + unchecked((int)0xbd3af235)), S42) + a;
-            c = RotateLeft((c + K(d, a, b) + _x[2] + unchecked(0x2ad7d2bb)), S43) + d;
-            b = RotateLeft((b + K(c, d, a) + _x[9] + unchecked((int)0xeb86d391)), S44) + c;
+            a = RotateLeft(a + K(b, c, d) + _x[0] + unchecked((int) 0xf4292244), S41) + b;
+            d = RotateLeft(d + K(a, b, c) + _x[7] + 0x432aff97, S42) + a;
+            c = RotateLeft(c + K(d, a, b) + _x[14] + unchecked((int) 0xab9423a7), S43) + d;
+            b = RotateLeft(b + K(c, d, a) + _x[5] + unchecked((int) 0xfc93a039), S44) + c;
+            a = RotateLeft(a + K(b, c, d) + _x[12] + 0x655b59c3, S41) + b;
+            d = RotateLeft(d + K(a, b, c) + _x[3] + unchecked((int) 0x8f0ccc92), S42) + a;
+            c = RotateLeft(c + K(d, a, b) + _x[10] + unchecked((int) 0xffeff47d), S43) + d;
+            b = RotateLeft(b + K(c, d, a) + _x[1] + unchecked((int) 0x85845dd1), S44) + c;
+            a = RotateLeft(a + K(b, c, d) + _x[8] + 0x6fa87e4f, S41) + b;
+            d = RotateLeft(d + K(a, b, c) + _x[15] + unchecked((int) 0xfe2ce6e0), S42) + a;
+            c = RotateLeft(c + K(d, a, b) + _x[6] + unchecked((int) 0xa3014314), S43) + d;
+            b = RotateLeft(b + K(c, d, a) + _x[13] + 0x4e0811a1, S44) + c;
+            a = RotateLeft(a + K(b, c, d) + _x[4] + unchecked((int) 0xf7537e82), S41) + b;
+            d = RotateLeft(d + K(a, b, c) + _x[11] + unchecked((int) 0xbd3af235), S42) + a;
+            c = RotateLeft(c + K(d, a, b) + _x[2] + 0x2ad7d2bb, S43) + d;
+            b = RotateLeft(b + K(c, d, a) + _x[9] + unchecked((int) 0xeb86d391), S44) + c;
 
             _h1 += a;
             _h2 += b;
