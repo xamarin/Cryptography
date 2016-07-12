@@ -60,6 +60,7 @@ namespace SshNet.Security.Cryptography.Tests
             Assert.Equal(expectedHash, actualHash);
         }
 
+#if FEATURE_HASHALGORITHM_TRANSFORM
         [Fact]
         public void TransformFinalBlock_InputCountLessThanBlockSize()
         {
@@ -165,5 +166,6 @@ namespace SshNet.Security.Cryptography.Tests
             Assert.Equal(data, actual);
             Assert.Equal(expectedHash, _hashAlgorithm.Hash);
         }
+#endif // FEATURE_HASHALGORITHM_TRANSFORM
     }
 }

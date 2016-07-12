@@ -40,11 +40,12 @@ For all other target frameworks, these methods/properties were already public.
         <dependency id="System.IO" version="4.1.0" />
         <dependency id="System.Security.Cryptography.Primitives" version="4.0.0" />
       </group>
-      <group targetFramework=".NETPortable0.0-Profile111" />
+      <group targetFramework=".NETPortable,Version=v4.5,Profile=Profile111" />
       <group targetFramework="Silverlight4.0" />
       <group targetFramework="Silverlight5.0" />
       <group targetFramework="UAP10.0">
         <dependency id="System.IO" version="4.1.0" />
+        <dependency id="System.Security.Cryptography.Primitives" version="4.0.0" />
       </group>
       <group targetFramework="WindowsPhone7.1" />
       <group targetFramework="WindowsPhone8.0" />
