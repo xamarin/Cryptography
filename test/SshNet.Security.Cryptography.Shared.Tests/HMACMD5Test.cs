@@ -96,7 +96,7 @@ namespace SshNet.Security.Cryptography.Tests
         public void Rfc2202_7()
         {
             var key = ByteExtensions.Repeat(0xaa, 80);
-            var data = Encoding.ASCII.GetBytes("Test Using Larger Than Block-Size Key and Larger Than One Block-Size Data");
+            var data = ByteExtensions.HexToByteArray("54657374205573696e67204c6172676572205468616e20426c6f636b2d53697a65204b657920616e64204c6172676572205468616e204f6e6520426c6f636b2d53697a652044617461"); // "Test Using Larger Than Block-Size Key and Larger Than One Block-Size Data"
             var expectedHash = ByteExtensions.HexToByteArray("6f630fad67cda0ee1fb1f562db3aa53e");
             var hmac = CreateHMACMD5(key);
 
@@ -118,7 +118,7 @@ namespace SshNet.Security.Cryptography.Tests
             Assert.Equal(expectedHash, actualHash);
 
             // Rfc2202_6
-            data = Encoding.ASCII.GetBytes("Test Using Larger Than Block-Size Key - Hash Key First");
+            data = ByteExtensions.HexToByteArray("54657374205573696e67204c6172676572205468616e20426c6f636b2d53697a65204b6579202d2048617368204b6579204669727374"); // "Test Using Larger Than Block-Size Key - Hash Key First"
             expectedHash = ByteExtensions.HexToByteArray("6b1ab7fe4bd7bf8f0b62e6ce61b9d0cd");
 
             actualHash = hmac.ComputeHash(data);
@@ -130,7 +130,7 @@ namespace SshNet.Security.Cryptography.Tests
         {
             // Rfc2202_7
             var key = ByteExtensions.Repeat(0xaa, 80);
-            var data = Encoding.ASCII.GetBytes("Test Using Larger Than Block-Size Key and Larger Than One Block-Size Data");
+            var data = ByteExtensions.HexToByteArray("54657374205573696e67204c6172676572205468616e20426c6f636b2d53697a65204b657920616e64204c6172676572205468616e204f6e6520426c6f636b2d53697a652044617461"); // "Test Using Larger Than Block-Size Key and Larger Than One Block-Size Data"
             var expectedHash = ByteExtensions.HexToByteArray("6f630fad67cda0ee1fb1f562db3aa53e");
 
             // first initialize HMAC with a dummy key
@@ -155,8 +155,8 @@ namespace SshNet.Security.Cryptography.Tests
             Assert.Equal(expectedHash, actualHash);
 
             // Rfc2202_2: assign key smaller than block size
-            key = Encoding.ASCII.GetBytes("Jefe");
-            data = Encoding.ASCII.GetBytes("what do ya want for nothing?");
+            key = ByteExtensions.HexToByteArray("4a656665"); // "Jefe";
+            data = ByteExtensions.HexToByteArray("7768617420646f2079612077616e7420666f72206e6f7468696e673f"); // "what do ya want for nothing?"
             expectedHash = ByteExtensions.HexToByteArray("750c783e6ab0b503eaa86e310a5db738");
             hmac.Key = key;
 
@@ -165,7 +165,7 @@ namespace SshNet.Security.Cryptography.Tests
 
             // Rfc2202_7: assign key larger than block size
             key = ByteExtensions.Repeat(0xaa, 80);
-            data = Encoding.ASCII.GetBytes("Test Using Larger Than Block-Size Key and Larger Than One Block-Size Data");
+            data = ByteExtensions.HexToByteArray("54657374205573696e67204c6172676572205468616e20426c6f636b2d53697a65204b657920616e64204c6172676572205468616e204f6e6520426c6f636b2d53697a652044617461"); // "Test Using Larger Than Block-Size Key and Larger Than One Block-Size Data"
             expectedHash = ByteExtensions.HexToByteArray("6f630fad67cda0ee1fb1f562db3aa53e");
             hmac.Key = key;
 
