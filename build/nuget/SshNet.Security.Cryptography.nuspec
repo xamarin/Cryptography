@@ -11,20 +11,23 @@
     <projectUrl>https://github.com/sshnet/Cryptography/</projectUrl>
     <description>Cryptographic functions for .NET</description>
     <summary>Cryptographic functions for .NET</summary>
-    <releaseNotes>The following methods on HashAlgorithm are now public:
-* int TransformBlock(byte[], int, int, byte[], int)
-* byte[] TransformFinalBlock(byte[], int, int)
+    <releaseNotes>Changes:
+========
+
+The following methods on HashAlgorithm are now public:
+  * int TransformBlock(byte[], int, int, byte[], int)
+  * byte[] TransformFinalBlock(byte[], int, int)
 
 The following properties on HashAlgorithm are now public:
-* byte[] Hash
+  * byte[] Hash
 
 This affects the following target frameworks:
 
 * netstandard1.0
 * portable-net45+win8+wpa81
-* uap 10.0
 
-For all other target frameworks, these methods/properties were already public.
+In the uap10.0 version, our hash algorithms now derive from System.Security.Cryptographic.HashAlgorithm
+through a dependency on the System.Security.Cryptographic.Primitives package.
 </releaseNotes>
     <copyright>2010-2016, RENCI</copyright>
     <language>en-US</language>
