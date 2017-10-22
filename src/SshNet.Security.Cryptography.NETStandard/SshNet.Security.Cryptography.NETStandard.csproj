@@ -7,35 +7,12 @@
     <SignAssembly>true</SignAssembly>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
-  <ItemGroup>
-    <Compile Include="..\SshNet.Security.Cryptography.Shared\**\*.cs" />
+  <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.0' ">
+    <PackageReference Include="System.IO" Version="4.3.0" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Remove="..\SshNet.Security.Cryptography.Shared\HashAlgorithm.cs" />
-    <Compile Remove="..\SshNet.Security.Cryptography.Shared\HashProviderBase.cs" />
-    <Compile Remove="..\SshNet.Security.Cryptography.Shared\HMAC.cs" />
-    <Compile Remove="..\SshNet.Security.Cryptography.Shared\HMACMD5.cs" />
-    <Compile Remove="..\SshNet.Security.Cryptography.Shared\HMACRIPEMD160.cs" />
-    <Compile Remove="..\SshNet.Security.Cryptography.Shared\HMACSHA1.cs" />
-    <Compile Remove="..\SshNet.Security.Cryptography.Shared\HMACSHA256.cs" />
-    <Compile Remove="..\SshNet.Security.Cryptography.Shared\HMACSHA384.cs" />
-    <Compile Remove="..\SshNet.Security.Cryptography.Shared\HMACSHA512.cs" />
-    <Compile Remove="..\SshNet.Security.Cryptography.Shared\IHashProvider.cs" />
-    <Compile Remove="..\SshNet.Security.Cryptography.Shared\KeyedHashAlgorithm.cs" />
-    <Compile Remove="..\SshNet.Security.Cryptography.Shared\MD5.cs" />
-    <Compile Remove="..\SshNet.Security.Cryptography.Shared\MD5HashProvider.cs" />
-    <Compile Remove="..\SshNet.Security.Cryptography.Shared\Properties\CommonAssemblyInfo.cs" />
-    <Compile Remove="..\SshNet.Security.Cryptography.Shared\RIPEMD160.cs" />
-    <Compile Remove="..\SshNet.Security.Cryptography.Shared\RIPEMD160HashProvider.cs" />
-    <Compile Remove="..\SshNet.Security.Cryptography.Shared\SHA1.cs" />
-    <Compile Remove="..\SshNet.Security.Cryptography.Shared\SHA1HashProvider.cs" />
-    <Compile Remove="..\SshNet.Security.Cryptography.Shared\SHA256.cs" />
-    <Compile Remove="..\SshNet.Security.Cryptography.Shared\SHA256HashProvider.cs" />
-    <Compile Remove="..\SshNet.Security.Cryptography.Shared\SHA2HashProviderBase.cs" />
-    <Compile Remove="..\SshNet.Security.Cryptography.Shared\SHA384.cs" />
-    <Compile Remove="..\SshNet.Security.Cryptography.Shared\SHA384HashProvider.cs" />
-    <Compile Remove="..\SshNet.Security.Cryptography.Shared\SHA512.cs" />
-    <Compile Remove="..\SshNet.Security.Cryptography.Shared\SHA512HashProvider.cs" />
+  <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.3' ">
+    <PackageReference Include="System.IO" Version="4.3.0" />
+    <PackageReference Include="System.Security.Cryptography.Primitives" Version="4.3.0" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard1.3' ">
     <DefineConstants>$(DefineConstants);FEATURE_CRYPTO_HASHALGORITHM</DefineConstants>
