@@ -9,9 +9,18 @@
 	<ItemGroup>
 		<VisualStudioVersion Include="2012">
 			<SolutionFile>$(MSBuildThisFileDirectory)..\src\SshNet.Security.Cryptography.VS2012.sln</SolutionFile>
+			<ToolsVersion>14.0</ToolsVersion>
+			<VisualStudioVersion>14.0</VisualStudioVersion>
 		</VisualStudioVersion>
 		<VisualStudioVersion Include="2015">
 			<SolutionFile>$(MSBuildThisFileDirectory)..\src\SshNet.Security.Cryptography.VS2015.sln</SolutionFile>
+			<ToolsVersion>14.0</ToolsVersion>
+			<VisualStudioVersion>14.0</VisualStudioVersion>
+		</VisualStudioVersion>
+		<VisualStudioVersion Include="2017">
+			<SolutionFile>$(MSBuildThisFileDirectory)..\src\SshNet.Security.Cryptography.VS2017.sln</SolutionFile>
+			<ToolsVersion>15.0</ToolsVersion>
+			<VisualStudioVersion>15.0</VisualStudioVersion>
 		</VisualStudioVersion>
 	</ItemGroup>
 	<ItemGroup>
@@ -52,18 +61,33 @@
 			<Moniker>portable-net45+win8+wpa81</Moniker>
 		</TargetFramework>
 		<TargetFramework Include=".NETStandard 1.0">
-			<OutputDirectory>SshNet.Security.Cryptography.NETCore\bin\$(Configuration)\netstandard1.0</OutputDirectory>
+			<OutputDirectory>SshNet.Security.Cryptography.NETStandard\bin\$(Configuration)\netstandard1.0</OutputDirectory>
 			<Moniker>netstandard1.0</Moniker>
 		</TargetFramework>
 		<TargetFramework Include=".NETStandard 1.3">
-			<OutputDirectory>SshNet.Security.Cryptography.NETCore\bin\$(Configuration)\netstandard1.3</OutputDirectory>
+			<OutputDirectory>SshNet.Security.Cryptography.NETStandard\bin\$(Configuration)\netstandard1.3</OutputDirectory>
 			<Moniker>netstandard1.3</Moniker>
 		</TargetFramework>
+		<TargetFramework Include=".NETStandard 2.0">
+			<OutputDirectory>SshNet.Security.Cryptography.NETStandard\bin\$(Configuration)\netstandard2.0</OutputDirectory>
+			<Moniker>netstandard2.0</Moniker>
+		</TargetFramework>
 	</ItemGroup>
-	<Target Name="Clean">
+	<Target Name="Clean" DependsOnTargets="CleanSolution">
 		<RemoveDir Directories="$(MSBuildThisFileDirectory)target"/>
 	</Target>
 
+	<Target Name="CleanSolution" Outputs="%(VisualStudioVersion.Identity)">
+		
+		<ItemGroup>
+			<ProjectToBuild Remove="@(ProjectToBuild)"/>
+			<ProjectToBuild Include="%(VisualStudioVersion.SolutionFile)">
+				<Properties>Configuration=Release;VisualStudioVersion=%(VisualStudioVersion.VisualStudioVersion)</Properties>
+			</ProjectToBuild>
+		</ItemGroup>
+		<MSBuild Projects="@(ProjectToBuild)" ToolsVersion="%(VisualStudioVersion.ToolsVersion)" Targets="Clean"/>
+	</Target>
+	
 	<Target Name="DownloadNuGet">
 		<MakeDir Directories="$(MSBuildThisFileDirectory)target\nuget"/>
 		<DownloadFile
@@ -77,13 +101,16 @@
 	</Target>
 
 	<Target Name="Build" DependsOnTargets="RestoreNuGetPackages" Outputs="%(VisualStudioVersion.Identity)">
+		<Message Text="VisualStudioVersion=$(VisualStudioVersion)" Importance="High"/>
+		<Message Text="MSBuildToolsVersion=$(MSBuildToolsVersion)" Importance="High"/>
+		
 		<ItemGroup>
 			<ProjectToBuild Remove="@(ProjectToBuild)"/>
 			<ProjectToBuild Include="%(VisualStudioVersion.SolutionFile)">
-				<Properties>Configuration=Release</Properties>
+				<Properties>Configuration=Release;VisualStudioVersion=%(VisualStudioVersion.VisualStudioVersion)</Properties>
 			</ProjectToBuild>
 		</ItemGroup>
-		<MSBuild Projects="@(ProjectToBuild)" Targets="Rebuild"/>
+		<MSBuild Projects="@(ProjectToBuild)" ToolsVersion="%(VisualStudioVersion.ToolsVersion)" Targets="Rebuild"/>
 	</Target>
 
 	<Target Name="CreatePackage" DependsOnTargets="CopyBuildOutputToPackage">
