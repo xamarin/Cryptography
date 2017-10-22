@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
   <metadata>
     <id>SshNet.Security.Cryptography</id>
-    <version>1.2.0</version>
+    <version>1.3.0</version>
     <title>SshNet.Security.Cryptography</title>
     <authors>Renci</authors>
     <owners>drieseng,olegkap</owners>
@@ -11,25 +11,8 @@
     <projectUrl>https://github.com/sshnet/Cryptography/</projectUrl>
     <description>Cryptographic functions for .NET</description>
     <summary>Cryptographic functions for .NET</summary>
-    <releaseNotes>Changes:
-========
-
-The following methods on HashAlgorithm are now public:
-  * int TransformBlock(byte[], int, int, byte[], int)
-  * byte[] TransformFinalBlock(byte[], int, int)
-
-The following properties on HashAlgorithm are now public:
-  * byte[] Hash
-
-This affects the following target frameworks:
-
-* netstandard1.0
-* portable-net45+win8+wpa81
-
-In the uap10.0 version, our hash algorithms now derive from System.Security.Cryptographic.HashAlgorithm
-through a dependency on the System.Security.Cryptographic.Primitives package.
-</releaseNotes>
-    <copyright>2010-2016, RENCI</copyright>
+    <releaseNotes>https://github.com/sshnet/Cryptography/releases/tag/1.3.0</releaseNotes>
+    <copyright>2010-2017, RENCI</copyright>
     <language>en-US</language>
     <tags>crypto</tags>
     <dependencies>
@@ -37,18 +20,19 @@ through a dependency on the System.Security.Cryptographic.Primitives package.
       <group targetFramework=".NETFramework4.0" />
       <group targetFramework=".NETFramework4.5" />
       <group targetFramework=".NETStandard1.0">
-        <dependency id="System.IO" version="4.1.0" />
+        <dependency id="System.IO" version="4.3.0" />
       </group>
       <group targetFramework=".NETStandard1.3">
-        <dependency id="System.IO" version="4.1.0" />
-        <dependency id="System.Security.Cryptography.Primitives" version="4.0.0" />
+        <dependency id="System.IO" version="4.3.0" />
+        <dependency id="System.Security.Cryptography.Primitives" version="4.3.0" />
       </group>
+      <group targetFramework=".NETStandard2.0" />
       <group targetFramework=".NETPortable,Version=v4.5,Profile=Profile111" />
       <group targetFramework="Silverlight4.0" />
       <group targetFramework="Silverlight5.0" />
       <group targetFramework="UAP10.0">
-        <dependency id="System.IO" version="4.1.0" />
-        <dependency id="System.Security.Cryptography.Primitives" version="4.0.0" />
+        <dependency id="System.IO" version="4.3.0" />
+        <dependency id="System.Security.Cryptography.Primitives" version="4.3.0" />
       </group>
       <group targetFramework="WindowsPhone7.1" />
       <group targetFramework="WindowsPhone8.0" />
