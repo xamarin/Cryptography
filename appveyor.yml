@@ -1,11 +1,7 @@
 image: Visual Studio 2017
 
-before_build:
-  - nuget restore src\SshNet.Security.Cryptography.VS2017.sln
-
-build:
-  project: src\SshNet.Security.Cryptography.VS2017.sln
-  verbosity: minimal
+build_script:
+- cmd: msbuild build/build.proj /verbosity:minimal
 
 test:
   assemblies: test\SshNet.Security.Cryptography.NET40.Tests\bin\Debug\SshNet.Security.Cryptography.Tests.dll
