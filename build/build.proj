@@ -101,9 +101,6 @@
 	</Target>
 
 	<Target Name="Build" DependsOnTargets="RestoreNuGetPackages" Outputs="%(VisualStudioVersion.Identity)">
-		<Message Text="VisualStudioVersion=$(VisualStudioVersion)" Importance="High"/>
-		<Message Text="MSBuildToolsVersion=$(MSBuildToolsVersion)" Importance="High"/>
-		
 		<ItemGroup>
 			<ProjectToBuild Remove="@(ProjectToBuild)"/>
 			<ProjectToBuild Include="%(VisualStudioVersion.SolutionFile)">
