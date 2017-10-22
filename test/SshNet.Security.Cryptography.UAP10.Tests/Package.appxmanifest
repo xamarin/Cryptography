@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="96c3e6e7-3dbc-4529-95a4-aecea7b1542a" Publisher="CN=Gert" Version="1.0.0.0" />
+  <Identity Name="96c3e6e7-3dbc-4529-95a4-aecea7b1542a" Publisher="O=SSH.NET" Version="1.0.0.0" />
   <mp:PhoneIdentity PhoneProductId="96c3e6e7-3dbc-4529-95a4-aecea7b1542a" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>Renci.Security.Cryptography.UAP10.Tests</DisplayName>
-    <PublisherDisplayName>Gert</PublisherDisplayName>
+    <PublisherDisplayName>SSH.NET</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
   <Dependencies>
